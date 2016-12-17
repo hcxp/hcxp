@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
       host:                  ENV['FOG_HOST']
     }
     config.fog_directory  = ENV['FOG_DIRECTORY']
-    config.fog_public     = false
+    config.fog_public     = true
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
   else
     config.asset_host = ActionController::Base.asset_host
