@@ -20,5 +20,20 @@
     <%== cell(:flash_messages, flash) %>
     <%== cell(:nav_main, css_class: @nav_main_class) %>
     <%= yield %>
+
+
+    <div class="container text-xs-center mt-3">
+      <hr>
+      <ul class="list-inline text-muted">
+        <li class="list-inline-item">DIY or DIE!</li>
+        <li class="list-inline-item">&times;</li>
+        <li class="list-inline-item">
+          <a href="https://github.com/hcxp/hcxp">Github</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="https://twitter.com/hcxphq">Twitter</a>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>
