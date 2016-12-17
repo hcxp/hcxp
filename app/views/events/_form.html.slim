@@ -9,12 +9,7 @@
           small.form-text.text-muted Up to 2MB. Only jpg and png allowed.
 
     .col-sm-6
-      - if f.object.errors.any?
-        .alert.alert-danger
-          h5 Oups! Something is not right
-          ul.mb-0
-            - f.object.errors.full_messages.each do |e|
-              li = e
+      == cell(:form_errors, f.object)
 
       .form-group
         = f.label :name

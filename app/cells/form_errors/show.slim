@@ -1,0 +1,6 @@
+- if model.errors.any?
+  .alert.alert-danger
+    h5 Oups! Something is not right
+    ul.mb-0
+      - model.errors.full_messages.each do |e|
+        li = e
