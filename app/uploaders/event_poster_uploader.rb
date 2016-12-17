@@ -49,7 +49,7 @@ class EventPosterUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "poster.jpg" if original_filename
+    "#{Digest::MD5.hexdigest(Time.now.to_i.to_s)}.jpg" if original_filename
   end
 
 end
