@@ -56,6 +56,7 @@ gem 'draper', github: 'drapergem/draper'
 gem 'dotenv-rails'
 
 gem 'mini_magick'
+gem 'fog-aws'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 group :development, :test do
