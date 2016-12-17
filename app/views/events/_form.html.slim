@@ -3,10 +3,7 @@
     .col-sm-6
       .card
         .card-block
-          - if @event.poster.present?
-            p = image_tag @event.poster.url, class: 'img-fluid'
-          - else
-            p = image_tag @event.poster_url(403, 536, text: 'Poster'), class: 'img-fluid'
+          p = image_tag @event.poster_url(403, 536, text: 'Poster'), class: 'img-fluid'
 
           = f.file_field :poster, class: 'form-control'
           small.form-text.text-muted Up to 2MB. Only jpg and png allowed.

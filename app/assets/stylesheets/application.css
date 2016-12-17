@@ -19,6 +19,7 @@
  *= require event_card
  *= require venue_card
  *= require blankslate
+ *= require flash_messages
  */
 
 body {

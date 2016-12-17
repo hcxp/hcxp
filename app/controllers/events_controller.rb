@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   def new
     authenticate_user!
     authorize Event
-    @event = Event.new(beginning_at: Time.zone.now)
+    @event = Event.new(beginning_at: Time.zone.now).decorate
   end
 
   def create

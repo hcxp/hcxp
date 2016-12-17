@@ -17,6 +17,7 @@
   </head>
 
   <body>
+    <%== cell(:flash_messages, flash) %>
     <%== cell(:nav_main, css_class: @nav_main_class) %>
     <%= yield %>
   </body>

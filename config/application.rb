@@ -16,7 +16,7 @@ module Hcxp
     # -- all .rb files in that directory are automatically loaded.
 
     config.cells.with_assets = [
-      'nav_main_cell', 'event_card_cell', 'venue_card_cell', 'blankslate_cell'
+      'nav_main_cell', 'event_card_cell', 'venue_card_cell', 'blankslate_cell', 'flash_messages_cell'
     ]
 
     # URL options

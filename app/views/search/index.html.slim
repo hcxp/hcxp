@@ -42,9 +42,15 @@ section.section-white.section-shadow.py-1
               | No venues found
 
 .container.mt-2
-  - @events.each do |event|
-    == cell :event_card, event
+  - if @events.any?
+    - @events.each do |event|
+      == cell :event_card, event
 
-  .text-xs-center.mt-2
-    a.btn.btn-primary.btn-lg href=events_path(q: params[:q], s: 'all') All 28 events &rarr;
+    .text-xs-center.mt-2
+      a.btn.btn-primary.btn-lg href=events_path(q: params[:q], s: 'all') All #{@events.total_count} events &rarr;
+
+  - else
+    == cell :blankslate, \
+      title: 'No events found', \
+      description: 'Try to modify search criteria'
 
