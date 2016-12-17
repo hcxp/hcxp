@@ -59,6 +59,9 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
+# Thumbor client
+gem 'thumbor_rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
