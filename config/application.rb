@@ -27,5 +27,15 @@ module Hcxp
     config.action_mailer.default_url_options = {
       host: ENV['APP_HOST']
     }
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      authentication: :plain,
+      address:        ENV['MAIL_SERVER'] || 'localhost',
+      user_name:      ENV['MAIL_LOGIN'] || nil,
+      password:       ENV['MAIL_PASSWORD'] || nil,
+      port:           ENV['MAIL_PORT'].to_i || 1025,
+      domain:         ENV['APP_HOST']
+    }
   end
 end
