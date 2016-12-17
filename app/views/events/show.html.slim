@@ -3,7 +3,7 @@
     .col-sm-4.offset-sm-1
       .card
         .card-block
-          = image_tag @event.poster_url(400, 500, text: 'x'), class: 'img-fluid'
+          = image_tag @event.poster_url(400, 500, text: 'x', fit_in: true), class: 'img-fluid'
 
     .col-sm-6.pt-1
       - if @event.name.present?

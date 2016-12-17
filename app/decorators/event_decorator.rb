@@ -3,7 +3,11 @@ class EventDecorator < Draper::Decorator
 
   def poster_url(width = 400, height = 500, opts = {})
     if model.poster.present?
-      opts = { width: width, height: height }
+      opts = {
+        width:  width,
+        height: height,
+        fit_in: opts[:fit_in]
+      }
       opts.merge!(filters: ['no_upscale()'])
       h.thumbor_url(model.poster.url, opts)
     else
