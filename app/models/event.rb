@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   mount_uploader :poster, ::EventPosterUploader
 
   belongs_to :user
-  has_many :event_bands
+  has_many :event_bands, dependent: :destroy
   has_many :bands, through: :event_bands
   belongs_to :venue
 
