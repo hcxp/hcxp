@@ -1,0 +1,35 @@
+.event-card
+  .row
+    .col-xs-10
+      .media
+        .media-left.pr-2
+          = link_to model, class: 'event-card-poster' do
+            = image_tag model_decor.poster_url(150, 150, text: '.'), class: 'img-thumbnail', size: '150x150'
+
+        .media-body
+          / Heading
+          h4.h5.media-heading.mb-1
+            = link_to name_or_bands, model, class: 'link-inherit'
+
+          / Bands
+          ul.list-inline
+            - model.bands.each do |band|
+              li.list-inline-item
+                a.btn.btn-secondary.btn-band href=band_path(band)
+                  = band.name
+
+                  sub
+                    = band.country_code
+
+          / Meta - dates
+          == cell(:event_meta_list, model)
+
+
+    / Venue
+    - if model.venue
+      .col-xs-2.text-xs-right
+        h6
+          = link_to model.venue.name, model.venue, class: 'link-inherit'
+
+        p.text-muted
+          = [model.venue.city, model.venue.country_code].join(', ')

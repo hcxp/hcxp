@@ -1,0 +1,15 @@
+.venue-card
+  .row
+    .col-xs-6
+      h4.h5.media-heading
+        = link_to model.name, model, class: 'link-inherit'
+
+      p.mb-0.text-muted
+        = model.address
+
+    .col-xs-6
+      ul.list-inline.float-xs-right.mb-0
+        - poster_events.each do |e, event = e.decorate|
+          li.list-inline-item.venue-card-event-poster
+            = link_to event do
+              = image_tag event.poster_url(150, 150, text: '.'), class: 'img-thumbnail'

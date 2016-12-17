@@ -1,0 +1,12 @@
+section.section-white.section-shadow.py-2
+  .container
+    == cell :bands_filters
+
+.container.mt-2
+  - @bands.each do |band|
+    == cell :band_card, band
+
+  - unless @bands.any?
+      == cell :blankslate, \
+        title: 'No bands found', \
+        description: 'Try to modify search criteria'

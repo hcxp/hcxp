@@ -1,0 +1,17 @@
+ul.list-inline.event-card-meta.mb-0
+  li.list-inline-item
+    strong class=humanized_date_class
+      = humanized_date
+
+  li.list-inline-item.text-muted
+    i.fa.fa-calendar-o.fa-fw
+    = model.beginning_at.strftime('%A, %e %b %Y')
+
+  li.list-inline-item.text-muted
+    i.fa.fa-clock-o.fa-fw
+    = model.beginning_at.strftime('%H:%M')
+
+  - if model.user
+    li.list-inline-item.text-muted
+      = image_tag user_decor.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
+      = user_decor

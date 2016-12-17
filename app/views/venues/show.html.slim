@@ -1,0 +1,14 @@
+section.section-white.section-shadow
+  .container.py-3
+    .text-xs-center
+      p style="margin-bottom: 0.5rem"
+        span.tag.tag-type Venue
+      h1 = @venue.name
+      p.lead.mb-0.text-muted = @venue.address
+
+.container.pt-2
+  .card
+    .card-block
+      == cell :events_filters
+
+  = render partial: 'events/events', events: @events

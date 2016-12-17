@@ -1,0 +1,24 @@
+.container.mt-2
+  .row
+    .col-sm-10.offset-sm-1
+      .text-xs-center.pt-2
+        h1.mb-2 Edit event
+        hr.mb-2
+
+      = render 'form'
+
+
+javascript:
+  $(function () {
+    $('#event_beginning_at').datetimepicker({
+      sideBySide: true,
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up:   "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+      },
+      ignoreReadonly: true,
+      format: 'dddd, DD MMM YYYY, HH:mm'
+    });
+  });

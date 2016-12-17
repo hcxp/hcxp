@@ -1,0 +1,38 @@
+.navbar.navbar-dark.bg-inverse.navbar-full.nav-main
+  .container
+    .row
+      .col-xs-5
+        ul.nav.navbar-nav
+          li.nav-item
+            = active_link_to 'Events', root_path, class: 'nav-link', active: :exclusive
+
+          li.nav-item
+            = active_link_to 'Venues', venues_path, class: 'nav-link'
+
+          li.nav-item
+            = active_link_to 'Bands', bands_path, class: 'nav-link'
+
+        form.form-inline.float-xs-left.ml-1
+          a.btn.btn-sm.align-middle.btn-outline-secondary style="margin-top:0.3rem" href=new_event_path + Add event
+
+      .col-xs-2.text-xs-center
+        a.navbar-brand href=root_path hcxp
+
+      .col-xs-5
+        = form_tag search_path, class: 'form-inline float-xs-right', method: :get do
+          input.form-control placeholder="Search..." name="q" value=params[:q]
+
+        ul.nav.navbar-nav.float-xs-right.mr-1
+          - if user_signed_in?
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle data-toggle="dropdown"
+                = image_tag 'https://1.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?s=200&r=pg&d=mm', height: 20
+
+              .dropdown-menu.dropdown-menu-right aria-labelledby="supportedContentDropdown"
+                a class="dropdown-item" href=destroy_user_session_path data-method="delete" Sign out
+
+          - else
+            li.nav-item
+              = active_link_to 'Sign up', new_user_registration_path, class: 'nav-link'
+            li.nav-item
+              = active_link_to 'Sign in', new_user_session_path, class: 'nav-link'

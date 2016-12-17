@@ -1,0 +1,8 @@
+= form_tag bands_path, class: 'row events-search-form', method: :get do
+  .form-group.mb-0.col-xs-10
+    input.form-control placeholder="Search for bands or locations..." name="q" value=params[:q]
+
+  .form-group.mb-0.col-xs-2
+    button.btn.btn-primary.btn-block
+      i.fa.fa-fw.fa-search
+      | Search

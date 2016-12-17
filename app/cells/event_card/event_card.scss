@@ -1,0 +1,28 @@
+.event-card {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.event-card-poster {
+  img {
+    max-width: none;
+    border: none;
+    padding: .4rem;
+    height: 150px;
+  }
+}
+
+.event-card-meta {
+  li {
+    margin-right: 1.3rem !important;
+  }
+
+  .user-avatar {
+    margin-right: 0.3rem;
+  }
+}

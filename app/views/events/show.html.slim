@@ -1,0 +1,38 @@
+.container.mt-2
+  .row
+    .col-sm-4.offset-sm-1
+      .card
+        .card-block
+          = image_tag @event.poster_url(400, 500, text: 'x'), class: 'img-fluid'
+
+    .col-sm-6.pt-1
+      - if @event.name.present?
+        h1.h2 = @event.name
+
+      == cell(:event_meta_list, @event)
+
+      - if @event.bands.any?
+        hr
+        h6.h6-up.text-muted Bands
+        ul.list-inline
+          - @event.bands.each do |band|
+            li.list-inline-item
+              a.btn.btn-secondary.btn-band href=band_path(band)
+                = band.name
+                sub = band.country_code
+
+      - if @event.venue
+        hr
+
+        h6.h6-up.text-muted Venue
+        h3.h5.media-heading
+          = link_to @event.venue.name, @event.venue, class: 'link-inherit'
+        p.text-muted
+          = @event.venue.address
+
+      hr
+
+      - if policy(@event).edit?
+        a.btn.btn-outline-secondary.btn-sm href=edit_event_path(@event)
+          i.fa.fa-cog.fa-fw
+          | Edit event

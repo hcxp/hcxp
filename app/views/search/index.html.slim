@@ -1,0 +1,50 @@
+section.section-white.section-shadow.py-1
+  .container
+    .row
+      .col-sm-6
+        ul.list-inline.mb-0
+          - @bands.each do |band|
+            li.list-inline-item.mr-1
+              = link_to band, class: 'link-inherit' do
+                = band.name
+                sub.text-muted style="margin-left: 0.3rem"
+                  = band.country_code
+
+          - if @bands.any?
+            li.list-inline-item.text-muted.float-xs-right
+              = link_to bands_path(q: params[:q]), class: 'link-inherit' do
+                | All bands
+                sub style="margin: 0 .2rem"
+                  = @bands.total_count
+                | &rarr;
+          - else
+            li.list-inline-item.text-muted
+              | No bands found
+
+      .col-sm-6
+        ul.list-inline.mb-0
+          - @venues.each do |venue|
+            li.list-inline-item.mr-1
+              = link_to venue, class: 'link-inherit' do
+                = venue.name
+                sub.text-muted style="margin-left: 0.3rem"
+                  = venue.country_code
+
+          - if @venues.any?
+            li.list-inline-item.text-muted.float-xs-right
+              = link_to venues_path(q: params[:q]), class: 'link-inherit' do
+                | All Venues
+                sub style="margin: 0 .2rem"
+                  = @venues.total_count
+                | &rarr;
+          - else
+            li.list-inline-item.text-muted
+              | No venues found
+
+.container.mt-2
+  - @events.each do |event|
+    == cell :event_card, event
+
+  .text-xs-center.mt-2
+    a.btn.btn-primary.btn-lg href=events_path(q: params[:q], s: 'all') All 28 events &rarr;
+

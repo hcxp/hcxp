@@ -1,0 +1,16 @@
+.section.section-dark.section.py-2
+  .container
+    p.lead.text-xs-center.mb-0 Browse <strong>hardcore punk</strong> events in your city.
+
+section.section-white.section-shadow.py-2
+  .container
+    == cell :events_filters
+
+.container.mt-2
+  = render partial: 'events/events', events: @events
+
+  - unless @events.any?
+      == cell :blankslate, \
+        title: 'No events found', \
+        description: 'Try to modify search criteria'
+
