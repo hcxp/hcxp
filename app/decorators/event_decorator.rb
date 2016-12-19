@@ -2,7 +2,7 @@ class EventDecorator < Draper::Decorator
   delegate_all
 
   def poster_url(width = 400, height = 500, opts = {})
-    if model.poster.present?
+    if model.poster.file.present?
       opts = {
         width:  width,
         height: height,

@@ -20,7 +20,7 @@ class EventsController < ApplicationController
 
   def create
     authenticate_user!
-    @event = Event.new(event_params)
+    @event = Event.new(event_params).decorate
     @event.user = current_user
 
     if @event.save

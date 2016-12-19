@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   def bands_index(col = Band.all)
     col = col.search(params[:q]) if params[:q].present?
     col = col.where(id: params[:id_in]) if params[:id_in].present?
+    col = col.order(events_count: :desc)
     col = col.page(params[:page])
 
     col

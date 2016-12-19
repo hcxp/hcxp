@@ -79,7 +79,7 @@ group :development do
 end
 
 group :production, :staging do
-  gem "sentry-raven", require: false
+  gem "sentry-raven"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
