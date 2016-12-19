@@ -13,5 +13,6 @@ ul.list-inline.event-card-meta.mb-0
 
   - if model.user && model.ownership_type == 'user'
     li.list-inline-item.text-muted
-      = image_tag user_decor.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
-      = user_decor
+      = link_to user_decor.public_html_path, class: 'link-inherit' do
+        = image_tag user_decor.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
+        = user_decor

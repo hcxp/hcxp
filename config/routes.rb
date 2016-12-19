@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :venues
   resources :events
 
+  get '/@:username', to: 'users#show', as: :user
+
   get :search, controller: :search, action: :index
 
   root to: 'events#index'

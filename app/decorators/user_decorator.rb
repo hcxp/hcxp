@@ -9,4 +9,8 @@ class UserDecorator < Draper::Decorator
     gravatar_id = Digest::MD5.hexdigest(user.email).downcase
     "//gravatar.com/avatar/#{gravatar_id}.png?s=#{w}&d=mm"
   end
+
+  def public_html_path
+    h.user_path(model.username)
+  end
 end

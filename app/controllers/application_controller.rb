@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
   # @todo  Move that to service
   #
   def events_index(col = Event.all)
+    col = col.includes(:bands, :venue)
     col = col.search(params[:q]) if params[:q].present?
+
 
     case params[:s]
       when 'past'

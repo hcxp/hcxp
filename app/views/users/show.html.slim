@@ -1,0 +1,14 @@
+section.section-white.section-shadow
+  .container.py-3
+    .text-xs-center
+      p style="margin-bottom: 0.5rem"
+        = image_tag @user.avatar_url(100, 100), class: 'img-circle'
+      h1
+        | @#{@user.username}
+
+.container.pt-2
+  .card
+    .card-block
+      == cell :events_filters
+
+  = render partial: 'events/events', events: @events
