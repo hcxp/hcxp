@@ -12,3 +12,8 @@ section.section-white.section-shadow
       == cell :events_filters
 
   = render partial: 'events/events', events: @events
+
+  - unless @events.any?
+      == cell :blankslate, \
+        title: 'No events found', \
+        description: 'Try to modify search criteria'
