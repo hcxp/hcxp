@@ -7,7 +7,7 @@ class BandCardCell < Cell::ViewModel
   private
 
   def poster_events
-    model.events.limit(4)
+    model.events.order(beginnign_at: :asc).limit(4)
   end
 
 end
