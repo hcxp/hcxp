@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require moment.min
 //= require bootstrap-datetimepicker.min
+//= require google-analytics-turbolinks
 //= require_tree .
 //= require_self
 
