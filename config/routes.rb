@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/@:username', to: 'users#show', as: :user
 
   get :search, controller: :search, action: :index
+  get :about, to: 'application#about'
 
   root to: 'events#index'
 end

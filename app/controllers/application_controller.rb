@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def about; end
+
+  private
+
   # @todo  Move that to service
   #
   def events_index(col = Event.all)
