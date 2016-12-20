@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /venues
   # GET /venues.json
   def index
-    @events = events_index(Event.includes(:venue, :bands))
+    @events = events_index(Event.includes(:venue, :bands, :user))
   end
 
   # GET /venues/1

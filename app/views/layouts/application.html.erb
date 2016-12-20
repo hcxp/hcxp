@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hcxp</title>
     <%= csrf_meta_tags %>
+    <%= display_meta_tags site: 'hcxp', description: 'Indepenent online hardcore punk events directory', reverse: true, separator: '/', 'fb:app_id' => ENV['FACEBOOK_APP_ID'] %>
 
     <script src="https://use.fontawesome.com/54c3771c61.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
@@ -14,6 +14,8 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+
+    <meta content="1490101241217902" property="fb:app_id">
 
     <%= render 'layouts/google_analytics' if ENV['GOOGLE_ANALYTICS'] %>
   </head>

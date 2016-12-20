@@ -14,4 +14,17 @@ class EventDecorator < Draper::Decorator
       "https://placehold.it/#{width}x#{height}?text=#{opts[:text]}"
     end
   end
+
+  def name_or_bands
+    model.name.present? ? model.name : model.bands.map(&:name).join(', ')
+  end
+
+  def meta_tags
+    {
+      title: name_or_bands,
+      og: {
+        image: poster_url(200, 200, text: 'x')
+      }
+    }
+  end
 end
