@@ -1,6 +1,0 @@
-en:
-  venues:
-    new_modal:
-      header: Create new venue
-      name_description: Leaving it blank will set it to TBA (To Be Answered)
-      address_description: 'Format: Street, City, Country'
