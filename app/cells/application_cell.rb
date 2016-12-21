@@ -2,5 +2,7 @@ class ApplicationCell < Cell::ViewModel
   include ActionView::Helpers::TranslationHelper
   include Cell::Translation
   include ActiveLinkTo
-  include ActionView::Context
+
+  def output_buffer=(*)
+  end
 end

@@ -23,4 +23,15 @@ en:
   events: Events
   bands: Bands
   venues: Venues
+  venue: Venue
   search: Search
+  new_event: New event
+  create_new: Create new
+  save_changes: Save changes
+  cancel: Cancel
+  create_band: Create band
+  create_venue: Create venue
+  edit_event: Edit event
+
+  no_events_found: No events found
+  modify_search_criteria: Try to modify search criteria

@@ -7,7 +7,8 @@
             img.img-fluid src=@event.poster_url(403, 536, text: 'Poster')
 
           = f.file_field :poster, class: 'form-control'
-          small.form-text.text-muted Up to 2MB. Only jpg and png allowed.
+          small.form-text.text-muted
+            = t('.poster_description')
 
     .col-sm-6
       == cell(:form_errors, f.object)
@@ -15,11 +16,15 @@
       .form-group
         = f.label :name
         = f.text_field :name, class: 'form-control'
-        small.form-text.text-muted You can leave it blank if there are any bands assigned.
+        small.form-text.text-muted
+          = t('.name_description')
 
       .form-group
         = f.label :beginning_at
-        = f.text_field :beginning_at, class: 'form-control', readonly: true, value: @event.beginning_at.strftime("%A, %d %b %Y, %H:%M")
+        = f.text_field :beginning_at, \
+          class: 'form-control', \
+          readonly: true, \
+          value: @event.beginning_at.strftime("%A, %d %b %Y, %H:%M")
 
       hr
 
@@ -34,14 +39,16 @@
           :local-search="false"
           label="search_label"
           key="id"
-          placeholder="Search for a Venue..."
+          placeholder=t('.venue_placeholder')
           :selected="venue"
         )
           span(slot="beforeList")
             .p-1.text-xs-center
               p.text-muted style="margin-bottom:0.5rem"
-                | Can't find the venue?
-              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$broadcast('show::modal', 'newVenueModal')" + Create new
+                = t('.cant_find_the_venue?')
+
+              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$broadcast('show::modal', 'newVenueModal')"
+                | + #{t 'create_new'}
 
         = f.hidden_field :venue_id, 'v-model' => 'venue.id', 'v-ref:venueId' => 'true'
 
@@ -56,71 +63,31 @@
           :local-search="false"
           label="search_label"
           key="id"
-          placeholder="Search for a Band..."
+          placeholder=t('.bands_placeholder')
           :selected="selectedBands"
           :multiple="true"
         )
           span(slot="beforeList")
             .p-1.text-xs-center
               p.text-muted style="margin-bottom:0.5rem"
-                | Can't find a band?
-              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$broadcast('show::modal', 'newBandModal')" + Create new
+                = t('.cant_find_a_band?')
+              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$broadcast('show::modal', 'newBandModal')"
+                | + #{t 'create_new'}
 
         = f.hidden_field :band_ids, 'v-model' => 'mappedBandIds', 'v-ref:bandIds' => 'true', value: @event.band_ids.join(',')
 
       hr
 
       .form-group
-        label Ownership
-        = f.select :ownership_type, [['I\'m the only organizer', 'user'], ['I\'m NOT the organizer', 'unassigned']], { include_blank: true }, class: 'form-control'
+        = f.label :ownership_type
+        = f.select :ownership_type, [[t('activerecord.values.event.ownership_type.user_full'), 'user'], [t('activerecord.values.event.ownership_type.unassigned_full'), 'unassigned']], { include_blank: true }, class: 'form-control'
 
   hr
   .text-xs-center.pb-2.pt-1
-    button.btn.btn-primary style="width: 300px" type="submit" Save changes
+    button.btn.btn-primary style="width: 300px" type="submit"
+      = t('save_changes')
     br
     button.btn.btn-link.mt-1.text-muted Cancel
 
-  vs-modal id="newVenueModal" size="md" :fade="false"
-    div slot="modal-header"
-      h3 Create new venue
-
-    div slot="modal-body"
-      .alert.alert-danger v-if="errors.length > 0"
-        ul.mb-0
-          li v-for="error in errors"
-            | {{ error }}
-
-      .form-group
-        label Name
-        input.form-control type="text" v-model="newVenue.name"
-        small.form-text.text-muted Leaving it blank will set it to TBA (To Be Answered)
-
-      .form-group
-        label Address
-        input.form-control type="text" v-model="newVenue.address"
-        small.form-text.text-muted Format: Street, City, Country
-
-    div slot="modal-footer" @click.prevent="doSaveVenue"
-      button.btn.btn-primary Create venue
-
-  vs-modal id="newBandModal" size="md" :fade="false"
-    div slot="modal-header"
-      h3 Create new band
-
-    div slot="modal-body"
-      form
-        .alert.alert-danger v-if="bandErrors.length > 0"
-          ul.mb-0
-            li v-for="error in bandErrors"
-              | {{ error }}
-
-        .form-group
-          label Name
-          input.form-control type="text" v-model="newBand.name"
-
-        .form-group
-          label Location
-          input.form-control type="text" v-model="newBand.location"
-
-    div slot="modal-footer" @click.prevent="doSaveBand"
-      button.btn.btn-primary Create band
+  = render('venues/new_modal')
+  = render('bands/new_modal')

@@ -1,0 +1,12 @@
+en:
+  events:
+    index:
+      heading: Browse <strong>hardcore punk</strong> events in your city.
+
+    form:
+      poster_description: Up to 2MB. Only jpg and png allowed.
+      name_description: You can leave it blank if there are any bands assigned.
+      venue_placeholder: Search for a venue...
+      cant_find_the_venue?: Can't find the venue?
+      bands_placeholder: Search for a band...
+      cant_find_a_band?: Can't find a band?

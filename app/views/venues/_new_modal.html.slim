@@ -1,0 +1,24 @@
+vs-modal id="newVenueModal" size="md" :fade="false"
+  div slot="modal-header"
+    h3 = t('.header')
+
+  div slot="modal-body"
+    .alert.alert-danger v-if="errors.length > 0"
+      ul.mb-0
+        li v-for="error in errors"
+          | {{ error }}
+
+    .form-group
+      label = t('activerecord.attributes.venue.name')
+      input.form-control type="text" v-model="newVenue.name"
+      small.form-text.text-muted
+        = t('.name_description')
+
+    .form-group
+      label = t('activerecord.attributes.venue.address')
+      input.form-control type="text" v-model="newVenue.address"
+      small.form-text.text-muted
+        = t('.address_description')
+
+  div slot="modal-footer" @click.prevent="doSaveVenue"
+    button.btn.btn-primary = t('create_venue')
