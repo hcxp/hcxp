@@ -19,6 +19,9 @@ module Hcxp
       'nav_main_cell', 'event_card_cell', 'venue_card_cell', 'blankslate_cell', 'flash_messages_cell'
     ]
 
+    # Load additional locales
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
     # URL options
     config.action_controller.default_url_options = {
       host: ENV['APP_HOST']

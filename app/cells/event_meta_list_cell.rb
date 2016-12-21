@@ -1,4 +1,4 @@
-class EventMetaListCell < Cell::ViewModel
+class EventMetaListCell < ApplicationCell
   include ActionView::Helpers::DateHelper
 
   def show

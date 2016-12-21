@@ -1,4 +1,4 @@
-class BlankslateCell < Cell::ViewModel
+class BlankslateCell < ApplicationCell
   def show
     render
   end

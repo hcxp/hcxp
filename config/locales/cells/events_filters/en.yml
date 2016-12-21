@@ -1,0 +1,8 @@
+en:
+  events_filters:
+    upcoming: Upcoming
+    past: Past
+    all: All
+    search_query: Search query
+    scope: Scope
+    query_placeholder: Search for bands, locations or event names...

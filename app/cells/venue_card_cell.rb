@@ -1,4 +1,4 @@
-class VenueCardCell < Cell::ViewModel
+class VenueCardCell < ApplicationCell
 
   def show
     render

@@ -1,4 +1,4 @@
-class VenuesFiltersCell < Cell::ViewModel
+class VenuesFiltersCell < ApplicationCell
   def show
     render
   end
