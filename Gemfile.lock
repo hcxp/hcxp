@@ -94,6 +94,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.1.1)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -279,6 +280,7 @@ DEPENDENCIES
   cells-slim
   coffee-rails (~> 4.2)
   devise
+  devise-i18n
   dotenv-rails
   draper!
   faker
