@@ -1,0 +1,92 @@
+pl:
+  venue: Miejsce
+  search: Szukaj
+  new_event: Nowe wydarzenie
+  create_new: Utwórz
+  save_changes: Zapisz zmiany
+  cancel: Anuluj
+  create_band: Utwórz zespół
+  create_venue: Utwórz lokal
+  edit_event: Edytuj wydarzenie
+  no_events_found: Nie znaleziono wydarzeń
+  no_bands_found: Nie znaleziono zespołów
+  no_venues_found: Nie znaleziono lokali
+  modify_search_criteria: Spróbuj zmienić kryteria wyszukiwania
+  today: Dzisiaj
+  tomorrow: Jutro
+  yesterday: Wczoraj
+  time_ago_in_words_in: Za
+  ago: temu
+  select_language: Wybierz język
+  english: Angielski
+  polish: Polski
+  bands_filters:
+    query_placeholder: Szukaj zespołów lub lokacji...
+  events_filters:
+    upcoming: Nadchodzące
+    past: Minione
+    all: Wszystko
+    search_query: Zapytanie
+    scope: Czas
+    query_placeholder: Szukaj po zespołach, lokacjach lub nazwach wydarzeń...
+  form_errors:
+    heading: Ups! Coś jest nie tak.
+  nav_main:
+    add_event: + Dodaj wydarzenie
+    search_placeholder: Szukaj...
+    your_profile: Twój profil
+    sign_out: Wyloguj
+    sign_up: Rejestracja
+    sign_in: Logowanie
+    events: Wydarzenia
+    bands: Zespoły
+    venues: Lokale
+  venues_filters:
+    query_placeholder: Szukaj po zespołach lub nazwach wydarzeń...
+  activerecord:
+    models:
+      event: Wydarzenie
+      band: Zespół
+      venue: Lokal
+    attributes:
+      event:
+        name: Nazwa
+        beginning_at: Data i godzina
+        venue: Lokal
+        bands: Zespoły
+        ownership_type: Własność
+        poster: Plakat
+      band:
+        name: Nazwa
+        location: Lokacja
+      venue:
+        name: Nazwa
+        address: Adres
+      user:
+        email: Email
+        password: Hasło
+        password_confirmation: Potwierdzenie hasła
+        username: Nazwa użytkownika
+    values:
+      event:
+        ownership_type:
+          user_full: Jestem organizatorem
+          unassigned_full: NIE JESTEM organizatorem
+  bands:
+    new_modal:
+      header: Utwórz nowy zespół
+  events:
+    index:
+      heading: Przeglądaj wydarzenia <strong>hardcore punk</strong> w Twoim mieście.
+    form:
+      poster_description: Max 2MB. Tylko jpg lub png.
+      name_description: Możesz zostawić to pole puste jeśli wydarzenie ma przypisane zespoły.
+      venue_placeholder: Szukaj lokalu...
+      cant_find_the_venue?: Nie możesz znaleźć lokalu?
+      bands_placeholder: Szukaj zespołu...
+      cant_find_a_band?: Nie możesz znaleźć zespołu?
+  venues:
+    new_modal:
+      header: Utwórz nowy lokal
+      name_description: Pozostaw to pole puste aby ustawić je na TBA (To Be Answered)
+      address_description: 'Format: Ulica, Miasto, Kraj'

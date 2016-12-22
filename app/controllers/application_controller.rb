@@ -3,10 +3,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   def about; end
 
-  private
+  def change_locale
+    l = params[:locale].to_s.strip.to_sym
+    l = I18n.default_locale unless I18n.available_locales.include?(l)
+    cookies.permanent[:hcxp_locale] = l
+    redirect_to request.referer || root_url
+  end
+
+  private # --------------------------------------------------------------------
 
   # @todo  Move that to service
   #
@@ -49,7 +57,35 @@ class ApplicationController < ActionController::Base
     col
   end
 
-  protected
+  # Taken from https://www.sitepoint.com/go-global-rails-i18n/
+  #
+  def set_locale
+    if cookies[:hcxp_locale] && I18n.available_locales.include?(cookies[:hcxp_locale].to_sym)
+      l = cookies[:hcxp_locale].to_sym
+    else
+      # l = I18n.default_locale
+      l = extract_locale_from_accept_language_header
+      # cookies.permanent[:hcxp_locale] = l
+    end
+    I18n.locale = l
+  end
+
+  def extract_locale_from_accept_language_header
+    locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym
+
+    if I18n.available_locales.include? locale
+      logger.debug("Locale #{locale} found in available locales")
+      locale
+    else
+      logger.debug("Locale #{locale} not found in available locales. Using default one")
+      I18n.default_locale
+    end
+  rescue => e
+    logger.debug("Something went wrong while extracting lang from headers: #{e.message}")
+    I18n.default_locale
+  end
+
+  protected # ------------------------------------------------------------------
 
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]

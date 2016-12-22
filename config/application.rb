@@ -15,9 +15,15 @@ module Hcxp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    I18n.available_locales = [:en, :pl]
+
     config.cells.with_assets = [
-      'nav_main_cell', 'event_card_cell', 'venue_card_cell', 'blankslate_cell', 'flash_messages_cell'
+      'nav_main_cell', 'event_card_cell', 'venue_card_cell', 'blankslate_cell',
+      'flash_messages_cell', 'language_picker_cell'
     ]
+
+    # Load additional locales
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     # URL options
     config.action_controller.default_url_options = {

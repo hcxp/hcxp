@@ -1,5 +1,4 @@
-class NavMainCell < Cell::ViewModel
-  include ActiveLinkTo
+class NavMainCell < ApplicationCell
   include Devise::Controllers::Helpers
 
   def show

@@ -1,6 +1,7 @@
 .section.section-dark.section.py-2
   .container
-    p.lead.text-xs-center.mb-0 Browse <strong>hardcore punk</strong> events in your city.
+    p.lead.text-xs-center.mb-0
+      == t('.heading')
 
 section.section-white.section-shadow.py-2
   .container
@@ -10,7 +11,7 @@ section.section-white.section-shadow.py-2
   = render partial: 'events/events', events: @events
 
   - unless @events.any?
-      == cell :blankslate, \
-        title: 'No events found', \
-        description: 'Try to modify search criteria'
+    == cell :blankslate, \
+      title: t('no_events_found'), \
+      description: t('modify_search_criteria')
 

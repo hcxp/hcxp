@@ -23,29 +23,42 @@
   <body>
     <%== cell(:flash_messages, flash) %>
     <%== cell(:nav_main, css_class: @nav_main_class) %>
+
     <%= yield %>
 
-
-    <div class="container text-xs-center mt-3">
+    <div class="container mt-3">
       <hr>
-      <ul class="list-inline text-muted">
-        <li class="list-inline-item">DIY or DIE!</li>
+      <div class="row">
+        <div class="col-xs-6">
+          <ul class="list-inline text-muted">
+            <li class="list-inline-item">DIY or DIE!</li>
 
-        <li class="list-inline-item">&times;</li>
+            <li class="list-inline-item">&times;</li>
 
-        <li class="list-inline-item">
-          <a href="<%= about_path %>">About</a>
-        </li>
+            <li class="list-inline-item">
+              <a href="<%= about_path %>">About</a>
+            </li>
 
-        <li class="list-inline-item">&times;</li>
+            <li class="list-inline-item">&times;</li>
 
-        <li class="list-inline-item">
-          <a href="https://github.com/hcxp/hcxp" target="_blank">Github</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="https://twitter.com/hcxphq" target="_blank">Twitter</a>
-        </li>
-      </ul>
+            <li class="list-inline-item">
+              <a href="https://github.com/hcxp/hcxp" target="_blank">Github</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://twitter.com/hcxphq" target="_blank">Twitter</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6">
+          <ul class="list-inline text-muted text-xs-right">
+            <li class="list-inline-item">
+              <%== cell(:language_picker) %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>

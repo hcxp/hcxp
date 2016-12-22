@@ -1,4 +1,4 @@
-class EventCardCell < Cell::ViewModel
+class EventCardCell < ApplicationCell
   def show
     render
   end

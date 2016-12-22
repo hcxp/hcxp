@@ -20,6 +20,7 @@
  *= require venue_card
  *= require blankslate
  *= require flash_messages
+ *= require language_picker
  */
 
 body {
@@ -46,4 +47,8 @@ label {
 
 .img-circle {
   border-radius: 50%;
+}
+
+.text-cap {
+  text-transform: capitalize;
 }

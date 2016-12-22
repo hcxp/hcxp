@@ -1,14 +1,14 @@
 = form_tag @venue, class: 'row events-search-form', method: :get do
   .form-group.mb-0.col-xs-7
-    label Search query
-    input.form-control placeholder="Search for bands, locations or event names..." name="q" value=params[:q]
+    label = t('.search_query')
+    input.form-control placeholder=t('.query_placeholder') name="q" value=params[:q]
 
   .form-group.mb-0.col-xs-3
-    label Scope
-    = select_tag :s, options_for_select([['Upcoming', nil], ['Past', 'past'], ['All', 'all']], params[:s]), class: 'form-control'
+    label = t('.scope')
+    = select_tag :s, options_for_select(scope_options, params[:s]), class: 'form-control'
 
   .form-group.mb-0.col-xs-2
     label &nbsp;
     button.btn.btn-primary.btn-block
       i.fa.fa-fw.fa-search
-      | Search
+      = t('search')

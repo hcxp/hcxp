@@ -1,4 +1,4 @@
-class FlashMessagesCell < Cell::ViewModel
+class FlashMessagesCell < ApplicationCell
   def show
     render
   end

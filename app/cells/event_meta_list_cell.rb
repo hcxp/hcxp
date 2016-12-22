@@ -1,4 +1,4 @@
-class EventMetaListCell < Cell::ViewModel
+class EventMetaListCell < ApplicationCell
   include ActionView::Helpers::DateHelper
 
   def show
@@ -15,15 +15,15 @@ class EventMetaListCell < Cell::ViewModel
     time = time_ago_in_words(model.beginning_at)
 
     if model.beginning_at.today?
-      text = ['Today']
+      text = [t('today')]
     elsif model.beginning_at.to_date == Date.tomorrow
-      text = ['Tomorrow']
+      text = [t('tomorrow')]
     elsif model.beginning_at.to_date == Date.yesterday
-      text = ['Yesterday']
+      text = [t('yesterday')]
     elsif model.beginning_at > Time.zone.now
-      text = ['In', time]
+      text = [t('time_ago_in_words_in', default: 'In'), time]
     else
-      text = [time, 'ago']
+      text = [time, t('ago')]
     end
 
     text.join(' ')

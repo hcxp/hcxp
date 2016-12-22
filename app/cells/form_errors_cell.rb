@@ -1,4 +1,4 @@
-class FormErrorsCell < Cell::ViewModel
+class FormErrorsCell < ApplicationCell
   def show
     render
   end

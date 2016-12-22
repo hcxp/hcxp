@@ -1,4 +1,4 @@
-class BandCardCell < Cell::ViewModel
+class BandCardCell < ApplicationCell
 
   def show
     render

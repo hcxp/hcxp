@@ -1,6 +1,5 @@
-class BandsFiltersCell < Cell::ViewModel
+class BandsFiltersCell < ApplicationCell
   def show
     render
   end
-
 end

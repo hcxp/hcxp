@@ -7,6 +7,6 @@ section.section-white.section-shadow.py-2
     == cell :band_card, band
 
   - unless @bands.any?
-      == cell :blankslate, \
-        title: 'No bands found', \
-        description: 'Try to modify search criteria'
+    == cell :blankslate, \
+      title: t('no_bands_found'), \
+      description: t('modify_search_criteria')

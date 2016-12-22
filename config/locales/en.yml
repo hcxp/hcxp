@@ -1,23 +1,117 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  events: Events
+  bands: Bands
+  venues: Venues
+  venue: Venue
+  search: Search
+  new_event: New event
+  create_new: Create new
+  save_changes: Save changes
+  cancel: Cancel
+  create_band: Create band
+  create_venue: Create venue
+  edit_event: Edit event
+
+  no_events_found: No events found
+  no_bands_found: No bands found
+  no_venues_found: No venues found
+  modify_search_criteria: Try to modify search criteria
+
+  today: Today
+  tomorrow: Tomorrow
+  yesterday: Yesterday
+  time_ago_in_words_in: In
+  ago: ago
+
+  select_language: Select language
+  english: English
+  polish: Polish
+
+  #
+  # Cells ----------------------------------------------------------------------
+
+  bands_filters:
+    query_placeholder: Search for bands or locations...
+
+  events_filters:
+    upcoming: Upcoming
+    past: Past
+    all: All
+    search_query: Search query
+    scope: Scope
+    query_placeholder: Search for bands, locations or event names...
+
+  form_errors:
+    heading: Oups! Something is not right.
+
+  nav_main:
+    add_event: + Add event
+    search_placeholder: Search...
+    your_profile: Your profile
+    sign_out: Sign out
+    sign_up: Sign up
+    sign_in: Sign in
+    events: Events
+    bands: Bands
+    venues: Venues
+
+  venues_filters:
+    query_placeholder: Search for bands or event names...
+
+  #
+  # Models ---------------------------------------------------------------------
+
+  activerecord:
+    models:
+      event: Event
+      band: Band
+      venue: Venue
+    attributes:
+      event:
+        name: Name
+        beginning_at: Date and time
+        venue: Venue
+        bands: Bands
+        ownership_type: Ownership
+        poster: Poster
+      band:
+        name: Name
+        location: Location
+      venue:
+        name: Name
+        address: Address
+      user:
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        username: Username
+    values:
+      event:
+        ownership_type:
+          user_full: I'm the only organizer
+          unassigned_full: I'm NOT the organizer
+
+  #
+  # Views ----------------------------------------------------------------------
+
+  bands:
+    new_modal:
+      header: Create new band
+
+  events:
+    index:
+      heading: Browse <strong>hardcore punk</strong> events in your city.
+
+    form:
+      poster_description: Up to 2MB. Only jpg and png allowed.
+      name_description: You can leave it blank if there are any bands assigned.
+      venue_placeholder: Search for a venue...
+      cant_find_the_venue?: Can't find the venue?
+      bands_placeholder: Search for a band...
+      cant_find_a_band?: Can't find a band?
+
+  venues:
+    new_modal:
+      header: Create new venue
+      name_description: Leaving it blank will set it to TBA (To Be Answered)
+      address_description: 'Format: Street, City, Country'
