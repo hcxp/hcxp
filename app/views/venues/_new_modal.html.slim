@@ -16,7 +16,7 @@ vs-modal id="newVenueModal" size="md" :fade="false"
 
     .form-group
       label = t('activerecord.attributes.venue.address')
-      input.form-control type="text" v-model="newVenue.address"
+      input.form-control.google-places-autocomplete type="text" v-model="newVenue.address"
       small.form-text.text-muted
         = t('.address_description')
 
