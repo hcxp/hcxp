@@ -11,7 +11,7 @@ section.section-white.section-shadow.py-2
   = render partial: 'events/events', events: @events
 
   - unless @events.any?
-      == cell :blankslate, \
-        title: t('no_events_found'), \
-        description: t('modify_search_criteria')
+    == cell :blankslate, \
+      title: t('no_events_found'), \
+      description: t('modify_search_criteria')
 

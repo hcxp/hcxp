@@ -13,7 +13,13 @@ en:
   edit_event: Edit event
 
   no_events_found: No events found
+  no_bands_found: No bands found
+  no_venues_found: No venues found
   modify_search_criteria: Try to modify search criteria
+
+  today: Today
+  tomorrow: Tomorrow
+  yesterday: Yesterday
 
   #
   # Cells ----------------------------------------------------------------------
@@ -52,6 +58,8 @@ en:
   activerecord:
     models:
       event: Event
+      band: Band
+      venue: Venue
     attributes:
       event:
         name: Name
@@ -60,6 +68,17 @@ en:
         bands: Bands
         ownership_type: Ownership
         poster: Poster
+      band:
+        name: Name
+        location: Location
+      venue:
+        name: Name
+        address: Address
+      user:
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        username: Username
     values:
       event:
         ownership_type:

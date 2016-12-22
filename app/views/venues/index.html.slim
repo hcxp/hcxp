@@ -7,6 +7,6 @@ section.section-white.section-shadow.py-2
     == cell :venue_card, venue
 
   - unless @venues.any?
-      == cell :blankslate, \
-        title: 'No venues found', \
-        description: 'Try to modify search criteria'
+    == cell :blankslate, \
+      title: t('no_venues_found'), \
+      description: t('modify_search_criteria')
