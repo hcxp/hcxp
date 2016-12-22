@@ -3,6 +3,6 @@ class ApplicationCell < Cell::ViewModel
   include Cell::Translation
   include ActiveLinkTo
 
-  # def output_buffer=(*)
-  # end
+  def output_buffer=(*)
+  end
 end
