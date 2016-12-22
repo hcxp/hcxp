@@ -4,6 +4,8 @@ hardcore/punk events directory - https://hcxp.co
 
 ### Syncing translations
 
+    Transifex page: https://www.transifex.com/hcxp/hcxp/
+
     # Download source
     $ tx pull -s
 
