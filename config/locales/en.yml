@@ -21,6 +21,10 @@ en:
   tomorrow: Tomorrow
   yesterday: Yesterday
 
+  select_language: Select language
+  english: English
+  polish: Polish
+
   #
   # Cells ----------------------------------------------------------------------
 

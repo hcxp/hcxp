@@ -3,10 +3,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   def about; end
 
-  private
+  def change_locale
+    l = params[:locale].to_s.strip.to_sym
+    l = I18n.default_locale unless I18n.available_locales.include?(l)
+    cookies.permanent[:hcxp_locale] = l
+    redirect_to request.referer || root_url
+  end
+
+  private # --------------------------------------------------------------------
 
   # @todo  Move that to service
   #
@@ -49,7 +57,19 @@ class ApplicationController < ActionController::Base
     col
   end
 
-  protected
+  # Taken from https://www.sitepoint.com/go-global-rails-i18n/
+  #
+  def set_locale
+    if cookies[:hcxp_locale] && I18n.available_locales.include?(cookies[:hcxp_locale].to_sym)
+      l = cookies[:hcxp_locale].to_sym
+    else
+      l = I18n.default_locale
+      cookies.permanent[:hcxp_locale] = l
+    end
+    I18n.locale = l
+  end
+
+  protected # ------------------------------------------------------------------
 
   def configure_permitted_parameters
     added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]

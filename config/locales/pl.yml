@@ -5,3 +5,5 @@ pl:
   create_new: Utwórz
   save_changes: Zapisz zmiany
   cancel: Anuluj
+  nav_main:
+    events: Wydarzenia

@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   get :search, controller: :search, action: :index
   get :about, to: 'application#about'
 
+  post '/change_locale/:locale', to: 'application#change_locale', as: :change_locale
+
   root to: 'events#index'
 end

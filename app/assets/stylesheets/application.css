@@ -20,6 +20,7 @@
  *= require venue_card
  *= require blankslate
  *= require flash_messages
+ *= require language_picker
  */
 
 body {
