@@ -20,6 +20,8 @@ en:
   today: Today
   tomorrow: Tomorrow
   yesterday: Yesterday
+  time_ago_in_words_in: In
+  ago: ago
 
   select_language: Select language
   english: English

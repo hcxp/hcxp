@@ -48,3 +48,7 @@ label {
 .img-circle {
   border-radius: 50%;
 }
+
+.text-cap {
+  text-transform: capitalize;
+}

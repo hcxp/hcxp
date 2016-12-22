@@ -3,13 +3,13 @@ ul.list-inline.event-card-meta.mb-0
     strong class=humanized_date_class
       = humanized_date
 
-  li.list-inline-item.text-muted
+  li.list-inline-item.text-muted.text-cap
     i.fa.fa-calendar-o.fa-fw
-    = model.beginning_at.strftime('%A, %e %b %Y')
+    = l(model.beginning_at, format: '%A, %e %b %Y')
 
   li.list-inline-item.text-muted
     i.fa.fa-clock-o.fa-fw
-    = model.beginning_at.strftime('%H:%M')
+    = l(model.beginning_at, format: '%H:%M')
 
   - if model.user && model.ownership_type == 'user'
     li.list-inline-item.text-muted

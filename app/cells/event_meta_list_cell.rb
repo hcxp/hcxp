@@ -21,9 +21,9 @@ class EventMetaListCell < ApplicationCell
     elsif model.beginning_at.to_date == Date.yesterday
       text = [t('yesterday')]
     elsif model.beginning_at > Time.zone.now
-      text = ['In', time]
+      text = [t('time_ago_in_words_in', default: 'In'), time]
     else
-      text = [time, 'ago']
+      text = [time, t('ago')]
     end
 
     text.join(' ')
