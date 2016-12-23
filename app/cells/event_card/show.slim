@@ -3,7 +3,7 @@
     .col-xs-10
       .media
         .media-left.pr-2
-          = link_to model, class: 'event-card-poster' do
+          = link_to event_path(model), class: 'event-card-poster' do
             = image_tag model_decor.poster_url(150, 150, text: '.'), class: 'img-thumbnail', size: '150x150'
 
         .media-body
@@ -29,7 +29,7 @@
     - if model.venue
       .col-xs-2.text-xs-right
         h6
-          = link_to model.venue.name, model.venue, class: 'link-inherit'
+          = link_to model.venue.name, venue_path(model.venue), class: 'link-inherit'
 
         p.text-muted
           = [model.venue.city, model.venue.country_code].join(', ')
