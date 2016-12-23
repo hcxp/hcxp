@@ -40,8 +40,9 @@ gem 'slim-rails'
 
 gem "autoprefixer-rails"
 
+gem "cells"
 gem "cells-rails"
-gem "cells-slim"
+gem "cells-slim", github: 'trailblazer/cells-slim'
 
 gem 'geokit-rails'
 
