@@ -1,4 +1,4 @@
-= form_tag nil, class: 'row events-search-form', method: :get do
+= form_tag root_path, class: 'row events-search-form', method: :get do
   .form-group.mb-0.col-xs-7
     label = t('.search_query')
     input.form-control placeholder=t('.query_placeholder') name="q" value=params[:q]
