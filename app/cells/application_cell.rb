@@ -3,4 +3,6 @@ class ApplicationCell < Cell::ViewModel
   include Cell::Translation
   include ActiveLinkTo
   include ActionView::Context
+  include ActionView::Helpers::FormHelper
+  include ::Rails.application.routes.url_helpers
 end
