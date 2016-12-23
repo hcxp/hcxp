@@ -3,13 +3,13 @@
     .col-xs-10
       .media
         .media-left.pr-2
-          = link_to event_path(model), class: 'event-card-poster' do
+          = link_to model_decor.public_html_path, class: 'event-card-poster' do
             = image_tag model_decor.poster_url(150, 150, text: '.'), class: 'img-thumbnail', size: '150x150'
 
         .media-body
           / Heading
           h4.h5.media-heading.mb-1
-            = link_to model_decor.name_or_bands, event_path(model), class: 'link-inherit'
+            = link_to model_decor.name_or_bands, model_decor.public_html_path, class: 'link-inherit'
 
           / Bands
           ul.list-inline

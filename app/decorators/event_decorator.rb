@@ -19,6 +19,10 @@ class EventDecorator < Draper::Decorator
     model.name.present? ? model.name : model.bands.map(&:name).join(', ')
   end
 
+  def public_html_path
+    h.event_path(model)
+  end
+
   def meta_tags
     {
       title: name_or_bands,
