@@ -20,7 +20,7 @@
         a.navbar-brand href=root_path hcxp
 
       .col-xs-5
-        = form_tag search_path, class: 'form-inline float-xs-right', method: :get do
+        form.form-inline.float-xs-right action=search_path method="get"
           input.form-control placeholder=t('.search_placeholder') name="q" value=params[:q]
 
         ul.nav.navbar-nav.float-xs-right.mr-1
