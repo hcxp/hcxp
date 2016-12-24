@@ -16,6 +16,7 @@
 //= require moment.min
 //= require bootstrap-datetimepicker.min
 //= require google-analytics-turbolinks
+//= require Luminous.min
 //= require_tree .
 //= require_self
 
