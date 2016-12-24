@@ -10,6 +10,15 @@ GIT
       request_store (~> 1.0)
 
 GIT
+  remote: git://github.com/ilya-konanykhin/cells-rails.git
+  revision: 39a366638883fb51990cb81ad59d1e654de4d6cd
+  branch: fix-slim-html-safing
+  specs:
+    cells-rails (0.0.6)
+      actionpack (>= 3.0)
+      cells (>= 4.1)
+
+GIT
   remote: git://github.com/trailblazer/cells-slim.git
   revision: 60346b36fbc7e816fc9454a350211fcd297903cb
   specs:
@@ -81,9 +90,6 @@ GEM
     cells (4.1.5)
       tilt (>= 1.4, < 3)
       uber (>= 0.1.0, < 0.2.0)
-    cells-rails (0.0.6)
-      actionpack (>= 3.0)
-      cells (>= 4.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -295,7 +301,7 @@ DEPENDENCIES
   byebug
   carrierwave (>= 1.0.0.rc, < 2.0)
   cells
-  cells-rails
+  cells-rails!
   cells-slim!
   coffee-rails (~> 4.2)
   countries

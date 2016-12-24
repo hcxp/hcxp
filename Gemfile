@@ -41,7 +41,7 @@ gem 'slim-rails'
 gem "autoprefixer-rails"
 
 gem "cells"
-gem "cells-rails"
+gem "cells-rails", github: 'ilya-konanykhin/cells-rails', branch: 'fix-slim-html-safing'
 gem "cells-slim", github: 'trailblazer/cells-slim'
 
 gem 'geokit-rails'

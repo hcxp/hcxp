@@ -5,8 +5,4 @@ class ApplicationCell < Cell::ViewModel
   include ActionView::Context
   include ActionView::Helpers::FormHelper
   include ::Rails.application.routes.url_helpers
-
-  def html_safe?
-    true
-  end
 end
