@@ -10,9 +10,8 @@ GIT
       request_store (~> 1.0)
 
 GIT
-  remote: git://github.com/ilya-konanykhin/cells-rails.git
-  revision: 39a366638883fb51990cb81ad59d1e654de4d6cd
-  branch: fix-slim-html-safing
+  remote: git://github.com/trailblazer/cells-rails.git
+  revision: 71c7d28f8949d9eec1d2f36fcfd1bb3576c6040b
   specs:
     cells-rails (0.0.6)
       actionpack (>= 3.0)

@@ -3,7 +3,7 @@
     .col-xs-10
       .media
         .media-left.pr-2
-          = link_to model_decor.public_html_path, class: 'event-card-poster' do
+          a.event-card-poster href=model_decor.public_html_path
             = image_tag model_decor.poster_url(150, 150, text: '.'), class: 'img-thumbnail', size: '150x150'
 
         .media-body
