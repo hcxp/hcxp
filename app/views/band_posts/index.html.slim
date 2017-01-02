@@ -1,15 +1,22 @@
 = render 'bands/heading'
 
 .container.pt-2
-  - @posts.each do |post|
-    .media.mb-1
-      .media-left
-        = image_tag post.thumbnail.url, class: 'mr-1', size: '120x95'
+  .row
+    .col-xs-8.offset-xs-2
+      .card.mb-2
+        .card-block
+          == cell(:form_errors, @post)
 
-      .media-body
-        h4.h5.media-heading = post.title
-        p.text-muted = post.url
+          .row
+            = form_for [@band, @post] do |f|
 
-        ul.list-inline.mb-0
-          li.list-inline-item
-            a.btn.btn-secondary.btn-sm Upvote
+              .col-xs-9
+                = f.label :url, 'Link to anything related to that band'
+                = f.text_field :url, placeholder: 'http://...', class: 'form-control'
+
+              .col-xs-3
+                label &nbsp;
+                = f.submit 'Add post', class: 'btn btn-success btn-block'
+
+      - @posts.each do |post|
+        == cell :post_card, post

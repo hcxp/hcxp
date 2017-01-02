@@ -5,6 +5,8 @@ class Band < ApplicationRecord
   belongs_to :user
   has_many :event_bands
   has_many :events, through: :event_bands
+  has_many :post_bands
+  has_many :posts, through: :post_bands
 
   before_validation :geocode, if: :location_changed?
 

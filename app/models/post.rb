@@ -9,6 +9,8 @@ class Post < ApplicationRecord
 
   after_create :scrap_url, if: proc { |p| p.url.present? }
 
+  scope :newest_first, -> { order(created_at: :desc) }
+
   private
 
   def scrap_url

@@ -1,0 +1,25 @@
+.media.mb-1.post-card
+  .media-left
+    a href=url target="_blank"
+      = image_tag thumb, class: 'mr-1', size: '120x95'
+
+  .media-body
+    h4.h5.media-heading
+      = link_to title, url, class: 'link-inherit', target: '_blank'
+
+      - if model.crawled_at
+        small.text-muted.ml-1 = domain
+
+    ul.list-inline.text-sm.post-card-meta.text-muted.mb-0
+      - if !model.crawled_at
+        li.list-inline-item
+          i.fa.fa-circle-o-notch.fa-spin.fa-fw
+          | Przetwarzanie...
+
+      li.list-inline-item
+        | #{time_ago_in_words(model.created_at)} temu
+
+      li.list-inline-item
+        a.link-inherit href=user.public_html_path
+          = image_tag user.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
+          = user
