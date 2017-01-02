@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219193616) do
+ActiveRecord::Schema.define(version: 20170101163653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,27 @@ ActiveRecord::Schema.define(version: 20161219193616) do
     t.string   "poster"
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
     t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
+  end
+
+  create_table "post_bands", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "band_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["band_id"], name: "index_post_bands_on_band_id", using: :btree
+    t.index ["post_id"], name: "index_post_bands_on_post_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "url"
+    t.string   "thumbnail"
+    t.integer  "user_id"
+    t.datetime "crawled_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,4 +117,7 @@ ActiveRecord::Schema.define(version: 20161219193616) do
     t.index ["user_id"], name: "index_venues_on_user_id", using: :btree
   end
 
+  add_foreign_key "post_bands", "bands"
+  add_foreign_key "post_bands", "posts"
+  add_foreign_key "posts", "users"
 end

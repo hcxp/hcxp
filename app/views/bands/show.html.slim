@@ -1,15 +1,4 @@
-section.section-white.section-shadow
-  .container.py-3
-    .text-xs-center
-      p style="margin-bottom: 0.5rem"
-        span.tag.tag-type
-          = t('activerecord.models.band')
-
-      h1
-        = @band.name
-
-      p.lead.mb-0.text-muted
-        = @band.location
+= render 'bands/heading'
 
 .container.pt-2
   .card

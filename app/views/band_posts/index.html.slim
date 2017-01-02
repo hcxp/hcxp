@@ -1,0 +1,15 @@
+= render 'bands/heading'
+
+.container.pt-2
+  - @posts.each do |post|
+    .media.mb-1
+      .media-left
+        = image_tag post.thumbnail.url, class: 'mr-1', size: '120x95'
+
+      .media-body
+        h4.h5.media-heading = post.title
+        p.text-muted = post.url
+
+        ul.list-inline.mb-0
+          li.list-inline-item
+            a.btn.btn-secondary.btn-sm Upvote
