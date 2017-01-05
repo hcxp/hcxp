@@ -11,6 +11,6 @@ class PostPlayerCell < Cell::ViewModel
     bgcol    = 'ffffff'
     linkcol  = 'e99708'
 
-    "http://bandcamp.com/EmbeddedPlayer/album=#{album_id}/size=#{size}/bgcol=#{bgcol}/linkcol=#{linkcol}/transparent=true/"
+    "https://bandcamp.com/EmbeddedPlayer/album=#{album_id}/size=#{size}/bgcol=#{bgcol}/linkcol=#{linkcol}/transparent=true/"
   end
 end
