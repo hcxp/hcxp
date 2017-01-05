@@ -22,6 +22,7 @@
  *= require blankslate
  *= require flash_messages
  *= require language_picker
+ *= require post_card
  */
 
 body {

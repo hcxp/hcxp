@@ -1,0 +1,16 @@
+section.section-white.section-shadow
+  .container.py-3
+    .text-xs-center
+      p style="margin-bottom: 0.5rem"
+        span.tag.tag-type
+          = t('activerecord.models.band')
+
+      h1
+        = @band.name
+
+      p.lead.mb-2.text-muted
+        = @band.location
+
+      .btn-group
+        = active_link_to 'Wydarzenia', band_path(@band), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary', active: :exclusive
+        = active_link_to 'Posty', band_posts_path(@band), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary'

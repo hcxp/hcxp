@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :bands
+  resources :bands do
+    resources :posts, on: :member, controller: :band_posts
+  end
+
   resources :venues
   resources :events
 

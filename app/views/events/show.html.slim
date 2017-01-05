@@ -17,12 +17,17 @@
       - if @event.bands.any?
         hr
         h6.h6-up.text-muted = t('activerecord.attributes.event.bands')
-        ul.list-inline
-          - @event.bands.each do |band|
-            li.list-inline-item
-              a.btn.btn-secondary.btn-band href=band_path(band)
-                = band.name
-                sub = band.country_code
+
+        - @event.bands.each do |band|
+          .card
+            .card-block style="padding: 1rem;"
+              h3.h5.media-heading.mb-0
+                = link_to band.name, band_path(band), class: 'link-inherit'
+                sub.text-muted style="margin-left: 0.3rem; font-size: 0.8rem"
+                  = band.country_code
+
+              - if band.post_for_player
+                == cell(:post_player, band.post_for_player)
 
       - if @event.venue
         hr
