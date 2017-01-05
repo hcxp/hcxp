@@ -9,11 +9,11 @@ class Bandable < ApplicationRecord
 
   def increment_band_events_count
     logger.debug "Increment events_count for #{band}"
-    band.increment!(:events_count) if bandable.bandable_type == 'Event'
+    band.increment!(:events_count) if bandable_type == 'Event'
   end
 
   def decrement_band_events_count
     logger.debug "Decrement events_count for #{band}"
-    band.decrement!(:events_count) if bandable.bandable_type == 'Event'
+    band.decrement!(:events_count) if bandable_type == 'Event'
   end
 end
