@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  include RailsSettings::Extend
+
   belongs_to :user
   has_many :post_bands
   has_many :bands, through: :post_bands

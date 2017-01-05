@@ -16,6 +16,10 @@ class Band < ApplicationRecord
     "#{name} (#{country_code})"
   end
 
+  def post_for_player
+    posts.newest_first.with_settings_for('bandcamp_album_id').first
+  end
+
   private # --------------------------------------------------------------------
 
   def geocode
