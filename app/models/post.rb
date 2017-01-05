@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   include RailsSettings::Extend
 
   belongs_to :user
-  has_many :post_bands
+  has_many :post_bands, dependent: :destroy
   has_many :bands, through: :post_bands
 
   mount_uploader :thumbnail, PostThumbUploader

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105103038) do
+ActiveRecord::Schema.define(version: 20170105132539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bandables", force: :cascade do |t|
+    t.integer  "bandable_id"
+    t.integer  "band_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "bandable_type"
+    t.index ["band_id"], name: "index_bandables_on_band_id", using: :btree
+    t.index ["bandable_id"], name: "index_bandables_on_bandable_id", using: :btree
+  end
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
@@ -27,15 +37,6 @@ ActiveRecord::Schema.define(version: 20170105103038) do
     t.datetime "updated_at",               null: false
     t.integer  "events_count", default: 0
     t.index ["user_id"], name: "index_bands_on_user_id", using: :btree
-  end
-
-  create_table "event_bands", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "band_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["band_id"], name: "index_event_bands_on_band_id", using: :btree
-    t.index ["event_id"], name: "index_event_bands_on_event_id", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
@@ -68,8 +69,9 @@ ActiveRecord::Schema.define(version: 20170105103038) do
     t.string   "thumbnail"
     t.integer  "user_id"
     t.datetime "crawled_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "bands_count", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 

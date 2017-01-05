@@ -6,8 +6,10 @@ class Event < ApplicationRecord
   mount_uploader :poster, ::EventPosterUploader
 
   belongs_to :user
-  has_many :event_bands, dependent: :destroy
-  has_many :bands, through: :event_bands
+  # has_many :event_bands, dependent: :destroy
+  # has_many :bands, through: :event_bands
+  has_many :bandables, as: :bandable, dependent: :destroy
+  has_many :bands, through: :bandables
   belongs_to :venue
 
   validates :name, presence: true, unless: :has_bands?
