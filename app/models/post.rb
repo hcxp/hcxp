@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   validates :url, presence: true, uniqueness: true
 
-  after_create :scrap_url, if: proc { |p| p.url.present? }
+  after_commit :scrap_url, on: :create, if: proc { |p| p.url.present? }
 
   scope :newest_first, -> { order(created_at: :desc) }
 
