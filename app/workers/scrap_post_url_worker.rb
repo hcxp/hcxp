@@ -24,7 +24,7 @@ class ScrapPostUrlWorker
     logger.debug 'Trying to save bandcamp_album_id if possible'
     og_video = page.meta_tag['property']['og:video'] rescue nil
 
-    return false unless og_video
+    return false unless og_video.present?
 
     logger.debug 'og:video found for bandcamp link. Save it.'
     album_id = og_video[/album=\d+/][/\d+/]
