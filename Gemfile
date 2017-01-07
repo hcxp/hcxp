@@ -80,6 +80,9 @@ gem 'sidekiq'
 # Settings
 gem "rails-settings-cached"
 
+# Oauth2 provider
+gem 'doorkeeper'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
