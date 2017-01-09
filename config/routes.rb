@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     resources :posts, on: :member, controller: :band_posts
   end
 
+  resources :posts, only: [:index, :show]
   resources :venues
   resources :events
+  resources :teams do
+    resources :events, on: :member, controller: :team_events
+  end
 
   get '/@:username', to: 'users#show', as: :user
 

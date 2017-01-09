@@ -6,6 +6,10 @@ class EventPolicy < ApplicationPolicy
     @event = event
   end
 
+  def assign?
+    @team.users.include? @user
+  end
+
   def new?
     @user.present?
   end

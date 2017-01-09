@@ -23,6 +23,7 @@
  *= require flash_messages
  *= require language_picker
  *= require post_card
+ *= require bands_list
  */
 
 body {

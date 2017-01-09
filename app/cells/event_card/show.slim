@@ -12,14 +12,7 @@
             = link_to model_decor.name_or_bands, model_decor.public_html_path, class: 'link-inherit'
 
           / Bands
-          ul.list-inline
-            - model.bands.each do |band|
-              li.list-inline-item
-                a.btn.btn-secondary.btn-band href=band_path(band)
-                  = band.name
-
-                  sub
-                    = band.country_code
+          = cell(:bands_list, model.bands).(:buttons)
 
           / Meta - dates
           == cell(:event_meta_list, model)

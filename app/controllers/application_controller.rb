@@ -57,6 +57,12 @@ class ApplicationController < ActionController::Base
     col
   end
 
+  # @todo  move that to service
+  #
+  def teams_index(col = Team.all)
+    col = col.page(params[:page])
+  end
+
   # Taken from https://www.sitepoint.com/go-global-rails-i18n/
   #
   def set_locale

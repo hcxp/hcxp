@@ -22,7 +22,7 @@
 
   <body>
     <%== cell(:flash_messages, flash) %>
-    <%== cell(:nav_main, css_class: @nav_main_class) %>
+    <%== cell(:nav_main, nil, css_class: @nav_main_class, team: @team) %>
 
     <%= yield %>
 
