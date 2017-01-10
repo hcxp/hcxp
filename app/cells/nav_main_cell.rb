@@ -2,7 +2,7 @@ class NavMainCell < ApplicationCell
   include Devise::Controllers::Helpers
 
   def show
-    render (options[:team]) ? 'show_team' : 'show'
+    render (options[:team] && options[:team].id) ? 'show_team' : 'show'
   end
 
   private
