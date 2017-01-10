@@ -79,7 +79,7 @@ class TeamsController < ApplicationController
     authorize @team
 
     if @team.update_attributes(team_params)
-      redirect_to @team, notice: 'Team saved successfully'
+      redirect_to edit_team_path(@team), notice: 'Team saved successfully'
     else
       render :edit
     end
@@ -94,7 +94,7 @@ class TeamsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def team_params
-    params.require(:team).permit(:name, :website, :description, :slug)
+    params.require(:team).permit(:name, :website, :description, :slug, :avatar, :remove_avatar)
   end
 
   def team_user_params
