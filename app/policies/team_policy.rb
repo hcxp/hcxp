@@ -29,4 +29,8 @@ class TeamPolicy < ApplicationPolicy
   def remove_user?
     edit_users?
   end
+
+  def assign_event?
+    edit? || @team.users.include?(user)
+  end
 end

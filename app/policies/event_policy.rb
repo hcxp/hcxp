@@ -7,7 +7,8 @@ class EventPolicy < ApplicationPolicy
   end
 
   def assign?
-    @team.users.include? @user
+    team = event.team
+    Pundit.policy(@event.actor, team).assign_event?
   end
 
   def new?

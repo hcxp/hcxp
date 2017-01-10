@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :team_users
   has_many :teams, through: :team_users
+  has_many :owned_teams, class_name: 'Team'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
