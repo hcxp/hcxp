@@ -33,4 +33,8 @@ class TeamPolicy < ApplicationPolicy
   def assign_event?
     edit? || @team.users.include?(user)
   end
+
+  def assign_post?
+    edit? || @team.users.include?(user)
+  end
 end

@@ -14,7 +14,7 @@ section.section-white.section-shadow
       .pt-1
         .btn-group
           = active_link_to 'Posty', team_path(@team), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary', active: :exclusive
-          / = active_link_to 'Wydarzenia', team_events_path(@team), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary'
+          = active_link_to 'Wydarzenia', team_events_path(@team), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary'
 
         - if policy(@team).edit?
           a.btn.btn-secondary.ml-1 href=edit_team_path(@team)

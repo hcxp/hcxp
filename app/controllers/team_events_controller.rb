@@ -1,14 +1,10 @@
 class TeamEventsController < ApplicationController
   def index
     @team = find_team
-    @events = find_events
+    @events = events_index(find_team.events)
   end
 
   private
-
-  def find_events
-    find_team.events.includes(:user, :bands, :venue).page(params[:page])
-  end
 
   def find_team
     Team.find(params[:team_id]).decorate
