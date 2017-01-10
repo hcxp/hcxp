@@ -1,0 +1,7 @@
+.list-group.mb-1
+  = active_link_to t('general'), edit_team_path(@team), class: 'list-group-item', active: :exclusive
+  = active_link_to t('users'), edit_users_team_path(@team), class: 'list-group-item'
+
+.text-xs-center
+  a.btn.btn-secondary href=team_path(@team)
+    = t('see_profile')

@@ -6,6 +6,11 @@ class EventPolicy < ApplicationPolicy
     @event = event
   end
 
+  def assign?
+    team = event.team
+    Pundit.policy(@event.actor, team).assign_event?
+  end
+
   def new?
     @user.present?
   end

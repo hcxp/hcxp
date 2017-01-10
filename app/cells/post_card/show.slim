@@ -10,6 +10,9 @@
       - if model.crawled_at
         small.text-muted.ml-1 = domain
 
+    / Bands
+    = cell(:bands_list, model.bands).(:buttons)
+
     ul.list-inline.text-sm.post-card-meta.text-muted.mb-0
       - if !model.crawled_at
         li.list-inline-item
@@ -17,9 +20,11 @@
           | Przetwarzanie...
 
       li.list-inline-item
-        | #{time_ago_in_words(model.created_at)} temu
+        a.link-inherit href=post_path(model)
+          | #{time_ago_in_words(model.created_at)} #{t(:ago)}
 
-      li.list-inline-item
-        a.link-inherit href=user.public_html_path
-          = image_tag user.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
-          = user
+      - unless options[:hide_author]
+        li.list-inline-item
+          a.link-inherit href=user.public_html_path
+            = image_tag user.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
+            = user

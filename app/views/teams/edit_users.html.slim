@@ -1,0 +1,41 @@
+.container.mt-2
+  = render 'teams/edit_heading'
+
+  .row
+    .col-xs-2.offset-xs-2
+      = render 'teams/edit_nav'
+
+    .col-xs-6
+      == cell(:form_errors, @team_user)
+
+      .card
+        .card-header
+          form.form-inline
+          = form_for @team_user, url: edit_users_team_path(@team) do |f|
+            .row
+              .col-xs-9
+                = f.text_field :username, class: 'form-control', placeholder: t('activerecord.attributes.user.username'), style: 'width:100%'
+              .col-xs-3
+                = f.submit "+ #{t('invite')}", class: 'btn btn-primary btn-block'
+
+        table.table.table-hover.table-bordered.card-table.mb-0
+          tr
+            td
+              strong
+                | @#{@team.user.username}
+
+            td colspan="2"
+              span.tag.tag-danger
+                = t('owner')
+
+          - @team_users.each do |team_user|
+            tr
+              td
+                strong @#{team_user.user.username}
+
+              td
+                span.tag.tag-primary = t('contributor')
+
+              td width="1%"
+                a.btn.btn-danger.btn-sm href=remove_user_team_path(team_user_id: team_user.id) data-method="delete" data-confirm=t('are_you_sure')
+                  i.fa.fa-trash-o

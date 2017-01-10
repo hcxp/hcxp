@@ -14,3 +14,18 @@
     line-height: 2.4rem;
   }
 }
+
+.nav-main--team {
+  .navbar-brand--root {
+    color: #999;
+
+    &:after {
+      content: "/";
+      margin: 0 .5rem;
+    }
+  }
+}
+
+.navbar-brand--team {
+  font-weight: 600;
+}

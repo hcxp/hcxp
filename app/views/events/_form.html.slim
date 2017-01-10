@@ -82,6 +82,10 @@
         = f.label :ownership_type
         = f.select :ownership_type, [[t('activerecord.values.event.ownership_type.user_full'), 'user'], [t('activerecord.values.event.ownership_type.unassigned_full'), 'unassigned']], { include_blank: true }, class: 'form-control'
 
+      .form-group
+        = f.label :team_id
+        = f.select :team_id, options_for_user_teams, { include_blank: 'None' }, class: 'form-control'
+
   hr
   .text-xs-center.pb-2.pt-1
     button.btn.btn-primary style="width: 300px" type="submit"

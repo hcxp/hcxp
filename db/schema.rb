@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107121251) do
+ActiveRecord::Schema.define(version: 20170110172436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,22 @@ ActiveRecord::Schema.define(version: 20170107121251) do
     t.integer  "venue_id"
     t.string   "ownership_type"
     t.string   "poster"
+    t.integer  "team_id"
+    t.index ["team_id"], name: "index_events_on_team_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
     t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -113,6 +127,8 @@ ActiveRecord::Schema.define(version: 20170107121251) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "bands_count", default: 0
+    t.integer  "team_id"
+    t.index ["team_id"], name: "index_posts_on_team_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
@@ -124,6 +140,28 @@ ActiveRecord::Schema.define(version: 20170107121251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_users_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_team_users_on_user_id", using: :btree
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "website"
+    t.string   "slug"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "avatar"
+    t.index ["slug"], name: "index_teams_on_slug", unique: true, using: :btree
+    t.index ["user_id"], name: "index_teams_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -170,9 +208,14 @@ ActiveRecord::Schema.define(version: 20170107121251) do
     t.index ["user_id"], name: "index_venues_on_user_id", using: :btree
   end
 
+  add_foreign_key "events", "teams"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "post_bands", "bands"
   add_foreign_key "post_bands", "posts"
+  add_foreign_key "posts", "teams"
   add_foreign_key "posts", "users"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
+  add_foreign_key "teams", "users"
 end

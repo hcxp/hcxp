@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+  helper_method :options_for_user_teams
+
   # GET /venues
   # GET /venues.json
   def index
@@ -21,7 +23,8 @@ class EventsController < ApplicationController
   def create
     authenticate_user!
     @event = Event.new(event_params).decorate
-    @event.user = current_user
+    @event.user  = current_user
+    @event.actor = current_user
 
     if @event.save
       redirect_to @event, notice: 'Event saved successfully'
@@ -39,7 +42,7 @@ class EventsController < ApplicationController
     authenticate_user!
     authorize @event
 
-    if @event.update_attributes(event_params)
+    if @event.update_attributes(event_params.merge(actor: current_user))
       redirect_to @event, notice: 'Event saved successfully'
     else
       render :edit
@@ -58,7 +61,15 @@ class EventsController < ApplicationController
     params[:event][:band_ids] = params[:event][:band_ids].split(',').uniq if params[:event] && params[:event][:band_ids]
 
     params.require(:event).permit(
-      :name, :price, :venue_id, :beginning_at, :ownership_type, :poster, :band_ids => []
+      :name, :price, :venue_id, :beginning_at, :ownership_type, :poster,
+      :team_id, :band_ids => []
     )
+  end
+
+  def options_for_user_teams
+    teams = current_user.teams.map { |t| [t.name, t.id] }
+    owned_teams = current_user.owned_teams.map { |t| [t.name, t.id] }
+
+    teams + owned_teams
   end
 end

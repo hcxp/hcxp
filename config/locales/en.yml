@@ -1,5 +1,10 @@
 en:
+
+  #
+  # General --------------------------------------------------------------------
+
   events: Events
+  posts: Posts
   bands: Bands
   venues: Venues
   venue: Venue
@@ -11,6 +16,13 @@ en:
   create_band: Create band
   create_venue: Create venue
   edit_event: Edit event
+  team_settings: Team settings
+  general: General
+  settings: Settings
+  invite: Invite
+  owner: Owner
+  contributor: Contributor
+  are_you_sure: Are you sure?
 
   no_events_found: No events found
   no_bands_found: No bands found
@@ -63,9 +75,15 @@ en:
 
   activerecord:
     models:
-      event: Event
+      event:
+        one: Event
+        other: Events
+      post:
+        one: Post
+        other: Posts
       band: Band
       venue: Venue
+      team: Team
     attributes:
       event:
         name: Name
@@ -85,6 +103,11 @@ en:
         password: Password
         password_confirmation: Password confirmation
         username: Username
+      team:
+        name: Name
+        slug: Slug
+        description: Description
+        website: Website
     values:
       event:
         ownership_type:

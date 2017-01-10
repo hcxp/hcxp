@@ -1,0 +1,13 @@
+ul.nav.navbar-nav
+  li.nav-item
+    = active_link_to t('.events'), root_path, class: 'nav-link', active: :exclusive
+
+  li.nav-item
+    = active_link_to t('.bands'), bands_path, class: 'nav-link'
+
+  li.nav-item
+    = active_link_to t('.venues'), venues_path, class: 'nav-link'
+
+form.form-inline.float-xs-left.ml-1
+  a.btn.btn-sm.align-middle.btn-outline-secondary style="margin-top:0.3rem" href=new_event_path
+    = t('.add_event')

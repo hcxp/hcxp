@@ -1,0 +1,12 @@
+= render 'teams/heading'
+
+.container.pt-2
+  .row
+    .col-sm-10.offset-sm-1
+      - @posts.each do |post|
+        == cell :post_card, post, hide_author: true
+
+      - unless @posts.any?
+        == cell :blankslate, \
+          title: t('no_posts_found'), \
+          description: t('modify_search_criteria')

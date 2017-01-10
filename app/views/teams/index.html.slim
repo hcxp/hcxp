@@ -1,0 +1,13 @@
+section.section-white.section-shadow.py-2
+  .container
+    / == cell :venues_filters
+
+.container.mt-2
+  - @teams.each do |team|
+    / == cell :venue_card, venue
+    = team.name
+
+  - unless @teams.any?
+    == cell :blankslate, \
+      title: t('no_teams_found'), \
+      description: t('modify_search_criteria')
