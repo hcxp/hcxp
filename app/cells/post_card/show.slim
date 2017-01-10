@@ -21,7 +21,7 @@
 
       li.list-inline-item
         a.link-inherit href=post_path(model)
-          | #{time_ago_in_words(model.created_at)} temu
+          | #{time_ago_in_words(model.created_at)} #{t(:ago)}
 
       - unless options[:hide_author]
         li.list-inline-item
