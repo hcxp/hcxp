@@ -1,27 +1,26 @@
-.col-sm-6.offset-sm-3
-  = form_for @team, { html: { class: 'team-form' } } do |f|
-    == cell(:form_errors, f.object)
+= form_for @team, { html: { class: 'team-form' } } do |f|
+  == cell(:form_errors, f.object)
 
-    .form-group
-      = f.label :name
-      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
 
-    .form-group
-      = f.label :slug
-      = f.text_field :slug, class: 'form-control'
-      small.form-text.text-muted
-        = t('.slug_description')
+  .form-group
+    = f.label :slug
+    = f.text_field :slug, class: 'form-control'
+    small.form-text.text-muted
+      = t('.slug_description')
 
-    .form-group
-      = f.label :description
-      = f.text_area :description, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
 
-    .form-group
-      = f.label :website
-      = f.text_field :website, class: 'form-control', placeholder: 'https://...'
+  .form-group
+    = f.label :website
+    = f.text_field :website, class: 'form-control', placeholder: 'https://...'
 
-    hr
+  hr
 
-    .text-xs-center.pb-2.pt-1
-      button.btn.btn-primary style="width: 300px" type="submit"
-        = t('save_changes')
+  .text-xs-center.pb-2.pt-1
+    button.btn.btn-primary style="width: 300px" type="submit"
+      = t('save_changes')

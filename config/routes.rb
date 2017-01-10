@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :venues
   resources :events
   resources :teams do
+    get 'edit/users', controller: :teams, action: :edit_users, on: :member, as: :edit_users
+    post 'edit/users', controller: :teams, action: :invite_user, on: :member, as: :invite_user
+    delete 'edit/users/:team_user_id', controller: :teams, action: :remove_user, on: :member, as: :remove_user
     resources :events, on: :member, controller: :team_events
   end
 

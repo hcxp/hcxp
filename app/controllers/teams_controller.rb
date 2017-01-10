@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update]
+  before_action :set_team, only: [:show, :edit, :edit_users, :invite_user, :remove_user, :update]
 
   # GET /venues
   # GET /venues.json
@@ -30,6 +30,50 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+    authenticate_user!
+    authorize @team
+  end
+
+  def edit_users
+    authenticate_user!
+    authorize @team
+
+    @team_users = @team.team_users
+    @team_user  = TeamUser.new(team: @team)
+  end
+
+  def invite_user
+    authenticate_user!
+    authorize @team
+
+    @team_users = @team.team_users
+    user        = User.find_by(username: team_user_params[:username])
+    @team_user  = TeamUser.new(team: @team, user: user, username: team_user_params[:username])
+
+    if @team_user.save
+      redirect_to :back, notice: 'User successfully invited!'
+    else
+
+      if !user.present?
+        @team_user.errors.clear
+        @team_user.errors.add(:username, 'not found')
+      end
+
+      render :edit_users
+    end
+  end
+
+  def remove_user
+    authenticate_user!
+    authorize @team
+
+    team_user = @team.team_users.find(params[:team_user_id])
+    team_user.destroy!
+
+    redirect_to edit_users_team_path(@team), notice: 'User successfully removed.'
+  end
+
   def update
     authenticate_user!
     authorize @team
@@ -51,5 +95,9 @@ class TeamsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def team_params
     params.require(:team).permit(:name, :website, :description, :slug)
+  end
+
+  def team_user_params
+    params.require(:team_user).permit(:username)
   end
 end

@@ -17,4 +17,16 @@ class TeamPolicy < ApplicationPolicy
   def edit?
     update?
   end
+
+  def edit_users?
+    update?
+  end
+
+  def invite_user?
+    edit_users?
+  end
+
+  def remove_user?
+    edit_users?
+  end
 end
