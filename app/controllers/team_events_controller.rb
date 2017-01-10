@@ -7,6 +7,6 @@ class TeamEventsController < ApplicationController
   private
 
   def find_team
-    Team.find(params[:team_id]).decorate
+    Team.friendly.find(params[:team_id]).decorate
   end
 end
