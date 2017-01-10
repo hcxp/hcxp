@@ -1,6 +1,6 @@
 class TeamEventsController < ApplicationController
   def index
-    @team = find_team
+    @team   = find_team
     @events = events_index(find_team.events)
   end
 
