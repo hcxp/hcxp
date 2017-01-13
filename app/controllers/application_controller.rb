@@ -63,6 +63,16 @@ class ApplicationController < ActionController::Base
     col = col.page(params[:page])
   end
 
+  # @todo  Move that to service
+  #
+  def posts_index(col = Post.all)
+    col = col.includes(:bands, :user)
+    col = col.search(params[:q]) if params[:q].present?
+    col = col.page(params[:page])
+
+    col
+  end
+
   # Taken from https://www.sitepoint.com/go-global-rails-i18n/
   #
   def set_locale

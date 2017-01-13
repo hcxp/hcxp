@@ -23,10 +23,12 @@ en:
   owner: Owner
   contributor: Contributor
   are_you_sure: Are you sure?
+  add_post: Add post
 
   no_events_found: No events found
   no_bands_found: No bands found
   no_venues_found: No venues found
+  no_posts_found: No posts found
   modify_search_criteria: Try to modify search criteria
 
   today: Today
@@ -41,6 +43,9 @@ en:
 
   #
   # Cells ----------------------------------------------------------------------
+
+  posts_filters:
+    query_placeholder: Search for bands or keywords...
 
   bands_filters:
     query_placeholder: Search for bands or locations...

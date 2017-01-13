@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  include PgSearch
   include RailsSettings::Extend
 
   belongs_to :user
@@ -14,6 +15,14 @@ class Post < ApplicationRecord
   after_commit :scrap_url, on: :create, if: proc { |p| p.url.present? }
 
   scope :newest_first, -> { order(created_at: :desc) }
+
+
+  # pg_search_scope :search, against: [:title], using: { tsearch: { prefix: true } }, associated_against: {
+  #   bands: [:name],
+  #   venue: [:name, :address]
+  # }
+
+  pg_search_scope :search, against: [:title]
 
   attr_accessor :actor
 

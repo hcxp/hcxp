@@ -1,10 +1,12 @@
-/ section.section-white.section-shadow.py-2
-/   .container
-/     == cell :venues_filters
+section.section-white.section-shadow.py-2
+  .container
+    == cell(:posts_filters)
 
 .container.mt-2
   - @posts.each do |post|
     == cell :post_card, post
+
+  = paginate @posts
 
   - unless @posts.any?
     == cell :blankslate, \

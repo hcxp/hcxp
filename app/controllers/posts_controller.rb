@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /venues
   # GET /venues.json
   def index
-    @posts = Post.all
+    @posts = posts_index(Post.all)
   end
 
   # GET /venues/1

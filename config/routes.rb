@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :posts, on: :member, controller: :band_posts
   end
 
-  resources :posts, only: [:index, :show]
+  resources :posts
   resources :venues
   resources :events
   resources :teams do
