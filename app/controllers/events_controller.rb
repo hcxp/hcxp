@@ -62,7 +62,7 @@ class EventsController < ApplicationController
 
     params.require(:event).permit(
       :name, :price, :venue_id, :beginning_at, :ownership_type, :poster,
-      :team_id, :band_ids => []
+      :link, :team_id, :band_ids => []
     )
   end
 

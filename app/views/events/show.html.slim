@@ -14,6 +14,11 @@
 
       == cell(:event_meta_list, @event)
 
+      - if @event.link.present?
+        p.text-muted style="margin-top:0.3rem"
+          i.fa.fa-fw.fa-link
+          = link_to @event.link.truncate(30), @event.link, class: 'link-inherit', title: @event.link, target: '_blank'
+
       - if @event.bands.any?
         hr
         h6.h6-up.text-muted = t('activerecord.attributes.event.bands')

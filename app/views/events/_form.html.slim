@@ -79,6 +79,12 @@
       hr
 
       .form-group
+        = f.label :link
+        = f.text_field :link, class: 'form-control', placeholder: 'https://...'
+
+      hr
+
+      .form-group
         = f.label :ownership_type
         = f.select :ownership_type, [[t('activerecord.values.event.ownership_type.user_full'), 'user'], [t('activerecord.values.event.ownership_type.unassigned_full'), 'unassigned']], { include_blank: true }, class: 'form-control'
 

@@ -17,6 +17,7 @@ class Event < ApplicationRecord
   validates :beginning_at, presence: true
   validates :ownership_type, presence: true
   validates :ownership_type, allow_blank: true, inclusion: { in: OWNERSHIP_TYPES }
+  validates :link, format: URI::regexp(%w(http https)), if: proc { |e| e.link.present? }
   validate :assign_to_team_policy, if: proc { |e| e.team_id.present? }
 
   scope :upcoming, -> { where('beginning_at >= ?', Time.zone.now.beginning_of_day) }
