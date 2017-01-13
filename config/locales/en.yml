@@ -7,6 +7,7 @@ en:
   posts: Posts
   bands: Bands
   venues: Venues
+  users: Users
   venue: Venue
   search: Search
   new_event: New event
@@ -24,6 +25,8 @@ en:
   contributor: Contributor
   are_you_sure: Are you sure?
   add_post: Add post
+  see_profile: See profile
+  remove_avatar: Remove avatar
 
   no_events_found: No events found
   no_bands_found: No bands found

@@ -34,7 +34,7 @@
           label.mt-1
             .checkbox
               = f.check_box :remove_avatar
-              | &nbsp; Remove avatar
+              | &nbsp; #{t('remove_avatar')}
 
     - else
       = f.file_field :avatar, class: 'form-control'

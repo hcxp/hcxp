@@ -1,5 +1,6 @@
 pl:
   posts: Posty
+  users: Użytkownicy
   venue: Miejsce
   search: Szukaj
   new_event: Nowe wydarzenie
@@ -17,6 +18,8 @@ pl:
   contributor: Kontrybutor
   are_you_sure: Czy na pewno chcesz to zrobić?
   add_post: Dodaj post
+  see_profile: Zobacz profil
+  remove_avatar: Usuń avatar
   no_events_found: Nie znaleziono wydarzeń
   no_bands_found: Nie znaleziono zespołów
   no_venues_found: Nie znaleziono lokali
@@ -59,7 +62,7 @@ pl:
     models:
       event:
         one: Wydarzenie
-        few: Wydarzeń
+        few: Wydarzenia
         other: Wydarzenia
       post:
         one: Post
