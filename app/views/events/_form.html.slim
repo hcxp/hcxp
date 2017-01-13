@@ -47,7 +47,7 @@
               p.text-muted style="margin-bottom:0.5rem"
                 = t('.cant_find_the_venue?')
 
-              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$broadcast('show::modal', 'newVenueModal')"
+              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$emit('showNewVenueModal')"
                 | + #{t 'create_new'}
 
         = f.hidden_field :venue_id, 'v-model' => 'venue.id', 'v-ref:venueId' => 'true'
@@ -71,7 +71,7 @@
             .p-1.text-xs-center
               p.text-muted style="margin-bottom:0.5rem"
                 = t('.cant_find_a_band?')
-              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$broadcast('show::modal', 'newBandModal')"
+              a.btn.btn-success.btn-sm style="width: 150px" href="#" @click.prevent="$emit('showNewBandModal')"
                 | + #{t 'create_new'}
 
         = f.hidden_field :band_ids, 'v-model' => 'mappedBandIds', 'v-ref:bandIds' => 'true', value: @event.band_ids.join(',')

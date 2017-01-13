@@ -28,6 +28,18 @@ $(document).on('turbolinks:load', function() {
       }
     },
 
+    events: {
+      'showNewBandModal': function() {
+        this.newBand = { name: '', location: '' }
+        this.$broadcast('show::modal', 'newBandModal')
+      },
+
+      'showNewVenueModal': function() {
+        this.newVenue = { name: '', address: '' }
+        this.$broadcast('show::modal', 'newVenueModal')
+      },
+    },
+
     ready () {
       let venueId = $('#event_venue_id').val()
       let bandIds = $('#event_band_ids').val()
