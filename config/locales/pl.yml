@@ -1,4 +1,5 @@
 pl:
+  posts: Posty
   venue: Miejsce
   search: Szukaj
   new_event: Nowe wydarzenie
@@ -8,9 +9,18 @@ pl:
   create_band: Utwórz zespół
   create_venue: Utwórz lokal
   edit_event: Edytuj wydarzenie
+  team_settings: Ustawienia grupy
+  general: Ogólne
+  settings: Ustawienia
+  invite: Zaproś
+  owner: Właściciel
+  contributor: Kontrybutor
+  are_you_sure: Czy na pewno chcesz to zrobić?
+  add_post: Dodaj post
   no_events_found: Nie znaleziono wydarzeń
   no_bands_found: Nie znaleziono zespołów
   no_venues_found: Nie znaleziono lokali
+  no_posts_found: Nie znaleziono postów
   modify_search_criteria: Spróbuj zmienić kryteria wyszukiwania
   today: Dzisiaj
   tomorrow: Jutro
@@ -20,6 +30,8 @@ pl:
   select_language: Wybierz język
   english: Angielski
   polish: Polski
+  posts_filters:
+    query_placeholder: Szukaj po zespołach, lokalach lub słowach kluczowych...
   bands_filters:
     query_placeholder: Szukaj zespołów lub lokacji...
   events_filters:
@@ -45,9 +57,17 @@ pl:
     query_placeholder: Szukaj po zespołach lub nazwach wydarzeń...
   activerecord:
     models:
-      event: Wydarzenie
+      event:
+        one: Wydarzenie
+        few: Wydarzeń
+        other: Wydarzenia
+      post:
+        one: Post
+        few: Posty
+        other: Postów
       band: Zespół
       venue: Lokal
+      team: Grupa
     attributes:
       event:
         name: Nazwa
@@ -67,6 +87,11 @@ pl:
         password: Hasło
         password_confirmation: Potwierdzenie hasła
         username: Nazwa użytkownika
+      team:
+        name: Nazwa
+        slug: Slug
+        description: Opis
+        website: Strona internetowa
     values:
       event:
         ownership_type:
