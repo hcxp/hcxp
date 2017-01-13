@@ -18,6 +18,11 @@
     <meta content="1490101241217902" property="fb:app_id">
 
     <%= render 'layouts/google_analytics' if ENV['GOOGLE_ANALYTICS'] %>
+
+    <script type="text/javascript">
+      window.locale = "<%= I18n.locale %>"
+      moment.locale(window.locale)
+    </script>
   </head>
 
   <body>

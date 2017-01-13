@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require moment.min
+//= require moment.pl
 //= require bootstrap-datetimepicker.min
 //= require google-analytics-turbolinks
 //= require Luminous.min
