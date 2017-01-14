@@ -16,6 +16,36 @@ class PostsController < ApplicationController
     render view
   end
 
+  def new_form
+    @post = Post.new(type: 'text')
+  end
+
+  def edit
+    if @post.body.present?
+      render :new_form
+    end
+  end
+
+  def create
+    @post = Post.new(post_params)
+    @post.type = 'text'
+    @post.user = current_user
+
+    if @post.save
+      redirect_to @post, notice: 'Post created successfully!'
+    else
+      render :new_form
+    end
+  end
+
+  def update
+    if @post.update_attributes(post_params)
+      redirect_to @post, notice: 'Post updated successfully'
+    else
+      render :new_form
+    end
+  end
+
   private #---------------------------------------------------------------------
 
   # Use callbacks to share common setup or constraints between actions.

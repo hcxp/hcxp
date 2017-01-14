@@ -1,0 +1,61 @@
+.container.mt-2
+  .row
+    .col-sm-10.offset-sm-1
+      .text-xs-center.pt-2
+        h1.mb-3
+          = t('new_post')
+        hr
+
+      == cell(:form_errors, @post)
+
+      .row
+        = form_for @post do |f|
+          .col-xs-9
+            .form-group
+              = f.label :title
+              = f.text_field :title, class: 'form-control'
+
+            .form-group
+              = f.label :body
+              = f.text_area :body, class: 'form-control', rows: 20
+
+            .text-xs-center.pb-2.pt-1
+              button.btn.btn-primary style="width: 300px" type="submit"
+                = t('save_changes')
+              br
+              button.btn.btn-link.mt-1.text-muted Cancel
+
+          .col-xs-3
+            .form-group.bands
+              = f.label :bands
+              small.form-text
+                | Is that post related to any specific bands?
+                a.show-bands< href="#" Yes it is +
+
+            .form-group.venue
+              = f.label :venue
+              small.form-text
+                | Is that post related to any specific venue?
+                a.show-venue< href="#" Yes it is +
+
+              .venue-picker-container style="display:none"
+                venue-picker-input(
+                  before-list-label=t('cant_find_the_venue?')
+                  create-new-label=t('create_new')
+                  placeholder=t('venue_picker_input.placeholder')
+                  input-id="post_venue_id"
+                )
+                = f.hidden_field :venue_id
+
+            .form-group
+              = f.label :occured_at
+              small.form-text
+                | Is that post related to any specific date?
+                a< href="#" Yes it is +
+
+javascript:
+  $('.show-venue').click(function(e) {
+    e.preventDefault()
+    $('.venue small').hide()
+    $('.venue .venue-picker-container').show()
+  })

@@ -9,14 +9,5 @@
             = image_tag @post.user.decorate.avatar_url(15, 15), class: 'img-circle'
             | mbajur
         h1 = @post.title
-        p TLDR: There’s nothing wrong with Meteor. I lost interest in Meteor so it’s hard for me to maintain all of my Meteor-related projects. Therefore, I am seeking help from the community to take over those projects. Finally, thank you for all who helped me in during these past three years.
-        p
-          img src="https://s3.eu-central-1.amazonaws.com/keepthismoment/24.08.2016.domain.true.vision.insist/IMG_2268.jpg"
 
-        h4 Early Days
-        p I started my Meteor journey with a testing framework for Meteor called Laika; after that, I tried to help the community with projects like Meteor Cluster, Oplog Integration, Sub Manager, Flow Router and many other projects.
-        p I had so fun and really enjoyed hacking into Meteor and writing blog posts. That’s when I started MeteorHacks.
-
-        h4 Kadira
-        p I did all of these from my own funds and wanted a way to make a living while working on Meteor-related projects. That’s when I started a project called Comet Engine (only a few of you guys know that). That’s something very similar to Galaxy but which worked pretty well in 2013.
-        p I learned that Galaxy was on the horizon and I didn’t want to compete with MDG, so I decided to shut it down and try to start something new. That’s Kadira. (A performance monitoring service for Meteor)
+        == parse_markdown(@post.body)

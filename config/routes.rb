@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     resources :posts, on: :member, controller: :band_posts
   end
 
-  resources :posts
+  resources :posts do
+    get 'new/text', action: :new_form, type: :text, as: :new_text, on: :collection
+    get 'new/link', action: :new_form, type: :link, as: :new_link, on: :collection
+  end
+
   resources :venues
   resources :events
   resources :teams do

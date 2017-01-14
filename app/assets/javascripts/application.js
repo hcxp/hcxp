@@ -25,5 +25,10 @@ $(document).on('turbolinks:load', function(){
   window.csrf_token = $('meta[name="csrf-token"]')[0].content
 
   Vue.config.debug = true
+  Vue.config.devtools = true
   Vue.http.headers.common['X-CSRF-Token'] = csrf_token
+
+  Vue.component('Multiselect', VueMultiselect.default)
+
+  new Vue({el: 'body'})
 })
