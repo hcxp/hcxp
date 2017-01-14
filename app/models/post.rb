@@ -2,7 +2,10 @@ class Post < ApplicationRecord
   include PgSearch
   include RailsSettings::Extend
 
-  attr_accessor :type
+  TYPES = %w(text link).freeze
+
+  # Make it able to use `type` column
+  self.inheritance_column = 'inheritance_type'
 
   belongs_to :user
   belongs_to :team
@@ -12,9 +15,10 @@ class Post < ApplicationRecord
 
   mount_uploader :thumbnail, PostThumbUploader
 
-  validates :url, presence: true, uniqueness: true, if: proc { |p| p.type == 'link' }
-  validates :title, presence: true, if: proc { |p| p.type == 'text' }
-  validates :body, presence: true, if: proc { |p| p.type == 'text' }
+  validates :url, presence: true, uniqueness: true, if: :link?
+  validates :title, presence: true, if: :text?
+  validates :body, presence: true, if: :text?
+  validates :type, presence: true, inclusion: { in: TYPES }
   validate :assign_to_team_policy, if: proc { |p| p.team_id.present? }
 
   after_commit :scrap_url, on: :create, if: proc { |p| p.url.present? }
@@ -32,11 +36,11 @@ class Post < ApplicationRecord
   attr_accessor :actor
 
   def link?
-    url.present?
+    type == 'link'
   end
 
   def text?
-    !link?
+    type == 'text'
   end
 
   private

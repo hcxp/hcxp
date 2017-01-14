@@ -18,6 +18,7 @@
 //= require bootstrap-datetimepicker.min
 //= require google-analytics-turbolinks
 //= require Luminous.min
+//= require simplemde.min
 //= require_tree .
 //= require_self
 

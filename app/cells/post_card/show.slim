@@ -1,11 +1,12 @@
 .media.mb-1.post-card
   .media-left
-    a href=url target="_blank"
+    a href=url target=link_target
       = image_tag thumb, class: 'mr-1', size: '120x95'
 
   .media-body
     h4.h5.media-heading
-      = link_to title, url, class: 'link-inherit', target: '_blank'
+      a.link-inherit href=url target=link_target
+        = title
 
       - if model.crawled_at
         small.text-muted.ml-1 = domain

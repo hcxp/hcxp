@@ -15,9 +15,10 @@
               = f.label :title
               = f.text_field :title, class: 'form-control'
 
+
             .form-group
               = f.label :body
-              = f.text_area :body, class: 'form-control', rows: 20
+              textarea-mde.form-control unique-id="post-#{(@post.id || 'new')}" rows=20 name="post[body]" id="post_body" value=f.object.body
 
             .text-xs-center.pb-2.pt-1
               button.btn.btn-primary style="width: 300px" type="submit"

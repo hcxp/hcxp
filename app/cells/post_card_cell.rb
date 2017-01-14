@@ -20,7 +20,7 @@ class PostCardCell < ApplicationCell
   end
 
   def title
-    if model.crawled_at
+    if model.crawled_at || model.text?
       model.title || model.url
     else
       model.url
@@ -28,10 +28,14 @@ class PostCardCell < ApplicationCell
   end
 
   def url
-    model.url
+    model.link? ? model.url : post_path(model)
   end
 
   def domain
     URI.parse(url).host.gsub('www.', '') rescue nil
+  end
+
+  def link_target
+    model.link? ? '_blank' : false
   end
 end
