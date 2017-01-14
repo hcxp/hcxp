@@ -39,6 +39,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.actor = current_user
+
     if @post.update_attributes(post_params)
       redirect_to @post, notice: 'Post updated successfully'
     else

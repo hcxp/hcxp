@@ -1,13 +1,28 @@
-.container.mt-3.pt-2
+.container.mt-3
   .row
     .col-sm-8.offset-sm-2
+      .media.mb-2
+        .media-left
+          a href=user_path(@post.user)
+            = image_tag @post.user.decorate.avatar_url(45, 45), class: 'img-circle', size: '45x45'
+
+        .media-body
+          ul.list-inline style="margin-bottom: -4px"
+            li.list-inline-item
+              strong.media-heading = link_to @post.user.decorate, @post.user, class: 'link-inherit'
+
+            - if @team
+              li.list-inline-item.text-muted
+                = t('via')
+              li.list-inline-item
+                = link_to @team.name, @team, class: 'link-inherit'
+
+          ul.list-inline.text-muted.mb-0
+            li.list-item
+              small
+                | #{time_ago_in_words(@post.created_at)} #{t 'ago'}
+
       .markdown
-        ul.list-inline.mb-0.text-muted
-          li.list-inline-item
-            | 2 minuty temu
-          li.list-inline-item
-            = image_tag @post.user.decorate.avatar_url(15, 15), class: 'img-circle'
-            | mbajur
         h1 = @post.title
 
         == parse_markdown(@post.body)

@@ -15,7 +15,7 @@
     = cell(:bands_list, model.bands).(:buttons)
 
     ul.list-inline.text-sm.post-card-meta.text-muted.mb-0
-      - if !model.crawled_at
+      - if !model.crawled_at && model.link?
         li.list-inline-item
           i.fa.fa-circle-o-notch.fa-spin.fa-fw
           | Przetwarzanie...

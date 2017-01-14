@@ -4,8 +4,11 @@ class Post < ApplicationRecord
 
   TYPES = %w(text link).freeze
 
+
   # Make it able to use `type` column
   self.inheritance_column = 'inheritance_type'
+
+  attr_accessor :actor
 
   belongs_to :user
   belongs_to :team
