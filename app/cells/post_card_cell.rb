@@ -7,6 +7,10 @@ class PostCardCell < ApplicationCell
 
   private
 
+  def model_decor
+    model.decorate
+  end
+
   def user
     model.user.decorate
   end

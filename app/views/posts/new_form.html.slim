@@ -46,12 +46,40 @@
             .text-xs-center.pb-2.pt-1
               button.btn.btn-primary style="width: 300px" type="submit"
                 = t('save_changes')
-              br
-              button.btn.btn-link.mt-1.text-muted Cancel
+
+              - if @post.persisted?
+                br
+                a.btn.btn-link.mt-1.text-muted href=@post.decorate.public_html_path
+                  | Cancel
 
           .col-xs-3
             .form-group
               = f.label :occured_at
-              = f.text_field :occured_at, class: 'form-control'
+              = f.text_field :occured_at, \
+                class: 'form-control', \
+                value: (l(f.object.occured_at, format: "%A, %d %b %Y") if f.object.occured_at)
+
               small.form-text.text-muted
                 | You can use it to overwrite creation time of this post.
+
+            .form-group
+              = f.label :team_id
+              = f.select :team_id, options_for_user_teams, { include_blank: 'None' }, class: 'form-control'
+
+javascript:
+  $(function () {
+    $('#post_occured_at').datetimepicker({
+      locale: window.locale,
+      sideBySide: true,
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up:   "fa fa-arrow-up",
+        down: "fa fa-arrow-down",
+        next: 'fa fa-chevron-right',
+        previous: 'fa fa-chevron-left',
+      },
+      ignoreReadonly: true,
+      format: 'dddd, DD MMM YYYY'
+    });
+  });

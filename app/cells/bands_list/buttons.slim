@@ -1,7 +1,7 @@
 ul.list-inline.bands-list.bands-list--buttons
   - model.each do |band|
     li.list-inline-item
-      a.btn.btn-secondary.btn-band href=band_path(band)
+      a.btn.btn-secondary.btn-band class="btn-#{@opts[:size]}" href=band_path(band)
         = band.name
 
         sub
