@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   def show
     view  = @post.text? ? 'show_text' : 'show_link'
     @team = @post.team.decorate if @post.team_id.present?
+    @event = @post.event.decorate if @post.event_id.present?
 
     render view
   end
@@ -56,7 +57,9 @@ class PostsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
+  # @todo Move band_ids parsing to checkbox
   def post_params
-    params.require(:post).permit(:url, :title, :body)
+    params[:post][:band_ids] = params[:post][:band_ids].split(',') if params[:post] && params[:post][:band_ids] && params[:post][:band_ids].include?(',')
+    params.require(:post).permit(:url, :title, :body, :type, :event_id, :occured_at, :band_ids => [])
   end
 end

@@ -1,6 +1,10 @@
 class EventDecorator < Draper::Decorator
   delegate_all
 
+  def to_s
+    name_or_bands
+  end
+
   def poster_url(width = 400, height = 500, opts = {})
     if model.poster.file.present?
       opts = {
@@ -17,6 +21,13 @@ class EventDecorator < Draper::Decorator
 
   def name_or_bands
     model.name.present? ? model.name : model.bands.map(&:name).join(', ')
+  end
+
+  def search_label
+    parts = [name_or_bands]
+    parts << venue.name if venue
+    parts << venue.city if venue
+    parts.join(', ')
   end
 
   def public_html_path

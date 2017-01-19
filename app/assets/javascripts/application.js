@@ -19,6 +19,7 @@
 //= require google-analytics-turbolinks
 //= require Luminous.min
 //= require simplemde.min
+//= require vue-moment
 //= require_tree .
 //= require_self
 

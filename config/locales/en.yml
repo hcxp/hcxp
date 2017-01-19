@@ -28,6 +28,7 @@ en:
   see_profile: See profile
   remove_avatar: Remove avatar
   via: via
+  new_post: New post
 
   no_events_found: No events found
   no_bands_found: No bands found
@@ -36,6 +37,7 @@ en:
   modify_search_criteria: Try to modify search criteria
 
   cant_find_the_venue?: Can't find the venue?
+  cant_find_the_band?: Can't find the band?
 
   today: Today
   tomorrow: Tomorrow
@@ -49,6 +51,14 @@ en:
 
   venue_picker_input:
     placeholder: Search for a venue...
+
+  event_picker_input:
+    placeholder: Search for an event...
+
+  bands_picker_input:
+    placeholder: Search for a band...
+    modal:
+      title: Create new band
 
   #
   # Cells ----------------------------------------------------------------------

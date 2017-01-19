@@ -26,3 +26,40 @@
         h1 = @post.title
 
         == parse_markdown(@post.body)
+
+      .posts-show-footer.row
+        - if @post.bands.any?
+          .col-xs-6.posts-show-footer-bands
+            h6.h6-up Bands
+            == cell(:bands_list, @post.bands).(:buttons)
+
+        - if @event.present?
+          .col-xs-6.posts-show-footer-venue
+            h6.h6-up Event
+            .media
+              .media-left
+                = link_to @event.public_html_path
+                  = image_tag @event.poster_url(45, 45), size: '45x45'
+
+              .media-body
+                h6.media-heading
+                  = link_to @event, @event.public_html_path, class: 'link-inherit'
+
+                ul.list-inline.text-muted.mb-0.text-sm
+                  li.list-inline-item
+                    | #{time_ago_in_words(@event.beginning_at)} #{t(:ago)}
+
+                  - if @event.venue.present?
+                    li.list-inline-item •
+                    li.list-inline-item
+                      = [@event.venue.city, @event.venue.country_code].join(', ')
+
+
+scss:
+  .posts-show-footer {
+    border-top: 1px solid #ddd;
+
+    .col-xs-6 {
+      padding-top: 2rem;
+    }
+  }
