@@ -58,7 +58,10 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params[:event][:band_ids] = params[:event][:band_ids].split(',').uniq if params[:event] && params[:event][:band_ids]
+    if params[:event]
+      params[:event][:band_ids]     = params[:event][:band_ids].split(',').uniq if params[:event][:band_ids]
+      params[:event][:beginning_at] = Delocalize::Parsers::DateTime.new(DateTime).parse(params[:event][:beginning_at]) if params[:event][:beginning_at]
+    end
 
     params.require(:event).permit(
       :name, :price, :venue_id, :beginning_at, :ownership_type, :poster,

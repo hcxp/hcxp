@@ -107,6 +107,8 @@ GEM
       money (~> 6.7)
       unicode_utils (~> 1.4)
     debug_inspector (0.0.2)
+    delocalize (1.1.0)
+      rails (>= 2)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -361,6 +363,7 @@ DEPENDENCIES
   cells-slim!
   coffee-rails (~> 4.2)
   countries
+  delocalize
   devise
   devise-i18n
   doorkeeper
