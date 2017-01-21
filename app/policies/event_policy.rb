@@ -15,11 +15,11 @@ class EventPolicy < ApplicationPolicy
     @user.present?
   end
 
-  def update?
-    @event.user == @user
+  def edit?
+    @event.user == @user || @user.is_admin?
   end
 
-  def edit?
-    @event.user == @user
+  def update?
+    edit?
   end
 end
