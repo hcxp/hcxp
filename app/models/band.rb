@@ -8,6 +8,9 @@ class Band < ApplicationRecord
   has_many :post_bands
   has_many :posts, through: :post_bands
 
+  validates :name, presence: true
+  validates :location, presence: true
+
   before_validation :geocode, if: :location_changed?
 
   pg_search_scope :search, against: [:name, :location], using: { tsearch: { prefix: true } }

@@ -15,48 +15,71 @@
               = f.label :title
               = f.text_field :title, class: 'form-control'
 
-
             .form-group
               = f.label :body
               textarea-mde.form-control unique-id="post-#{(@post.id || 'new')}" rows=20 name="post[body]" id="post_body" value=f.object.body
 
+            hr
+
+            .form-group
+              = f.label :bands
+              bands-picker-input(
+                before-list-label=t('cant_find_the_band?')
+                create-new-label=t('create_new')
+                placeholder=t('bands_picker_input.placeholder')
+                input-id="post_band_ids"
+                modal-title=t('bands_picker_input.modal.title')
+                modal-name-label=t('activerecord.attributes.band.name')
+                modal-location-label=t('activerecord.attributes.band.location')
+                modal-save-label=t('create_band')
+              )
+                = f.hidden_field :band_ids, value: f.object.band_ids.join(',')
+
+            .form-group
+              = f.label :event
+              event-picker-input(
+                placeholder=t('event_picker_input.placeholder')
+                input-id="post_event_id"
+              )
+                = f.hidden_field :event_id
+
             .text-xs-center.pb-2.pt-1
               button.btn.btn-primary style="width: 300px" type="submit"
                 = t('save_changes')
-              br
-              button.btn.btn-link.mt-1.text-muted Cancel
+
+              - if @post.persisted?
+                br
+                a.btn.btn-link.mt-1.text-muted href=@post.decorate.public_html_path
+                  | Cancel
 
           .col-xs-3
-            .form-group.bands
-              = f.label :bands
-              small.form-text
-                | Is that post related to any specific bands?
-                a.show-bands< href="#" Yes it is +
-
-            .form-group.venue
-              = f.label :venue
-              small.form-text
-                | Is that post related to any specific venue?
-                a.show-venue< href="#" Yes it is +
-
-              .venue-picker-container style="display:none"
-                venue-picker-input(
-                  before-list-label=t('cant_find_the_venue?')
-                  create-new-label=t('create_new')
-                  placeholder=t('venue_picker_input.placeholder')
-                  input-id="post_venue_id"
-                )
-                = f.hidden_field :venue_id
-
             .form-group
               = f.label :occured_at
-              small.form-text
-                | Is that post related to any specific date?
-                a< href="#" Yes it is +
+              = f.text_field :occured_at, \
+                class: 'form-control', \
+                value: (l(f.object.occured_at, format: "%A, %d %b %Y") if f.object.occured_at)
+
+              small.form-text.text-muted
+                | You can use it to overwrite creation time of this post.
+
+            .form-group
+              = f.label :team_id
+              = f.select :team_id, options_for_user_teams, { include_blank: 'None' }, class: 'form-control'
 
 javascript:
-  $('.show-venue').click(function(e) {
-    e.preventDefault()
-    $('.venue small').hide()
-    $('.venue .venue-picker-container').show()
-  })
+  $(function () {
+    $('#post_occured_at').datetimepicker({
+      locale: window.locale,
+      sideBySide: true,
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up:   "fa fa-arrow-up",
+        down: "fa fa-arrow-down",
+        next: 'fa fa-chevron-right',
+        previous: 'fa fa-chevron-left',
+      },
+      ignoreReadonly: true,
+      format: 'dddd, DD MMM YYYY'
+    });
+  });

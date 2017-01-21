@@ -1,5 +1,6 @@
 class BandsListCell < Cell::ViewModel
-  def buttons
+  def buttons(opts = {})
+    @opts = opts
     render
   end
 

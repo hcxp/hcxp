@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
 
+  helper_method :options_for_user_teams
+
   def about; end
 
   def change_locale
@@ -99,6 +101,13 @@ class ApplicationController < ActionController::Base
   rescue => e
     logger.debug("Something went wrong while extracting lang from headers: #{e.message}")
     I18n.default_locale
+  end
+
+  def options_for_user_teams
+    teams = current_user.teams.map { |t| [t.name, t.id] }
+    owned_teams = current_user.owned_teams.map { |t| [t.name, t.id] }
+
+    teams + owned_teams
   end
 
   protected # ------------------------------------------------------------------

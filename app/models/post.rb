@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :team
   belongs_to :venue
+  belongs_to :event
   has_many :post_bands, dependent: :destroy
   has_many :bands, through: :post_bands
 

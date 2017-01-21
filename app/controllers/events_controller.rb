@@ -1,8 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  helper_method :options_for_user_teams
-
   # GET /venues
   # GET /venues.json
   def index
@@ -64,12 +62,5 @@ class EventsController < ApplicationController
       :name, :price, :venue_id, :beginning_at, :ownership_type, :poster,
       :link, :team_id, :band_ids => []
     )
-  end
-
-  def options_for_user_teams
-    teams = current_user.teams.map { |t| [t.name, t.id] }
-    owned_teams = current_user.owned_teams.map { |t| [t.name, t.id] }
-
-    teams + owned_teams
   end
 end

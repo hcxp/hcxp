@@ -9,7 +9,8 @@
         .media-body
           ul.list-inline style="margin-bottom: -4px"
             li.list-inline-item
-              strong.media-heading = link_to @post.user.decorate, @post.user, class: 'link-inherit'
+              strong.media-heading
+                = link_to @post.user.decorate, @post.user, class: 'link-inherit'
 
             - if @team
               li.list-inline-item.text-muted
@@ -19,10 +20,48 @@
 
           ul.list-inline.text-muted.mb-0
             li.list-item
-              small
-                | #{time_ago_in_words(@post.created_at)} #{t 'ago'}
+              small title=@post.created_or_occured_at_caption
+                | #{time_ago_in_words(@post.created_or_occured_at)} #{t 'ago'}
+
+        - if policy(@post).edit?
+          .media-right
+            a.btn.btn-secondary href=edit_post_path(@post)
+              i.fa.fa-fw.fa-pencil.text-muted
+              = t('edit_post')
 
       .markdown
         h1 = @post.title
 
         == parse_markdown(@post.body)
+
+      - if @post.bands.any? || @event.present?
+        .posts-show-footer
+          .row
+            - if @post.bands.any?
+              .col-xs-6
+                .card
+                  .card-block
+                    h6.h6-up = t('activerecord.models.band.other')
+                    == cell(:bands_list, @post.bands).(:buttons, size: 'sm')
+
+            - if @event.present?
+              .col-xs-6
+                .card
+                  .card-block
+                    h6.h6-up = t('activerecord.models.event.one')
+
+                    .float-xs-left.mr-1
+                      = link_to @event.public_html_path
+                        = image_tag @event.poster_url(45, 45), size: '45x45', class: 'rounded'
+
+                    h6.media-heading.text-truncate
+                      = link_to @event, @event.public_html_path, class: 'link-inherit'
+
+                    ul.list-inline.text-muted.mb-0.text-sm.text-truncate
+                      li.list-inline-item
+                        | #{time_ago_in_words(@event.beginning_at)} #{t(:ago)}
+
+                      - if @event.venue.present?
+                        li.list-inline-item •
+                        li.list-inline-item
+                          = [@event.venue.city, @event.venue.country_code].join(', ')
