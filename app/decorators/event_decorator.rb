@@ -23,6 +23,10 @@ class EventDecorator < Draper::Decorator
     h.event_path(model)
   end
 
+  def public_html_url
+    h.event_url(model)
+  end
+
   def meta_tags
     {
       title: name_or_bands,

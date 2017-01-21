@@ -28,7 +28,9 @@ class Event < ApplicationRecord
     venue: [:name, :address]
   }
 
-  private
+  after_commit :notify, on: :create
+
+  private # --------------------------------------------------------------------
 
   def has_bands?
     bands.any?
@@ -39,5 +41,24 @@ class Event < ApplicationRecord
     return true if Pundit.policy(actor, self).assign?
 
     errors.add(:base, "You're not authorized to assign events to given team")
+  end
+
+  def notify
+    decor = decorate
+    post = {
+      attachments: [{
+        fallback:   'New event created',
+        pretext:    'New event created',
+        thumb_url:  decor.poster_url(100, 100),
+        title:      decor.name_or_bands,
+        title_link: decor.public_html_url,
+        ts:         beginning_at.to_i,
+        fields: [
+          { title: 'Bands', value: bands.map(&:name).join(', ') },
+          { title: 'User', value: user.username },
+        ],
+      }]
+    }
+    SlackNotificationWorker.perform_async(post)
   end
 end

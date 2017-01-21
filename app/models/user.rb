@@ -16,7 +16,25 @@ class User < ApplicationRecord
   validates :username, format: { with: /\A[a-zA-Z0-9_-]+\z/ }, allow_blank: true
   validates :username, length: { minimum: 2, maximum: 15 }
 
+  after_commit :notify, on: :create
+
   def owned_events
     events.where(ownership_type: 'user')
+  end
+
+  private # --------------------------------------------------------------------
+
+  def notify
+    decor = decorate
+    post = {
+      attachments: [{
+        fallback:   'New user sign-up',
+        pretext:    'New user sign-up',
+        thumb_url:  decor.avatar_url(100, 100),
+        title:      decor.username,
+        title_link: decor.public_html_url,
+      }]
+    }
+    SlackNotificationWorker.perform_async(post)
   end
 end
