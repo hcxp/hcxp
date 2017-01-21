@@ -11,6 +11,7 @@
             .form-group
               = f.label :username
               = f.text_field :username, autofocus: true, class: 'form-control', required: true
+              small.form-text.text-muted == t('activerecord.descriptions.user.username')
 
             .form-group
               = f.label :email

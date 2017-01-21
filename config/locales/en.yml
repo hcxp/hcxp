@@ -127,6 +127,9 @@ en:
         ownership_type:
           user_full: I'm the only organizer
           unassigned_full: I'm NOT the organizer
+    descriptions:
+      user:
+        username: Only letters, numbers, <code>-</code> and <code>_</code> allowed.
 
   #
   # Views ----------------------------------------------------------------------
