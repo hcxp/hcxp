@@ -13,4 +13,8 @@ class UserDecorator < Draper::Decorator
   def public_html_path
     h.user_path(model.username)
   end
+
+  def public_html_url
+    h.user_url(model.username)
+  end
 end
