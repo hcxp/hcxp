@@ -11,7 +11,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  validates :username, uniqueness: true, presence: true
+  validates :username, presence: true, allow_blank: true
+  validates :username, allow_blank: true, uniqueness: true
+  validates :username, format: { with: /\A[a-zA-Z0-9_-]+\z/ }, allow_blank: true
+  validates :username, length: { minimum: 2, maximum: 15 }
 
   def owned_events
     events.where(ownership_type: 'user')
