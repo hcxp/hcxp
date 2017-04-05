@@ -35,8 +35,6 @@ en:
   no_posts_found: No posts found
   modify_search_criteria: Try to modify search criteria
 
-  cant_find_the_venue?: Can't find the venue?
-
   today: Today
   tomorrow: Tomorrow
   yesterday: Yesterday
@@ -47,9 +45,6 @@ en:
   english: English
   polish: Polish
   czech: Czech
-
-  venue_picker_input:
-    placeholder: Search for a venue...
 
   #
   # Cells ----------------------------------------------------------------------
@@ -147,7 +142,9 @@ en:
       poster_description: Up to 2MB. Only jpg and png allowed.
       name_description: You can leave it blank if there are any bands assigned.
       bands_placeholder: Search for a band...
+      venue_placeholder: Search for a venue...
       cant_find_a_band?: Can't find a band?
+      cant_find_the_venue?: Can't find the venue?
 
   venues:
     new_modal:

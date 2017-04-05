@@ -26,7 +26,6 @@ pl:
   no_venues_found: Nie znaleziono lokali
   no_posts_found: Nie znaleziono postów
   modify_search_criteria: Spróbuj zmienić kryteria wyszukiwania
-  cant_find_the_venue?: Nie możesz znaleźć lokalu?
   today: Dzisiaj
   tomorrow: Jutro
   yesterday: Wczoraj
@@ -36,8 +35,6 @@ pl:
   english: Angielski
   polish: Polski
   czech: Czeski
-  venue_picker_input:
-    placeholder: Szukaj lokalu...
   posts_filters:
     query_placeholder: Szukaj po zespołach, lokalach lub słowach kluczowych...
   bands_filters:
@@ -120,7 +117,9 @@ pl:
       poster_description: Max 2MB. Tylko jpg lub png.
       name_description: Możesz zostawić to pole puste jeśli wydarzenie ma przypisane zespoły.
       bands_placeholder: Szukaj zespołu...
+      venue_placeholder: Szukaj lokalu...
       cant_find_a_band?: Nie możesz znaleźć zespołu?
+      cant_find_the_venue?: Nie możesz znaleźć lokalu?
   venues:
     new_modal:
       header: Utwórz nowy lokal
