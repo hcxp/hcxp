@@ -25,6 +25,8 @@ class User < ApplicationRecord
   private # --------------------------------------------------------------------
 
   def notify
+    return true unless ENV['SLACK_NOTIFICATION_URL'].present?
+
     decor = decorate
     post = {
       attachments: [{
