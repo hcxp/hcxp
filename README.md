@@ -21,3 +21,7 @@ Transifex page: https://www.transifex.com/hcxp/hcxp/
 
     # Push translations
     $ tx push -t
+
+### Credits
+
+- Honza ([czechcore.cz](https://www.czechcore.cz/)) - Czech translation
