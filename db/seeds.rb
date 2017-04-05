@@ -10,7 +10,8 @@ ENV['DISABLE_GEOCODING'] = 'true'
 
 user = User.create!(
   email:    'email@email.com',
-  password: 'TestPass'
+  password: 'TestPass',
+  username: 'testuser'
 )
 user.confirm
 

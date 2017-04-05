@@ -2,6 +2,10 @@
 
 hardcore/punk events directory - https://hcxp.co
 
+### Development
+
+    $ docker-compose up
+
 ### Syncing translations
 
 Transifex page: https://www.transifex.com/hcxp/hcxp/
