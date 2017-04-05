@@ -46,6 +46,7 @@ en:
   select_language: Select language
   english: English
   polish: Polish
+  czech: Czech
 
   venue_picker_input:
     placeholder: Search for a venue...

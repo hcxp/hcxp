@@ -1,0 +1,107 @@
+cs:
+  posts: Příspěvky
+  users: Uživatelé
+  venue: Místo
+  search: Hledat
+  new_event: Nová akce
+  create_new: Vytvořit nový příspěvek
+  save_changes: Uložit změny
+  cancel: Zrušit
+  create_band: Vytvořit kapelu
+  create_venue: Vytvořit místo
+  edit_event: Upravit akci
+  team_settings: Nastavení týmu
+  general: Obecné
+  settings: Nastavení
+  invite: Pozvat
+  owner: Vlastník
+  contributor: Přispěvatel
+  are_you_sure: Jsi si jistý?
+  add_post: Přidat příspěvek
+  see_profile: Zobrazit profil
+  remove_avatar: Odstranit avatara
+  no_events_found: Akce nenalezena
+  no_bands_found: Kapela nenalezena
+  no_venues_found: Místo nenalezeno
+  no_posts_found: Příspěvek nenalezen
+  modify_search_criteria: Zkus upravit kritéria vyhledávání
+  today: Dnes
+  tomorrow: Zítra
+  yesterday: Včera
+  time_ago_in_words_in: ve
+  ago: před
+  select_language: Vyber jazyk
+  english: Angličtina
+  polish: Polština
+  czech: Český
+  posts_filters:
+    query_placeholder: Hledat kapely nebo klíčová slova...
+  bands_filters:
+    query_placeholder: Hledat kapely nebo místa...
+  events_filters:
+    upcoming: Nadcházející
+    past: Uplynulé
+    all: Vše
+    search_query: Vyhledávací dotaz
+    scope: Rozsah
+    query_placeholder: Hledat kapely, místa nebo názvy akcí...
+  form_errors:
+    heading: Ups! Něco se pokazilo.
+  nav_main:
+    add_event: + Přidat akci
+    search_placeholder: Hledat...
+    your_profile: Tvůj profil
+    sign_out: Odhlásit se
+    sign_up: Zaregistrovat se
+    sign_in: Přihlasit se
+    events: Akce
+    bands: Kapely
+    venues: Místa
+  venues_filters:
+    query_placeholder: Hledat kapely nebo názvy míst...
+  activerecord:
+    models:
+      band: Kapela
+      venue: Místo
+      team: Tým
+    attributes:
+      event:
+        name: Název
+        beginning_at: Datum a čas
+        venue: Místo
+        bands: Kapely
+        ownership_type: Vlastnictví
+        poster: Plakát
+      band:
+        name: Název
+        location: Lokalita
+      venue:
+        name: Jméno
+        address: Adresa
+      user:
+        email: Email
+        password: Heslo
+        password_confirmation: Potvrzení hesla
+        username: Uživatelské jméno
+      team:
+        name: Jméno
+        slug: Slug
+        description: Popis
+        website: Webová stránka
+    values:
+      event:
+        ownership_type:
+          user_full: Jsem jediný organizátor
+          unassigned_full: Nejsem organizátor
+  bands:
+    new_modal:
+      header: Vytvořit novou kapelu
+  events:
+    index:
+      heading: Procházet <strong>hardcore punkové</strong> akce ve vašem městě.
+    form:
+      bands_placeholder: Hledat kapelu...
+      cant_find_a_band?: Nemůžete najít kapelu?
+  venues:
+    new_modal:
+      header: Vytvořit nové místo

@@ -8,7 +8,8 @@ class LanguagePickerCell < ApplicationCell
   def languages
     {
       en: { emoji: '🇬🇧', t_key: 'english' },
-      pl: { emoji: '🇵🇱', t_key: 'polish' }
+      pl: { emoji: '🇵🇱', t_key: 'polish' },
+      cs: { emoji: '🇨🇿', t_key: 'czech' },
     }
   end
 

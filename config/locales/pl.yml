@@ -35,6 +35,7 @@ pl:
   select_language: Wybierz język
   english: Angielski
   polish: Polski
+  czech: Czeski
   venue_picker_input:
     placeholder: Szukaj lokalu...
   posts_filters:
@@ -67,10 +68,12 @@ pl:
       event:
         one: Wydarzenie
         few: Wydarzenia
+        many: Wydarzenia
         other: Wydarzenia
       post:
         one: Post
         few: Posty
+        many: Postów
         other: Postów
       band: Zespół
       venue: Lokal

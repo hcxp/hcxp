@@ -15,7 +15,7 @@ module Hcxp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    I18n.available_locales = [:en, :pl]
+    I18n.available_locales = [:en, :pl, :cs]
 
     config.cells.with_assets = [
       'nav_main_cell', 'event_card_cell', 'venue_card_cell', 'blankslate_cell',
