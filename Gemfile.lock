@@ -81,6 +81,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    babosa (1.0.2)
     bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.0.6)
@@ -359,6 +360,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   autoprefixer-rails
+  babosa
   byebug
   carrierwave (>= 1.0.0.rc, < 2.0)
   cells

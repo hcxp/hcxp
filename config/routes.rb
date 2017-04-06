@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   get '/@:username', to: 'users#show', as: :user
+  get '/:id/:slug', to: 'events#show', as: :event_slugged, slugged: true
 
   get :search, controller: :search, action: :index
   get :about, to: 'application#about'

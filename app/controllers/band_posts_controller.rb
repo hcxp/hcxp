@@ -28,7 +28,7 @@ class BandPostsController < ApplicationController
   end
 
   def find_band
-    Band.find(params[:band_id])
+    Band.friendly.find(params[:band_id])
   end
 
   def find_post

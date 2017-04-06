@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406090807) do
+ActiveRecord::Schema.define(version: 20170406132342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20170406090807) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "events_count", default: 0
+    t.string   "slug"
+    t.index ["slug"], name: "index_bands_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_bands_on_user_id", using: :btree
   end
 
@@ -240,6 +242,8 @@ ActiveRecord::Schema.define(version: 20170406090807) do
     t.string   "street_name"
     t.string   "street_number"
     t.string   "country_code"
+    t.string   "slug"
+    t.index ["slug"], name: "index_venues_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_venues_on_user_id", using: :btree
   end
 

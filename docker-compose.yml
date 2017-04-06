@@ -13,7 +13,6 @@ services:
       - redis
     volumes:
       - .:/app
-      - /usr/local/bundle
     environment: &app_environment
       DATABASE_URL: postgres://postgres@database:5432/nemu_development?pool=25&encoding=unicode&schema_search_path=public
       REDIS_URL: redis://redis:6379

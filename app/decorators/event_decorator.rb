@@ -20,11 +20,11 @@ class EventDecorator < Draper::Decorator
   end
 
   def public_html_path
-    h.event_path(model)
+    h.event_slugged_path(model.id, slug: slug)
   end
 
   def public_html_url
-    h.event_url(model)
+    h.event_slugged_url(model.id, slug: slug)
   end
 
   def meta_tags
@@ -34,5 +34,9 @@ class EventDecorator < Draper::Decorator
         image: poster_url(200, 200, text: 'x')
       }
     }
+  end
+
+  def slug
+    name_or_bands.to_slug.normalize.to_s
   end
 end

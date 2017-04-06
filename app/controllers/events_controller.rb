@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
+    redirect_to @event.public_html_path unless params[:slugged]
   end
 
   def new
@@ -28,7 +29,7 @@ class EventsController < ApplicationController
     @event.actor = current_user
 
     if @event.save
-      redirect_to @event, notice: 'Event saved successfully'
+      redirect_to @event.public_html_path, notice: 'Event saved successfully'
     else
       render :new
     end
@@ -44,7 +45,7 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.update_attributes(event_params.merge(actor: current_user))
-      redirect_to @event, notice: 'Event saved successfully'
+      redirect_to @event.public_html_path, notice: 'Event saved successfully'
     else
       render :edit
     end
