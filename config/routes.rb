@@ -30,5 +30,6 @@ Rails.application.routes.draw do
 
   post '/change_locale/:locale', to: 'application#change_locale', as: :change_locale
 
+  get :check, controller: :application
   root to: 'events#index'
 end

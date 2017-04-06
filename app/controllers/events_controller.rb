@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  impressionist actions: [:show]
 
   helper_method :options_for_user_teams
 

@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   include PgSearch
 
+  is_impressionable counter_cache: true
+
   OWNERSHIP_TYPES = %w(user unassigned).freeze
 
   mount_uploader :poster, ::EventPosterUploader

@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer || root_url
   end
 
+  def check
+    render text: 'OK'
+  end
+
   private # --------------------------------------------------------------------
 
   # @todo  Move that to service
