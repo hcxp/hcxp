@@ -1,4 +1,4 @@
-.event-card
+.event-card.h-event
   .row
     .col-xs-10
       .media
@@ -8,7 +8,7 @@
 
         .media-body
           / Heading
-          h4.h5.media-heading.mb-1
+          h4.h5.media-heading.mb-1.p-name
             = link_to model_decor.name_or_bands, model_decor.public_html_path, class: 'link-inherit'
 
           / Bands
@@ -24,5 +24,5 @@
         h6
           = link_to model.venue.name, venue_path(model.venue), class: 'link-inherit'
 
-        p.text-muted
+        p.text-muted.p-location
           = [model.venue.city, model.venue.country_code].join(', ')

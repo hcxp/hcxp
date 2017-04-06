@@ -4,8 +4,9 @@ ul.list-inline.event-card-meta.mb-0
       = humanized_date
 
   li.list-inline-item.text-muted.text-cap
-    i.fa.fa-calendar-o.fa-fw
-    = l(model.beginning_at, format: '%A, %e %b %Y')
+    time.dt-start datetime=model.beginning_at.iso8601
+      i.fa.fa-calendar-o.fa-fw
+      = l(model.beginning_at, format: '%A, %e %b %Y')
 
   li.list-inline-item.text-muted
     i.fa.fa-clock-o.fa-fw
@@ -14,5 +15,6 @@ ul.list-inline.event-card-meta.mb-0
   - if model.user && model.ownership_type == 'user'
     li.list-inline-item.text-muted
       a.link-inherit href=user_decor.public_html_path
-        = image_tag user_decor.avatar_url(20), size: '20x20', class: 'user-avatar img-circle'
-        = user_decor
+        = image_tag user_decor.avatar_url(20), size: '20x20', class: 'user-avatar img-circle', alt: user_decor
+        span.p-organizer.h-card
+          = user_decor

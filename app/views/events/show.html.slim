@@ -1,6 +1,6 @@
 - set_meta_tags @event.meta_tags
 
-.container.mt-2
+.container.mt-2.h-event
   .row
     .col-sm-4.offset-sm-1
       .card
@@ -10,7 +10,8 @@
 
     .col-sm-6.pt-1
       - if @event.name.present?
-        h1.h2 = @event.name
+        h1.h2.p-name
+          = @event.name
 
       == cell(:event_meta_list, @event)
 
@@ -40,7 +41,7 @@
         h6.h6-up.text-muted = t('venue')
         h3.h5.media-heading
           = link_to @event.venue.name, @event.venue, class: 'link-inherit'
-        p.text-muted
+        p.text-muted.p-location
           = @event.venue.address
 
       hr
