@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resources :events, on: :member, controller: :team_events
   end
 
+  resources :embeds, only: [] do
+    get :horizontal, on: :collection
+  end
+
   get '/@:username', to: 'users#show', as: :user
   get '/:id/:slug', to: 'events#show', as: :event_slugged, slugged: true
 

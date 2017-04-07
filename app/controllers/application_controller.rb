@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
 
   # @todo  Move that to service
   #
-  def events_index(col = Event.all)
+  def events_index(col = Event.all, limit = 25)
     col = col.includes(:bands, :venue)
     col = col.search(params[:q]) if params[:q].present?
-
+    col = col.with_poster if params[:with_poster]
 
     case params[:s]
       when 'past'
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
         col = col.upcoming.order(beginning_at: :asc)
     end
 
-    col = col.page(params[:page])
+    col = col.page(params[:page]).per(limit)
 
     col
   end

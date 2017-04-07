@@ -22,8 +22,9 @@ class Event < ApplicationRecord
   validates :link, format: URI::regexp(%w(http https)), if: proc { |e| e.link.present? }
   validate :assign_to_team_policy, if: proc { |e| e.team_id.present? }
 
-  scope :upcoming, -> { where('beginning_at >= ?', Time.zone.now.beginning_of_day) }
-  scope :past,     -> { where('beginning_at < ?', Time.zone.now.beginning_of_day) }
+  scope :upcoming,    -> { where('beginning_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :past,        -> { where('beginning_at < ?', Time.zone.now.beginning_of_day) }
+  scope :with_poster, -> { where.not(poster: nil) }
 
   pg_search_scope :search, against: [:name], using: { tsearch: { prefix: true } }, associated_against: {
     bands: [:name],
