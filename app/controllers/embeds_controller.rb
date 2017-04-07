@@ -7,9 +7,10 @@ class EmbedsController < ApplicationController
   def horizontal
     @events = events_index(Event.includes(:venue, :bands, :user))
 
-    @poster_width  = params[:poster_width] || 150
-    @poster_height = params[:poster_height] || 150
-    @accent_color  = params[:accent_color] || '#e45735'
+    @poster_width     = params[:poster_width] || 150
+    @poster_height    = params[:poster_height] || 150
+    @accent_color     = params[:accent_color] || '#e45735'
+    @background_color = params[:background_color] || '#ffffff'
   end
 
   private

@@ -11,6 +11,10 @@ table.embedded-events.embedded-events--horizontal
           = image_tag event.poster_url(@poster_width, @poster_height)
 
 css:
+  body {
+    background-color: #{@background_color} !important;
+  }
+
   .embedded-events-add-link {
     height: #{@poster_height}px;
     background: #{@accent_color};
