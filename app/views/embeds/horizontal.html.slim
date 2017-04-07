@@ -7,12 +7,14 @@ table.embedded-events.embedded-events--horizontal
 
     - @events.all.each do |e, event = e.decorate|
       td
-        = link_to event.public_html_path, target: '_blank' do
+        = link_to event.public_html_path(urm_source: 'hcpl', utm_campaign: 'header_embed', utm_medium: 'embed'), target: '_blank' do
           = image_tag event.poster_url(@poster_width, @poster_height)
 
 css:
   body {
     background-color: #{@background_color} !important;
+    overflow-x: #{@disable_horizontal_scroll ? 'hidden' : 'auto'};
+    overflow-y: #{@disable_vertical_scroll ? 'hidden' : 'auto'};
   }
 
   .embedded-events-add-link {
