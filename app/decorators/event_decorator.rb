@@ -19,12 +19,14 @@ class EventDecorator < Draper::Decorator
     model.name.present? ? model.name : model.bands.map(&:name).join(', ')
   end
 
-  def public_html_path
-    h.event_slugged_path(model.id, slug: slug)
+  def public_html_path(opts = {})
+    args = { slug: slug }.merge!(opts)
+    h.event_slugged_path(model.id, args)
   end
 
-  def public_html_url
-    h.event_slugged_url(model.id, slug: slug)
+  def public_html_url(opts = {})
+    args = { slug: slug }.merge!(opts)
+    h.event_slugged_url(model.id, args)
   end
 
   def meta_tags
