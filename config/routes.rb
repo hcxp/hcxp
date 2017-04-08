@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :bands do
     resources :posts, on: :member, controller: :band_posts
+    get :player_code, on: :member
   end
 
   resources :posts do

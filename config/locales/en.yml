@@ -29,6 +29,9 @@ en:
   remove_avatar: Remove avatar
   via: via
   add_link: Add link
+  play: Play
+  loading: Loading
+  something_went_wrong_try_again_later: Something went wrong. Please try again later.
 
   no_events_found: No events found
   no_bands_found: No bands found

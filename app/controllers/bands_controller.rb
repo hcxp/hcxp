@@ -1,5 +1,5 @@
 class BandsController < ApplicationController
-  before_action :set_band, only: [:show, :edit, :update, :destroy]
+  before_action :set_band, only: [:show, :player_code, :edit, :update, :destroy]
 
   # GET /venues
   # GET /venues.json
@@ -11,6 +11,11 @@ class BandsController < ApplicationController
   # GET /venues/1.json
   def show
     @events = events_index(@band.events)
+  end
+
+  def player_code
+    code = cell(:post_player, @band.post_for_player).()
+    render json: { code: code }
   end
 
   def edit

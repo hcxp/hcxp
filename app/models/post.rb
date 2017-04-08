@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   include RailsSettings::Extend
 
   TYPES = %w(text link).freeze
-
+  DEFAULT_TYPE = 'link'
 
   # Make it able to use `type` column
   self.inheritance_column = 'inheritance_type'
@@ -24,10 +24,10 @@ class Post < ApplicationRecord
   validates :type, presence: true, inclusion: { in: TYPES }
   validate :assign_to_team_policy, if: proc { |p| p.team_id.present? }
 
+  before_validation :set_defaults
   after_commit :scrap_url, on: :create, if: proc { |p| p.url.present? }
 
   scope :newest_first, -> { order(created_at: :desc) }
-
 
   # pg_search_scope :search, against: [:title], using: { tsearch: { prefix: true } }, associated_against: {
   #   bands: [:name],
@@ -57,5 +57,9 @@ class Post < ApplicationRecord
     return true if Pundit.policy(actor, self).assign?
 
     errors.add(:base, "You're not authorized to assign posts to given team")
+  end
+
+  def set_defaults
+    self.type = DEFAULT_TYPE
   end
 end

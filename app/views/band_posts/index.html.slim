@@ -9,7 +9,6 @@
 
           .row
             = form_for [@band, @post] do |f|
-
               .col-xs-9
                 = f.label :url, 'Link to anything related to that band'
                 = f.text_field :url, placeholder: 'http://...', class: 'form-control'
