@@ -34,6 +34,9 @@
 
               - if band.post_for_player
                 == cell(:post_player, band.post_for_player)
+              - else
+                p.text-muted-more.mb-0.text-sm style="margin-top: 0.3rem"
+                  | #{t '.band_no_posts_message'} <a class="link-inherit" href="#{band_posts_path(band)}">#{t :add_link} +</a>
 
       - if @event.venue
         hr

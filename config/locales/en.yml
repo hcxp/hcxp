@@ -28,6 +28,7 @@ en:
   see_profile: See profile
   remove_avatar: Remove avatar
   via: via
+  add_link: Add link
 
   no_events_found: No events found
   no_bands_found: No bands found
@@ -137,6 +138,9 @@ en:
   events:
     index:
       heading: Browse <strong>hardcore punk</strong> events in your city.
+
+    show:
+      band_no_posts_message: No bandcamp profile assigned yet.
 
     form:
       poster_description: Up to 2MB. Only jpg and png allowed.

@@ -56,3 +56,11 @@ label {
 .text-cap {
   text-transform: capitalize;
 }
+
+.text-muted-more {
+  color: #bbb;
+}
+
+.text-sm {
+  font-size: 0.9rem;
+}

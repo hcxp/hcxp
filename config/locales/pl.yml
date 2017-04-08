@@ -21,6 +21,7 @@ pl:
   see_profile: Zobacz profil
   remove_avatar: Usuń avatar
   via: via
+  add_link: Dodaj link
   no_events_found: Nie znaleziono wydarzeń
   no_bands_found: Nie znaleziono zespołów
   no_venues_found: Nie znaleziono lokali
@@ -113,6 +114,8 @@ pl:
   events:
     index:
       heading: Przeglądaj wydarzenia <strong>hardcore punk</strong> w Twoim mieście.
+    show:
+      band_no_posts_message: Zespół nie ma przypisanego bandcampa.
     form:
       poster_description: Max 2MB. Tylko jpg lub png.
       name_description: Możesz zostawić to pole puste jeśli wydarzenie ma przypisane zespoły.
