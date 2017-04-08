@@ -11,22 +11,8 @@ class EventMetaListCell < ApplicationCell
     model.user.decorate
   end
 
-  def humanized_date
-    time = time_ago_in_words(model.beginning_at)
-
-    if model.beginning_at.today?
-      text = [t('today')]
-    elsif model.beginning_at.to_date == Date.tomorrow
-      text = [t('tomorrow')]
-    elsif model.beginning_at.to_date == Date.yesterday
-      text = [t('yesterday')]
-    elsif model.beginning_at > Time.zone.now
-      text = [t('time_ago_in_words_in', default: 'In'), time]
-    else
-      text = [time, t('ago')]
-    end
-
-    text.join(' ')
+  def model_decor
+    model.decorate
   end
 
   def humanized_date_class

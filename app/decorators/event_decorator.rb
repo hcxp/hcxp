@@ -19,6 +19,24 @@ class EventDecorator < Draper::Decorator
     model.name.present? ? model.name : model.bands.map(&:name).join(', ')
   end
 
+  def humanized_date
+    time = h.time_ago_in_words(model.beginning_at)
+
+    if model.beginning_at.today?
+      text = [h.t('today')]
+    elsif model.beginning_at.to_date == Date.tomorrow
+      text = [h.t('tomorrow')]
+    elsif model.beginning_at.to_date == Date.yesterday
+      text = [h.t('yesterday')]
+    elsif model.beginning_at > Time.zone.now
+      text = [h.t('time_ago_in_words_in', default: 'In'), time]
+    else
+      text = [time, h.t('ago')]
+    end
+
+    text.join(' ')
+  end
+
   def public_html_path(opts = {})
     args = { slug: slug }.merge!(opts)
     h.event_slugged_path(model.id, args)
