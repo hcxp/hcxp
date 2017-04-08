@@ -1,13 +1,13 @@
 form.row.events-search-form method='get'
-  .form-group.mb-0.col-xs-7
+  .form-group.mb-0.col-sm-7
     label = t('.search_query')
     input.form-control placeholder=t('.query_placeholder') name="q" value=params[:q]
 
-  .form-group.mb-0.col-xs-3
+  .form-group.mb-0.col-sm-3
     label = t('.scope')
     = select_tag :s, options_for_select(scope_options, params[:s]), class: 'form-control'
 
-  .form-group.mb-0.col-xs-2
+  .form-group.mb-0.col-sm-2
     label &nbsp;
     button.btn.btn-primary.btn-block
       i.fa.fa-fw.fa-search

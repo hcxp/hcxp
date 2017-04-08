@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check
-    render text: 'OK'
+    render plain: 'OK'
   end
 
   private # --------------------------------------------------------------------
