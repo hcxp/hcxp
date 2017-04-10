@@ -24,20 +24,26 @@
         hr
         h6.h6-up.text-muted = t('activerecord.attributes.event.bands')
 
-        - @event.bands.each do |band|
+        - @event.bands.each do |b, band = b.decorate|
           .card
             .card-block style="padding: 1rem;"
-              h3.h5.media-heading.mb-0
-                = link_to band.name, band_path(band), class: 'link-inherit'
-                sub.text-muted style="margin-left: 0.3rem; font-size: 0.8rem"
-                  = band.country_code
+              .media
+                .media-left
+                  = link_to band do
+                    = image_tag band.photo_url(48, 48, text: band.country_code), size: '48x48', class: 'img-circle'
 
-              div style="margin-top: 0.3rem"
-                - if band.post_for_player
-                  band-play-btn.btn.btn-secondary.btn-sm :band-id=band.id label=t(:play, default: 'Play') loading-label="#{t :loading, default: 'Loading'}..." error-message=t(:something_went_wrong_try_again_later)
-                - else
-                  p.text-muted-more.mb-0.text-sm
-                    | #{t '.band_no_posts_message'} <a class="link-inherit" href="#{band_posts_path(band)}">#{t :add_link} +</a>
+                .media-body
+                  h3.h5.media-heading.mb-0
+                    = link_to band.name, band_path(band), class: 'link-inherit'
+                    sub.text-muted style="margin-left: 0.3rem; font-size: 0.8rem"
+                      = band.country_code
+
+                  div style="margin-top: 0.3rem"
+                    - if band.post_for_player
+                      band-play-btn.btn.btn-secondary.btn-sm :band-id=band.id label=t(:play, default: 'Play') loading-label="#{t :loading, default: 'Loading'}..." error-message=t(:something_went_wrong_try_again_later)
+                    - else
+                      p.text-muted-more.mb-0.text-sm
+                        | #{t '.band_no_posts_message'} <a class="link-inherit" href="#{band_posts_path(band)}">#{t :add_link} +</a>
 
       - if @event.venue
         hr

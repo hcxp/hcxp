@@ -26,6 +26,7 @@ class Post < ApplicationRecord
 
   before_validation :set_defaults
   after_commit :scrap_url, on: :create, if: proc { |p| p.url.present? }
+  after_commit :scrap_bands_photos, on: :create, if: proc { |p| p.url.present? }
 
   scope :newest_first, -> { order(created_at: :desc) }
 
@@ -46,7 +47,24 @@ class Post < ApplicationRecord
     type == 'text'
   end
 
-  private
+  def bandcamp?
+    URI(url).host[/bandcamp.com\z/] != nil
+  end
+
+  def scrap_bands_photos
+    return true unless bandcamp?
+
+    bands_to_scrap = bands.where(photo: nil)
+    logger.info "Creating photo-fetch job for #{bands_to_scrap.size} bands"
+
+    bands_to_scrap.each do |band|
+      ScrapBandcampPhotoWorker.perform_async(band.id, url)
+    end
+
+    true
+  end
+
+  private # --------------------------------------------------------------------
 
   def scrap_url
     ScrapPostUrlWorker.perform_async(id)

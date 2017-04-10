@@ -5,6 +5,8 @@ class Band < ApplicationRecord
 
   friendly_id :name, use: :slugged
 
+  mount_uploader :photo, ::BandPhotoUploader
+
   belongs_to :user
   has_many :bandables, dependent: :destroy
   has_many :events, through: :bandables, source: :bandable, source_type: 'Event'

@@ -1,6 +1,10 @@
 section.section-white.section-shadow
   .container.py-3
     .text-xs-center
+      - if @band.photo.present?
+        p
+          = image_tag @band.photo_url, class: 'img-circle', size: '80x80'
+
       p style="margin-bottom: 0.5rem"
         span.tag.tag-type
           = t('activerecord.models.band')
