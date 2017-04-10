@@ -1,5 +1,5 @@
 class BandsController < ApplicationController
-  before_action :set_band, only: [:show, :player_code, :edit, :update, :destroy]
+  before_action :set_band, only: [:show, :player_code, :refetch_photo, :edit, :update, :destroy]
 
   # GET /venues
   # GET /venues.json
@@ -31,6 +31,14 @@ class BandsController < ApplicationController
     else
       render json: { errors: @band.errors, full_error_messages: @band.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def refetch_photo
+    authorize @band
+    post = @band.posts.where('url LIKE ?', '%bandcamp.com%').order(id: :asc).last
+    ScrapBandcampPhotoWorker.perform_async(@band.id, post.url) if post.present?
+
+    redirect_to :back, notice: 'Refetching photo enqueued.'
   end
 
   private #---------------------------------------------------------------------

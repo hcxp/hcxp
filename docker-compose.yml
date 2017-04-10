@@ -44,5 +44,5 @@ services:
 
   mailcatcher:
     image: voizzzzzz/mailcatcher-alpine
-    ports:
-      - 1080:1080
+    # ports:
+    #   - 1080:1080

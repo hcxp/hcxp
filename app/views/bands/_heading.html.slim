@@ -18,3 +18,11 @@ section.section-white.section-shadow
       .btn-group
         = active_link_to 'Wydarzenia', band_path(@band), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary', active: :exclusive
         = active_link_to 'Posty', band_posts_path(@band), class: 'btn', class_active: 'btn-primary', class_inactive: 'btn-secondary'
+
+      - policy(@band).refetch_photo?
+        .btn-group.ml-1.dropdown
+          a.btn.btn-secondary.dropdown-toggle data-toggle="dropdown"
+            i.fa.fa-fw.fa-cog
+
+          .dropdown-menu.dropdown-menu-right
+            = link_to 'Refetch photo', refetch_photo_band_path(@band), class: 'dropdown-item', data: { method: :post }
