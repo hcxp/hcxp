@@ -1,14 +1,17 @@
-form.row.events-search-form method='get'
-  .form-group.mb-0.col-sm-7
+form.row.events-search-form.events-filters method='get' action=root_path data-turbolinks-permanent="true" autofocus="true"
+  .form-group.mb-0.col-sm-8
     label = t('.search_query')
-    input.form-control placeholder=t('.query_placeholder') name="q" value=params[:q]
+    input.form-control placeholder=t('.query_placeholder') name="q" value=params[:q] v-model="query" debounce="200"
 
-  .form-group.mb-0.col-sm-3
+  .form-group.mb-0.col-sm-4
     label = t('.scope')
-    = select_tag :s, options_for_select(scope_options, params[:s]), class: 'form-control'
+    = select_tag :s, options_for_select(scope_options, params[:s]), class: 'form-control', :'v-model' => 'scope', style: 'display: none'
 
-  .form-group.mb-0.col-sm-2
-    label &nbsp;
-    button.btn.btn-primary.btn-block
+    .btn-group v-cloak="true"
+      a :class="scopeBtnClass('')" :href="searchPath('')" Nadchodzące
+      a :class="scopeBtnClass('past')" :href="searchPath('past')" Minione
+      a :class="scopeBtnClass('all')" :href="searchPath('all')" Wszystko
+
+    button.btn.btn-primary.btn-block style="display: none"
       i.fa.fa-fw.fa-search
       = t('search')

@@ -64,3 +64,7 @@ label {
 .text-sm {
   font-size: 0.9rem;
 }
+
+v-cloak {
+  display: none;
+}
