@@ -10,4 +10,8 @@ class BandCardCell < ApplicationCell
     model.events.order(beginning_at: :asc).limit(4)
   end
 
+  def model_decor
+    model.decorate
+  end
+
 end

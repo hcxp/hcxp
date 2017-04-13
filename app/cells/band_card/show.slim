@@ -1,11 +1,17 @@
 .venue-card
   .row
     .col-xs-4
-      h4.h5.media-heading
-        = link_to model.name, band_path(model), class: 'link-inherit'
+      .media
+        .media-left
+          a href=band_path(model)
+            = image_tag model_decor.photo_url, class: 'mr-1 img-circle', size: '80x80'
 
-      p.mb-0.text-muted
-        = model.location
+        .media-body
+          h4.h5.media-heading
+            = link_to model.name, band_path(model), class: 'link-inherit'
+
+          p.mb-0.text-muted
+            = model.location
 
     .col-xs-8
       ul.list-inline.float-xs-right.mb-0
