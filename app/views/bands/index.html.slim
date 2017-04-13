@@ -1,10 +1,12 @@
 section.section-white.section-shadow.py-2
   .container
-    == cell :bands_filters
+    == cell :bands_filters, nil, url: root_path
 
 .container.mt-2
   - @bands.each do |band|
     == cell :band_card, band
+
+  = paginate @bands
 
   - unless @bands.any?
     == cell :blankslate, \

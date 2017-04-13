@@ -1,6 +1,10 @@
 class VenueDecorator < Draper::Decorator
   delegate_all
 
+  def public_html_path
+    h.venue_path(model)
+  end
+
   def static_map_url(w = 100, h = 100, opts = {})
     center = [model.lat, model.lng].join(',')
     zoom = opts[:zoom] || 13

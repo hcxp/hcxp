@@ -6,6 +6,8 @@ section.section-white.section-shadow.py-2
   - @venues.each do |venue|
     == cell :venue_card, venue
 
+  = paginate @venues
+
   - unless @venues.any?
     == cell :blankslate, \
       title: t('no_venues_found'), \

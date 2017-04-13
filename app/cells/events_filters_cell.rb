@@ -15,4 +15,8 @@ class EventsFiltersCell < ApplicationCell
     ]
   end
 
+  def form_url
+    options[:url] || root_path
+  end
+
 end

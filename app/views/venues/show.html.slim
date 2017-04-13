@@ -13,6 +13,6 @@ section.section-white.section-shadow
 .container.pt-2
   .card
     .card-block
-      == cell :events_filters
+      == cell :events_filters, nil, url: @venue.public_html_path
 
   = render partial: 'events/events', events: @events
