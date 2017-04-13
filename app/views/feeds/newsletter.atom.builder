@@ -11,7 +11,7 @@ atom_feed do |feed|
       entry.address      event.venue.address
       entry.city         event.venue.city
       entry.country      event.venue.country_code
-      entry.poster       event.poster.url
+      entry.poster       event.poster_url
     end
   end
 end
