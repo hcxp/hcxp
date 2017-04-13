@@ -66,7 +66,7 @@
         li.list-inline-item
           a.btn.btn-secondary.btn-sm href=@event.google_calendar_link target="_blank"
             i.fa.fa-fw.fa-calendar-plus-o.text-muted
-            | Zapisz w kalendarzu
+            = t(:save_in_calendar)
 
         - if policy(@event).edit?
           li.list-inline-item

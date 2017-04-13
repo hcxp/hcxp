@@ -25,6 +25,7 @@ pl:
   play: Odtwarzaj
   loading: Momencik
   something_went_wrong_try_again_later: Ups! Coś poszło nie tak. Spróbuj ponownie za chwilę.
+  save_in_calendar: Zapisz w kalendarzu
   no_events_found: Nie znaleziono wydarzeń
   no_bands_found: Nie znaleziono zespołów
   no_venues_found: Nie znaleziono lokali
