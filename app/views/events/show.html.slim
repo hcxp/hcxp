@@ -73,3 +73,9 @@
             a.btn.btn-outline-secondary.btn-sm href=edit_event_path(@event)
               i.fa.fa-cog.fa-fw
               = t('edit_event')
+
+        - if policy(@event).edit?
+          li.list-inline-item
+            a.btn.btn-outline-danger.btn-sm href=event_path(@event) data-confirm=t(:are_you_sure) data-method="delete"
+              i.fa.fa-trash.fa-fw
+              = t(:delete)

@@ -51,6 +51,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    authenticate_user!
+    authorize @event
+
+    @event.destroy!
+    redirect_to events_path, notice: 'Event successfully removed'
+  end
+
   private #---------------------------------------------------------------------
 
   # Use callbacks to share common setup or constraints between actions.

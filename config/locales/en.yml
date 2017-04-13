@@ -33,6 +33,7 @@ en:
   loading: Loading
   something_went_wrong_try_again_later: Something went wrong. Please try again later.
   save_in_calendar: Save in calendar
+  delete: Delete
 
   no_events_found: No events found
   no_bands_found: No bands found
