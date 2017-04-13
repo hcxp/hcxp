@@ -48,11 +48,17 @@
       - if @event.venue
         hr
 
-        h6.h6-up.text-muted = t('venue')
-        h3.h5.media-heading
-          = link_to @event.venue.name, @event.venue, class: 'link-inherit'
-        p.text-muted.p-location
-          = @event.venue.address
+        .media
+          .media-body
+            h6.h6-up.text-muted = t('venue')
+            h3.h5.media-heading
+              = link_to @event.venue.name, @event.venue, class: 'link-inherit'
+            p.text-muted.p-location.mb-0
+              = @event.venue.address
+
+          .media-right
+            = link_to @event.venue.decorate.directions_url, target: '_blank' do
+              = image_tag @event.venue.decorate.static_map_url(180, 73), size: '180x73'
 
       hr
 
