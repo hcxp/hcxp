@@ -70,8 +70,8 @@
 
         - if policy(@event).edit?
           li.list-inline-item
-            a.btn.btn-outline-secondary.btn-sm href=edit_event_path(@event)
-              i.fa.fa-cog.fa-fw
+            a.btn.btn-secondary.btn-sm href=edit_event_path(@event)
+              i.fa.fa-cog.fa-fw.text-muted
               = t('edit_event')
 
         - if policy(@event).edit?

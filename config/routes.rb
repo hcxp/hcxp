@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'feeds/newsletter', controller: :feeds, action: :newsletter
+
   resources :bands do
     resources :posts, on: :member, controller: :band_posts
     get :player_code, on: :member
