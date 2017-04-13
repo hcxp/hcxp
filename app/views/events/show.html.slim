@@ -56,7 +56,14 @@
 
       hr
 
-      - if policy(@event).edit?
-        a.btn.btn-outline-secondary.btn-sm href=edit_event_path(@event)
-          i.fa.fa-cog.fa-fw
-          = t('edit_event')
+      ul.list-inline.mb-0
+        li.list-inline-item
+          a.btn.btn-secondary.btn-sm href=@event.google_calendar_link target="_blank"
+            i.fa.fa-fw.fa-calendar-plus-o.text-muted
+            | Zapisz w kalendarzu
+
+        - if policy(@event).edit?
+          li.list-inline-item
+            a.btn.btn-outline-secondary.btn-sm href=edit_event_path(@event)
+              i.fa.fa-cog.fa-fw
+              = t('edit_event')

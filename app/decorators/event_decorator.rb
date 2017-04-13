@@ -59,4 +59,22 @@ class EventDecorator < Draper::Decorator
   def slug
     name_or_bands.to_slug.normalize.to_s
   end
+
+  def google_calendar_link
+    # - 2.hours is a dirty hack to persist a timezone difference (and it probably
+    # works just for polish timezone). We need to do this in some smarter way.
+    # Also - we need to do this cause google calendar url API does not accept
+    # timezone suffix
+    beginning_at = model.beginning_at - 2.hours
+    beginning_at = beginning_at.iso8601.delete('-').delete(':')
+    params = {
+      action:   'TEMPLATE',
+      text:     name_or_bands,
+      details:  [model.bands.map(&:name).join(', '), public_html_url].reject(&:nil?).join("\n\n"),
+      location: model.venue.address,
+      dates:    [beginning_at, beginning_at].join('/')
+    }
+
+    URI::HTTPS.build(host: 'www.google.com', path: '/calendar/render', query: params.to_query)
+  end
 end
