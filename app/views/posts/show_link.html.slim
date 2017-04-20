@@ -2,5 +2,15 @@
   .row
     .col-sm-10.offset-sm-1
       .card
-        .card-block
+        .card-block.card-actions-container
+          - if policy(@post).destroy?
+            .card-actions.card-actions--right.dropdown
+              a.btn.btn-secondary.btn-sm.dropdown-toggle data-toggle="dropdown"
+                i.fa.fa-fw.fa-cog
+
+              div.dropdown-menu.dropdown-menu-right
+                a.dropdown-item href=post_path data-method="delete" data-confirm=t(:are_you_sure)
+                  i.fa.fa-fw.fa-trash-o.text-muted
+                  | #{t(:delete)} post
+
           == cell(:post_card, @post)

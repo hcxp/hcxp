@@ -48,6 +48,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    authenticate_user!
+    authorize @post
+
+    @post.destroy!
+    redirect_to root_path, notice: 'Post successfully removed'
+  end
+
   private #---------------------------------------------------------------------
 
   # Use callbacks to share common setup or constraints between actions.

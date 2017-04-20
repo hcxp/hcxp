@@ -15,11 +15,17 @@ class PostPolicy < ApplicationPolicy
     @user.present?
   end
 
-  def update?
-    @post.user == @user
+  def edit?
+    @post.user == @user || @user.is_admin?
   end
 
-  def edit?
-    @post.user == @user
+  def update?
+    edit?
+  end
+
+  def destroy?
+    (
+      @post.user == @user && @post.created_at > 2.weeks.ago
+    ) || @user.is_admin?
   end
 end
