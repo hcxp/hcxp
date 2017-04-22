@@ -31,10 +31,10 @@ WORKDIR $APP_HOME
 # are made.
 COPY Gemfile* ./
 
-#ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
-#  BUNDLE_PATH=/bundle
-RUN gem install bundler
-RUN bundle install --jobs 20 --retry 5
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_PATH=/box
+# RUN gem install bundler
+# RUN bundle install --jobs 20 --retry 5
 
 # Copy the main application.
 COPY . ./

@@ -13,6 +13,7 @@ services:
       - redis
     volumes:
       - .:/app
+      - box:/box
     environment: &app_environment
       DATABASE_URL: postgres://postgres@database:5432/nemu_development?pool=25&encoding=unicode&schema_search_path=public
       REDIS_URL: redis://redis:6379
@@ -46,3 +47,11 @@ services:
     image: voizzzzzz/mailcatcher-alpine
     # ports:
     #   - 1080:1080
+
+  box:
+    image: busybox
+    volumes:
+      - box:/box
+
+volumes:
+  box:
