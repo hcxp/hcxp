@@ -1,0 +1,22 @@
+- @lead = 'Pozostałe ustawienia wydarzenia'
+
+= render layout: 'layout' do
+  = form_for @event, url: event_wizard_path(@event) do |f|
+    .mb-2
+      .card
+        .card-block
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+
+          .form-group
+            = f.label :link
+            = f.text_field :link, class: 'form-control', placeholder: 'http://...'
+
+          .form-group.row
+            .col-xs-6
+              = f.label :price
+              = f.text_field :price, class: 'form-control'
+
+    .form-group.text-xs-center
+      input.btn.btn-primary type="submit" value=t(:save_and_proceed)

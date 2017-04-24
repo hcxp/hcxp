@@ -14,8 +14,8 @@ en:
   create_new: Create new
   save_changes: Save changes
   cancel: Cancel
-  create_band: Create band
-  create_venue: Create venue
+  create_band: Create new band
+  create_venue: Create new venue
   edit_event: Edit event
   team_settings: Team settings
   general: General
@@ -34,12 +34,28 @@ en:
   something_went_wrong_try_again_later: Something went wrong. Please try again later.
   save_in_calendar: Save in calendar
   delete: Delete
+  add_new: Add new
+  done: Done
+  back: Back
+  date_and_time: Date and time
+  upload_file_from_drive: Upload file from hard drive
+  or_past_link_to_image: or past link to image
+  change: Change
+  save_and_proceed: Save and proceed
+  change_venue: Change venue
+  start_typing: Start typing
 
   no_events_found: No events found
   no_bands_found: No bands found
   no_venues_found: No venues found
   no_posts_found: No posts found
   modify_search_criteria: Try to modify search criteria
+
+  cant_find_a_band?: Can't find a band?
+  cant_find_the_venue?: Can't find the venue?
+
+  no_venue_assigned: No venue assigned
+  no_bands_assigned: No bands assigned
 
   today: Today
   tomorrow: Tomorrow
@@ -97,8 +113,12 @@ en:
       post:
         one: Post
         other: Posts
-      band: Band
-      venue: Venue
+      band:
+        one: Band
+        other: Bands
+      venue:
+        one: Venue
+        other: Venues
       team: Team
     attributes:
       event:
@@ -108,6 +128,8 @@ en:
         bands: Bands
         ownership_type: Ownership
         poster: Poster
+        remove_poster: Remove poster
+        price: Price
       band:
         name: Name
         location: Location
@@ -132,6 +154,8 @@ en:
     descriptions:
       user:
         username: Only letters, numbers, <code>-</code> and <code>_</code> allowed.
+      event:
+        poster: Up to 2MB. Only jpg and png allowed.
 
   #
   # Views ----------------------------------------------------------------------
@@ -139,6 +163,31 @@ en:
   bands:
     new_modal:
       header: Create new band
+
+  event_wizard:
+    layout:
+      heading: Create event
+      lead: Fill the form below to publish an event
+      step_labels:
+        dates: Dates
+        venue: Venue
+        bands: Bands
+        poster: Poster
+        settings: Settings
+        ownership: Ownership
+        publish: Publish
+    publish:
+      publish_button: Lookin' good. Publish this event!
+
+    bands:
+      bands_tpl:
+        bands_assigned_to_event: Bands assigned to this event
+        no_bands_assigned: Event has no any bands assigned yet.
+      search_bands_modal:
+        query_placeholder: Search for a band...
+        cant_find_a_band: Can't find a band?
+      new_band_modal:
+        location_placeholder: Start typing...
 
   events:
     index:

@@ -45,6 +45,11 @@ body {
   font-size: 0.8rem;
 }
 
+.heading-underscored {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.4rem;
+}
+
 label {
   font-weight: 600;
 }
@@ -67,4 +72,13 @@ label {
 
 v-cloak {
   display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Google places autocomplete suggestions */
+.pac-container {
+  z-index: 9999;
 }

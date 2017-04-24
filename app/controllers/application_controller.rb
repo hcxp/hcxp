@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   #
   def events_index(col = Event.all, limit = 25)
     col = col.includes(:bands, :venue)
+    col = col.published
     col = col.search(params[:q]) if params[:q].present?
     col = col.with_poster if params[:with_poster]
 
@@ -36,7 +37,7 @@ class ApplicationController < ActionController::Base
         col = col.upcoming.order(beginning_at: :asc)
     end
 
-    col = col.page(params[:page]).per(limit)
+    col = col.page(params[:page]).per(params[:limit] || limit)
 
     col
   end
@@ -47,7 +48,7 @@ class ApplicationController < ActionController::Base
     col = col.search(params[:q]) if params[:q].present?
     col = col.where(id: params[:id_in]) if params[:id_in].present?
     col = col.order(events_count: :desc)
-    col = col.page(params[:page])
+    col = col.page(params[:page]).per(params[:limit])
 
     col
   end
@@ -56,7 +57,7 @@ class ApplicationController < ActionController::Base
   #
   def venues_index(col = Venue.all)
     col = col.search(params[:q]) if params[:q].present?
-    col = col.page(params[:page])
+    col = col.page(params[:page]).per(params[:limit])
 
     col
   end

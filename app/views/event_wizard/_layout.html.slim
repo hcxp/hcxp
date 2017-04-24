@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-xs-6.offset-xs-3.mt-3
+      .text-xs-center.mb-2
+        h1 = t('.heading')
+        p.mb-2.text-muted.lead
+          = t('.lead')
+
+  .row
+    .col-xs-10.offset-xs-1
+      .text-xs-center
+        ul.list-inline
+          - @steps.each.with_index do |step, index|
+            li.list-inline-item
+              = active_link_to step_event_wizard_path(@event, step.to_sym), active: current_step == step.to_s, class: 'btn nav-link text-truncate', class_active: 'btn-primary' do
+                | #{index + 1}. #{t ".step_labels.#{step}"}
+
+      hr
+
+.container
+  - if @lead.present?
+    .row.mt-2
+      .col-xs-8.offset-xs-2
+        p.lead.text-muted.text-xs-center.mb-0 = @lead
+
+  .row
+    .col-xs-6.offset-xs-3.mt-1
+      = yield

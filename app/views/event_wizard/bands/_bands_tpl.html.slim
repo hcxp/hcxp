@@ -1,0 +1,36 @@
+script type="x-template" id="event-wizard-bands-tpl"
+  div
+    div.hidden v-for="bandable in bandables"
+      input name="event[bandables_attributes][{{$index}}][id]" :value="bandable.id"
+      input name="event[bandables_attributes][{{$index}}][band_id]" :value="bandable.band_id"
+      input type="checkbox" name="event[bandables_attributes][{{$index}}][_destroy]" v-model="bandable._destroy"
+
+    .card v-if="isLoadingBandables"
+      .card-block.py-3
+        p.lead.mb-0.text-muted.text-xs-center
+          i.fa.fa-fw.fa-circle-o-notch.fa-spin
+
+    .card v-if="hasNoBandsAssigned && !isLoadingBandables"
+      .card-block.py-3
+        p.lead.mb-0.text-muted.text-xs-center
+          = t('.no_bands_assigned')
+
+    .card v-for="bandable in bandables | filterBy false in '_destroy'"
+      .card-block
+        .media
+          .media-left
+            = image_tag 'https://placehold.it/50x50', class: 'img-circle'
+
+          .media-body
+            h3.h5.media-heading.mb-0
+              | {{ bandable.band.name }}
+            p.text-muted-more.mb-0.text-sm style="margin-top: 0.3rem"
+              | {{ bandable.band.location }}
+
+          .media-right
+            a.btn.btn-outline-warning href="#" @click.prevent="doRemoveBandable(bandable)" &times; #{t :delete}
+
+    a.btn.btn-block.btn-success.btn-lg href="#" @click.prevent="$emit('showBandsSearchModal')" + #{t :add} #{t('activerecord.models.band.other').downcase}
+
+    = render 'event_wizard/bands/new_band_modal'
+    = render 'event_wizard/bands/search_bands_modal'

@@ -3,4 +3,11 @@ class BandsListCell < Cell::ViewModel
     render
   end
 
+  private
+
+  def size_class
+    size = options[:size] || 'md'
+    "btn-#{size}"
+  end
+
 end

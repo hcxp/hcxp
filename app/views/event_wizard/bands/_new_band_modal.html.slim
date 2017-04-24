@@ -1,0 +1,37 @@
+/ New band modal
+vs-modal id="newBandModal" size="md" :fade="true"
+  div slot="modal-header"
+    h3
+      = t(:new_band)
+
+  div slot="modal-body"
+    form
+      .alert.alert-danger v-if="errors.length > 0"
+        ul.mb-0
+          li v-for="error in errors"
+            | {{ error }}
+
+      .form-group
+        label = t('activerecord.attributes.band.name')
+        input.form-control(type="text" v-model="newBand.name" v-el:newbandname)
+
+      .form-group
+        label = t('activerecord.attributes.band.location')
+        vue-google-autocomplete(
+          id="new-band-location"
+          classname="form-control"
+          placeholder=t('.location_placeholder')
+          types="(regions)"
+          @valuechanged="handleLocationValueChanged"
+        )
+
+  div slot="modal-footer"
+    .row
+      .col-xs-6.text-xs-left
+        button.btn.btn-secondary @click.prevent="doCancelNewBand" &larr; #{t :back}
+      .col-xs-6
+        button.btn.btn-primary @click.prevent="doSaveBand"
+          template v-if="isSaving"
+            i.fa.fa-fw.fa-circle-o-notch.fa-spin
+          template v-else=true
+            = t('create_band')

@@ -1,0 +1,31 @@
+- @lead = 'Ustaw plakat dla wydarzenia'
+
+= render layout: 'layout' do
+  = form_for @event, url: event_wizard_path(@event) do |f|
+    .row.mb-2
+      .col-xs-6
+        .card
+          .card-block style="padding: .5rem"
+            p: img.img-fluid.rounded src=@event.poster_url(403, 536, text: 'Poster')
+
+            .checkbox
+              label
+                = f.check_box :remove_poster
+                span< = t('activerecord.attributes.event.remove_poster')
+
+
+      .col-xs-6
+        .form-group
+          label = t(:upload_file_from_drive)
+          = f.file_field :poster, class: 'form-control'
+          small.form-text.text-muted
+            = t('activerecord.descriptions.event.poster')
+
+        .form-group
+          label = t(:or_past_link_to_image)
+          = f.text_field :remote_poster_url, class: 'form-control', placeholder: 'http://...'
+
+
+
+    .form-group.text-xs-center
+      input.btn.btn-primary type="submit" value=t(:save_and_proceed)

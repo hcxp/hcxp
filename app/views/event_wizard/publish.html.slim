@@ -1,0 +1,97 @@
+- @lead = 'Upewnij się, że podane informacje są prawidłowe:'
+
+= render layout: 'layout' do
+  - # Nothing
+
+= form_for @event, url: publish_event_wizard_path(@event), method: :post do |f|
+  .container
+    .row
+      .col-xs-8.offset-xs-2
+        .mb-2
+          .card
+            .card-block
+
+              == cell(:form_errors, @event).()
+
+              - if @event.errors.any?
+                .alert.alert-danger.mb-2
+                  h5 Ups! Something is not right:
+                  ul.mb-0
+                    - @event.errors.full_messages.each do |error|
+                      li = error
+
+              .row
+                .col-xs-6.py-1.px-2
+                  .form-group.mb-3
+                    h5.heading-underscored
+                      = t(:date_and_time)
+                      small.text-sm.float-xs-right<
+                        a.text-muted href=step_event_wizard_path(@event, :dates) = t(:change)
+
+                    p.mb-0.text-muted = l(@event.beginning_at, format: '%A, %d %b %Y, %H:%M')
+
+                  .form-group.mb-3
+                    h5.heading-underscored
+                      = t(:settings)
+                      small.text-sm.float-xs-right<
+                        a.text-muted href=step_event_wizard_path(@event, :settings) = t(:change)
+
+                    dl.text-sm.mb-0
+                      dt.h6-up = t('activerecord.attributes.event.name')
+                      dd.text-muted.text-truncate
+                        = @event.name_or_bands
+
+                      dt.h6-up = t('activerecord.attributes.event.link')
+                      dd.text-muted.text-truncate
+                        - if @event.link.present?
+                          a href=@event.link = @event.link
+                        - else
+                          | &mdash;
+
+
+                      dt.h6-up = t('activerecord.attributes.event.price')
+                      dd.text-muted
+                        - if @event.price.present?
+                          = @event.price
+                        - else
+                          | &mdash;
+
+                  .form-group.mb-0
+                    h5.heading-underscored
+                      = t('activerecord.attributes.event.ownership_type')
+                      small.text-sm.float-xs-right<
+                        a.text-muted href=step_event_wizard_path(@event, :ownership) = t(:change)
+
+                    p.mb-0.text-muted
+                      = t("activerecord.values.event.ownership_type.#{@event.ownership_type}_full")
+
+                .col-xs-6.py-1.px-2
+                  .form-group.mb-3
+                    h5.heading-underscored
+                      = t('activerecord.models.venue.one')
+                      small.text-sm.float-xs-right<
+                        a.text-muted href=step_event_wizard_path(@event, :venue) = t(:change)
+
+                    - if @event.venue.present?
+                      h6 style="margin-bottom: .3rem" = @event.venue.name
+                      p.text-sm.text-muted = @event.venue.address
+                    - else
+                      p.text-muted
+                        = t(:no_venue_assigned)
+
+                  .form-group.mb-0
+                    h5.heading-underscored
+                      = t('activerecord.models.band.other')
+                      small.text-sm.float-xs-right<
+                        a.text-muted href=step_event_wizard_path(@event, :bands) = t(:change)
+
+                    p.text-muted
+                      - if @event.bands.any?
+                        == cell(:bands_list, @event.bands, size: 'sm').(:buttons)
+                      - else
+                        = t(:no_bands_assigned)
+
+  .form-group.text-xs-center
+    button.btn.btn-primary.btn-lg type="submit"
+      i.fa.fa-fw.fa-check>
+      = t('.publish_button')

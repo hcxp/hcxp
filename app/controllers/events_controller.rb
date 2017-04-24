@@ -19,7 +19,10 @@ class EventsController < ApplicationController
   def new
     authenticate_user!
     authorize Event
-    @event = Event.new(beginning_at: Time.zone.now.change(hour: 19, minute: 0)).decorate
+
+    event = Event.create!(status: :draft, user: current_user)
+    redirect_to event_wizard_path(event)
+    # @event = Event.new(beginning_at: Time.zone.now.change(hour: 19, minute: 0)).decorate
   end
 
   def create

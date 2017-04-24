@@ -1,0 +1,13 @@
+- @lead = 'Ustaw kto jest formalnym organizatorem wydarzenia'
+
+= render layout: 'layout' do
+  = form_for @event, url: event_wizard_path(@event) do |f|
+    .mb-2
+      .card
+        .card-block
+          .form-group
+            = f.label :ownership_type
+            = f.select :ownership_type, [[t('activerecord.values.event.ownership_type.user_full'), 'user'], [t('activerecord.values.event.ownership_type.unassigned_full'), 'unassigned']], { include_blank: true }, class: 'form-control'
+
+    .form-group.text-xs-center
+      input.btn.btn-primary type="submit" value=t(:save_and_proceed)

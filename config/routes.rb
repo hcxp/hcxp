@@ -7,6 +7,16 @@ Rails.application.routes.draw do
 
   get 'feeds/newsletter', controller: :feeds, action: :newsletter
 
+  namespace :api, constraints: { format: :json } do
+    namespace :v1 do
+      resources :events do
+        resources :bandables
+      end
+
+      resources :bands
+    end
+  end
+
   resources :bands do
     resources :posts, on: :member, controller: :band_posts
     get :player_code, on: :member
@@ -18,8 +28,13 @@ Rails.application.routes.draw do
     get 'new/link', action: :new_form, type: :link, as: :new_link, on: :collection
   end
 
+  resources :event_wizard do
+    get ':step', on: :member, as: :step, action: :step
+    post :publish, on: :member, as: :publish, action: :do_publish
+  end
+
   resources :venues
-  resources :events
+  resources :events, except: [:create]
   resources :teams do
     get 'edit/users', controller: :teams, action: :edit_users, on: :member, as: :edit_users
     post 'edit/users', controller: :teams, action: :invite_user, on: :member, as: :invite_user

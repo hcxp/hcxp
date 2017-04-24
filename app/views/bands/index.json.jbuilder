@@ -1,1 +1,1 @@
-json.array! @bands, partial: 'bands/band', as: :band
+json.array! @bands, partial: 'api/v1/bands/band', as: :band
