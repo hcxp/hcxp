@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :edit_page, :update, :destroy]
   impressionist actions: [:show]
 
   helper_method :options_for_user_teams
@@ -20,9 +20,9 @@ class EventsController < ApplicationController
     authenticate_user!
     authorize Event
 
-    event = Event.create!(status: :draft, user: current_user)
-    redirect_to event_wizard_path(event)
-    # @event = Event.new(beginning_at: Time.zone.now.change(hour: 19, minute: 0)).decorate
+    # event = Event.create!(status: :draft, user: current_user)
+    # redirect_to event_wizard_path(event)
+    @event = Event.new(beginning_at: Time.zone.now.change(hour: 19, minute: 0)).decorate
   end
 
   def create
@@ -43,12 +43,21 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+  def edit_page
+    authenticate_user!
+    authorize @event, :edit?
+
+    raise ActionController::RoutingError.new("#{params[:page]} edit step not found") unless Event::WIZARD_STEPS.include? params[:page].to_s
+
+    render "events/edit/#{params[:page]}"
+  end
+
   def update
     authenticate_user!
     authorize @event
 
     if @event.update_attributes(event_params.merge(actor: current_user))
-      redirect_to @event.public_html_path, notice: 'Event saved successfully'
+      redirect_to :back, notice: 'Event saved successfully'
     else
       render :edit
     end
@@ -78,7 +87,7 @@ class EventsController < ApplicationController
 
     params.require(:event).permit(
       :name, :price, :venue_id, :beginning_at, :ownership_type, :poster,
-      :link, :team_id, :band_ids => []
+      :link, :team_id, :band_ids => [], bandables_attributes: [:id, :band_id, :_destroy]
     )
   end
 

@@ -5,6 +5,7 @@ class Event < ApplicationRecord
 
   OWNERSHIP_TYPES = %w(user unassigned).freeze
   STATUSES = %w(draft published).freeze
+  WIZARD_STEPS = %w(dates venue bands poster settings ownership publish).freeze
 
   mount_uploader :poster, ::EventPosterUploader
 
@@ -50,7 +51,8 @@ class Event < ApplicationRecord
   end
 
   def set_defaults
-    self.status ||= :draft
+    # self.status ||= :draft
+    self.status ||= :published
   end
 
   def has_bands?
