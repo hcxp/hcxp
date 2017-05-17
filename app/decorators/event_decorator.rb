@@ -71,7 +71,7 @@ class EventDecorator < Draper::Decorator
       action:   'TEMPLATE',
       text:     name_or_bands,
       details:  [model.bands.map(&:name).join(', '), public_html_url].reject(&:nil?).join("\n\n"),
-      location: model.venue.address,
+      location: (model.venue.address rescue 'TBA'),
       dates:    [beginning_at, beginning_at].join('/')
     }
 
