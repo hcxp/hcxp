@@ -27,7 +27,7 @@ class BandsController < ApplicationController
     @band.user = current_user
 
     if @band.save
-      render @band, status: :created, location: @band
+      render 'api/v1/bands/_band', status: :created, location: @band, locals: { band: @band }
     else
       render json: { errors: @band.errors, full_error_messages: @band.errors.full_messages }, status: :unprocessable_entity
     end
