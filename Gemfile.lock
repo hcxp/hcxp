@@ -25,6 +25,12 @@ GIT
       cells (>= 4.0.1, < 6.0.0)
       slim (~> 3.0)
 
+GIT
+  remote: https://github.com/joelhegg/rack_timer.git
+  revision: e953275edb7257ebc28487411230c52b6bd64ddf
+  specs:
+    rack_timer (0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -391,6 +397,7 @@ DEPENDENCIES
   pg_search
   puma (~> 3.0)
   pundit
+  rack_timer!
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-i18n
   rails-settings-cached
