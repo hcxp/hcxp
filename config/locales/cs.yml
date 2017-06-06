@@ -7,8 +7,6 @@ cs:
   create_new: Vytvořit nový příspěvek
   save_changes: Uložit změny
   cancel: Zrušit
-  create_band: Vytvořit kapelu
-  create_venue: Vytvořit místo
   edit_event: Upravit akci
   team_settings: Nastavení týmu
   general: Obecné
@@ -61,8 +59,6 @@ cs:
     query_placeholder: Hledat kapely nebo názvy míst...
   activerecord:
     models:
-      band: Kapela
-      venue: Místo
       team: Tým
     attributes:
       event:

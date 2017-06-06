@@ -176,6 +176,9 @@ GEM
       rails (>= 3.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    graphiql-rails (1.4.1)
+      rails
+    graphql (1.6.2)
     hitimes (1.2.2)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -385,6 +388,8 @@ DEPENDENCIES
   foreman
   friendly_id (~> 5.1.0)
   geokit-rails
+  graphiql-rails
+  graphql
   impressionist
   jbuilder (~> 2.5)
   jquery-rails
