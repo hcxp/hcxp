@@ -6,6 +6,7 @@ Fields::BandsField = GraphQL::Field.define do
   type Types::BandType.connection_type
 
   argument :query, types.String, 'Search query'
+  argument :ids, types.String, 'Comma-separated list of band ids'
 
   resolve(Resolvers::BandsResolver.new)
 end

@@ -2,9 +2,12 @@ class Resolvers::BandsResolver
   def call(obj, args, ctx)
     col = obj ? obj.bands : Band.all
 
-    col = col.search(args[:query]) if args[:query].present?
-    # col = col.order(created_at: :desc)
+    params = {
+      query: args[:query],
+      id_in: (args[:ids].split(',') if args[:ids])
+    }
 
-    col
+    service = BandsIndexService.new(col, params)
+    service.call
   end
 end

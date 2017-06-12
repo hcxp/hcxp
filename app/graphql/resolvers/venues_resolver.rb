@@ -2,9 +2,11 @@ class Resolvers::VenuesResolver
   def call(obj, args, ctx)
     col = obj ? obj.venues : Venue.all
 
-    col = col.search(args[:query]) if args[:query].present?
-    # col = col.order(created_at: :desc)
+    params = {
+      query: args[:query]
+    }
 
-    col
+    service = VenuesIndexService.new(col, params)
+    service.call
   end
 end

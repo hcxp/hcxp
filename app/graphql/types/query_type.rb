@@ -7,4 +7,5 @@ Types::QueryType = GraphQL::ObjectType.define do
   connection :events, Fields::EventsField
   connection :bands, Fields::BandsField
   connection :venues, Fields::VenuesField
+  connection :posts, Fields::PostsField
 end

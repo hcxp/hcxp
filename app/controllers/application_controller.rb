@@ -20,33 +20,30 @@ class ApplicationController < ActionController::Base
 
   private # --------------------------------------------------------------------
 
-  # @todo  Move that to service
-  #
   def events_index(col = Event.all, limit = 25)
     service = EventsIndexService.new(col, params)
     col = service.call
+
     col = col.published
     col = col.page(params[:page]).per(params[:limit] || limit)
     col
   end
 
-  # @todo  Move that to service
-  #
   def bands_index(col = Band.all)
-    col = col.search(params[:q]) if params[:q].present?
-    col = col.where(id: params[:id_in]) if params[:id_in].present?
+    service = BandsIndexService.new(col, params)
+    col = service.call
+
     col = col.order(events_count: :desc)
     col = col.page(params[:page]).per(params[:limit])
 
     col
   end
 
-  # @todo  Move that to service
-  #
   def venues_index(col = Venue.all)
-    col = col.search(params[:q]) if params[:q].present?
-    col = col.page(params[:page]).per(params[:limit])
+    service = VenuesIndexService.new(col, params)
+    col = service.call
 
+    col = col.page(params[:page]).per(params[:limit])
     col
   end
 
