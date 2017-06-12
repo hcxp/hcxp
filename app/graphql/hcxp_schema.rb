@@ -1,6 +1,8 @@
 HcxpSchema = GraphQL::Schema.define do
   query(Types::QueryType)
 
+  default_max_page_size 25
+
   rescue_from ActiveRecord::RecordNotFound, &:message
 
   object_from_id -> (id, ctx) { decode_object(id) }
