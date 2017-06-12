@@ -178,7 +178,7 @@ GEM
       activesupport (>= 4.1.0)
     graphiql-rails (1.4.1)
       rails
-    graphql (1.6.2)
+    graphql (1.6.3)
     hitimes (1.2.2)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
