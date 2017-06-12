@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   resources :venues
-  resources :events, except: [:create]
+  resources :events
   resources :teams do
     get 'edit/users', controller: :teams, action: :edit_users, on: :member, as: :edit_users
     post 'edit/users', controller: :teams, action: :invite_user, on: :member, as: :invite_user
