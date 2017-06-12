@@ -37,14 +37,7 @@ Rails.application.routes.draw do
   end
 
   resources :venues
-
-  resources :events, except: [:create] do
-    get 'edit/settings', to: 'events#edit_page', on: :member, page: :settings, as: :edit_settings_for
-    get 'edit/bands', to: 'events#edit_page', on: :member, page: :bands, as: :edit_bands_for
-    get 'edit/venue', to: 'events#edit_page', on: :member, page: :venue, as: :edit_venue_for
-    get 'edit/poster', to: 'events#edit_page', on: :member, page: :poster, as: :edit_poster_for
-  end
-
+  resources :events
   resources :teams do
     get 'edit/users', controller: :teams, action: :edit_users, on: :member, as: :edit_users
     post 'edit/users', controller: :teams, action: :invite_user, on: :member, as: :invite_user
