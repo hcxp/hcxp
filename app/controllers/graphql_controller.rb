@@ -1,5 +1,5 @@
 class GraphqlController < ApplicationController
-  after_action :set_ratelimit_headers
+  # after_action :set_ratelimit_headers
 
   def execute
     variables = ensure_hash(params[:variables])
