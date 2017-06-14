@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :team_users
   has_many :teams, through: :team_users
   has_many :owned_teams, class_name: 'Team'
+  has_many :posts
+  has_many :bands
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
