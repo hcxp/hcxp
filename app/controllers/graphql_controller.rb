@@ -1,4 +1,6 @@
 class GraphqlController < ApplicationController
+  after_action :set_ratelimit_headers
+
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -28,5 +30,18 @@ class GraphqlController < ApplicationController
     else
       raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
     end
+  end
+
+  def set_ratelimit_headers
+    now = Time.now
+    match_data = env['rack.attack.throttle_data']
+
+    limit     = match_data['req/ip'][:limit]
+    remaining = match_data['req/ip'][:limit] - match_data['req/ip'][:count]
+    reset     = now + (match_data['req/ip'][:period] - now.to_i % match_data['req/ip'][:period])
+
+    response.headers['X-RateLimit-Limit']     = limit.to_s
+    response.headers['X-RateLimit-Remaining'] = remaining.to_s
+    response.headers['X-RateLimit-Reset'] =     reset.to_s
   end
 end

@@ -43,5 +43,8 @@ module Hcxp
       port:           ENV['MAIL_PORT'].to_i || 1025,
       domain:         ENV['APP_HOST']
     }
+
+    # Rack-attack
+    config.middleware.use Rack::Attack
   end
 end
