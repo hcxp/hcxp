@@ -9,7 +9,15 @@ Types::EventType = GraphQL::ObjectType.define do
   field :ownership_type, types.String
   field :impressions_count, types.String, 'Views count'
   field :status, types.String
-  field :poster, types.String
+  
+  field :poster, types.String do
+    argument :width, types.Int
+    argument :height, types.Int
+
+    resolve -> (obj, args, _ctx) { 
+      obj.decorate.poster_url(args[:width] || 400, args[:height] || 500) 
+    }
+  end
 
   field :name_or_bands, types.String do
     description 'Name of event or comma-separated list of bands if name is absent'
@@ -23,4 +31,5 @@ Types::EventType = GraphQL::ObjectType.define do
   connection :bands, Fields::BandsField
   connection :bandables, Fields::BandablesField
   field :venue, Types::VenueType
+  field :user, Types::UserType
 end
