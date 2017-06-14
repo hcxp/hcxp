@@ -12,5 +12,6 @@ Rack::Attack.throttle('req/ip/sec', limit: 1, period: 1.second) do |req|
 end
 
 Rack::Attack.throttled_response = lambda do |env|
+  headers = {}
   [ 429, headers, ["Throttled\n"]]
 end
