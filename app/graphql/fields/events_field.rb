@@ -1,4 +1,4 @@
-require_relative '../resolvers/events_resolver'
+require Rails.root.join('app/graphql/resolvers/events_resolver')
 
 Fields::EventsField = GraphQL::Field.define do
   name 'events'
