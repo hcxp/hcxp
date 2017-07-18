@@ -7,7 +7,7 @@
 #   req.ip unless req.path.starts_with?('/assets')
 # end
 
-Rack::Attack.throttle('req/ip/sec', limit: 1, period: 1.second) do |req|
+Rack::Attack.throttle('req/ip/sec', limit: 5000, period: 1.hour) do |req|
   req.ip unless req.path.starts_with?('/assets')
 end
 
