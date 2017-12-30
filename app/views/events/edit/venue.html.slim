@@ -1,6 +1,0 @@
-= render layout: 'events/edit/layout' do
-  = form_for @event do |f|
-    event-wizard-venue-picker input-name="event[venue_id]" input-value=@event.venue_id.to_s
-
-    .form-group
-      = render 'events/edit/submit_btn', f: f

@@ -1,212 +1,33 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
 en:
-
-  #
-  # General --------------------------------------------------------------------
-
-  events: Events
-  posts: Posts
-  bands: Bands
-  venues: Venues
-  users: Users
-  venue: Venue
-  search: Search
-  new_event: New event
-  create_new: Create new
-  save_changes: Save changes
-  cancel: Cancel
-  create_band: Create new band
-  create_venue: Create new venue
-  edit_event: Edit event
-  team_settings: Team settings
-  general: General
-  settings: Settings
-  invite: Invite
-  owner: Owner
-  contributor: Contributor
-  are_you_sure: Are you sure?
-  add_post: Add post
-  see_profile: See profile
-  remove_avatar: Remove avatar
-  via: via
-  add_link: Add link
-  play: Play
-  loading: Loading
-  something_went_wrong_try_again_later: Something went wrong. Please try again later.
-  save_in_calendar: Save in calendar
-  delete: Delete
-  add_new: Add new
-  done: Done
-  back: Back
-  date_and_time: Date and time
-  upload_file_from_drive: Upload file from hard drive
-  or_past_link_to_image: or past link to image
-  change: Change
-  save_and_proceed: Save and proceed
-  change_venue: Change venue
-  start_typing: Start typing
-  add: Add
-
-  no_events_found: No events found
-  no_bands_found: No bands found
-  no_venues_found: No venues found
-  no_posts_found: No posts found
-  modify_search_criteria: Try to modify search criteria
-
-  cant_find_a_band?: Can't find a band?
-  cant_find_the_venue?: Can't find the venue?
-
-  no_venue_assigned: No venue assigned
-  no_bands_assigned: No bands assigned
-
-  today: Today
-  tomorrow: Tomorrow
-  yesterday: Yesterday
-  time_ago_in_words_in: In
-  ago: ago
-
-  select_language: Select language
-  english: English
-  polish: Polish
-  czech: Czech
-
-  #
-  # Cells ----------------------------------------------------------------------
-
-  posts_filters:
-    query_placeholder: Search for bands or keywords...
-
-  bands_filters:
-    query_placeholder: Search for bands or locations...
-
-  events_filters:
-    upcoming: Upcoming
-    past: Past
-    all: All
-    search_query: Search query
-    scope: Scope
-    query_placeholder: Search for bands, locations or event names...
-
-  form_errors:
-    heading: Oups! Something is not right.
-
-  nav_main:
-    add_event: + Add event
-    search_placeholder: Search...
-    your_profile: Your profile
-    sign_out: Sign out
-    sign_up: Sign up
-    sign_in: Sign in
-    events: Events
-    bands: Bands
-    venues: Venues
-
-  venues_filters:
-    query_placeholder: Search for bands or event names...
-
-  #
-  # Models ---------------------------------------------------------------------
-
-  activerecord:
-    models:
-      event:
-        one: Event
-        other: Events
-      post:
-        one: Post
-        other: Posts
-      band:
-        one: Band
-        other: Bands
-      venue:
-        one: Venue
-        other: Venues
-      team: Team
-    attributes:
-      event:
-        name: Name
-        beginning_at: Date and time
-        venue: Venue
-        bands: Bands
-        ownership_type: Ownership
-        poster: Poster
-        remove_poster: Remove poster
-        price: Price
-      band:
-        name: Name
-        location: Location
-      venue:
-        name: Name
-        address: Address
-      user:
-        email: Email
-        password: Password
-        password_confirmation: Password confirmation
-        username: Username
-      team:
-        name: Name
-        slug: Slug
-        description: Description
-        website: Website
-    values:
-      event:
-        ownership_type:
-          user_full: I'm the only organizer
-          unassigned_full: I'm NOT the organizer
-    descriptions:
-      user:
-        username: Only letters, numbers, <code>-</code> and <code>_</code> allowed.
-      event:
-        poster: Up to 2MB. Only jpg and png allowed.
-
-  #
-  # Views ----------------------------------------------------------------------
-
-  bands:
-    new_modal:
-      header: Create new band
-
-  event_wizard:
-    layout:
-      heading: Create event
-      lead: Fill the form below to publish an event
-      step_labels:
-        dates: Dates
-        venue: Venue
-        bands: Bands
-        poster: Poster
-        settings: Settings
-        ownership: Ownership
-        publish: Publish
-    publish:
-      publish_button: Lookin' good. Publish this event!
-
-    bands:
-      bands_tpl:
-        bands_assigned_to_event: Bands assigned to this event
-        no_bands_assigned: Event has no any bands assigned yet.
-      search_bands_modal:
-        query_placeholder: Search for a band...
-        cant_find_a_band: Can't find a band?
-      new_band_modal:
-        location_placeholder: Start typing...
-
-  events:
-    index:
-      heading: Browse <strong>hardcore punk</strong> events in your city.
-
-    show:
-      band_no_posts_message: No bandcamp profile assigned yet.
-
-    form:
-      poster_description: Up to 2MB. Only jpg and png allowed.
-      name_description: You can leave it blank if there are any bands assigned.
-      bands_placeholder: Search for a band...
-      venue_placeholder: Search for a venue...
-      cant_find_a_band?: Can't find a band?
-      cant_find_the_venue?: Can't find the venue?
-
-  venues:
-    new_modal:
-      header: Create new venue
-      name_description: Leaving it blank will set it to TBA (To Be Answered)
-      address_description: 'Format: Street, City, Country'
+  hello: "Hello world"

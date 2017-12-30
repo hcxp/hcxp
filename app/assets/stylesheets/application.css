@@ -2,8 +2,8 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
@@ -12,73 +12,4 @@
  *
  *= require_tree .
  *= require_self
- *=
- *= require bootstrap-datetimepicker
- *= require luminous-basic
- *= require simplemde.min
- *=
- *= require nav_main
- *= require event_card
- *= require venue_card
- *= require blankslate
- *= require flash_messages
- *= require language_picker
- *= require post_card
- *= require bands_list
  */
-
-body {
-  background: #f4f4f4;
-  color: #444;
-}
-
-.container-fluid {
-  max-width: 1364px;
-}
-
-.link-inherit {
-  color: inherit;
-}
-
-.h6-up {
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
-.heading-underscored {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.4rem;
-}
-
-label {
-  font-weight: 600;
-}
-
-.img-circle {
-  border-radius: 50%;
-}
-
-.text-cap {
-  text-transform: capitalize;
-}
-
-.text-muted-more {
-  color: #bbb;
-}
-
-.text-sm {
-  font-size: 0.9rem;
-}
-
-v-cloak {
-  display: none;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Google places autocomplete suggestions */
-.pac-container {
-  z-index: 9999;
-}

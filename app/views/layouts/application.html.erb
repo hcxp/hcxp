@@ -1,98 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Hcxp</title>
     <%= csrf_meta_tags %>
-    <%= display_meta_tags site: 'hcxp', description: 'Indepenent online hardcore punk events directory', reverse: true, separator: '/', 'fb:app_id' => ENV['FACEBOOK_APP_ID'] %>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJJ4vq0c10_JYapdzqvgWmo6L8vKC9qOY&libraries=places"></script>
-    <script src="https://use.fontawesome.com/54c3771c61.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script>
-    <script src="https://cdn.rawgit.com/kzima/vuestrap-base-components/master/dist/vuestrapBase.min.js"></script>
-    <script src="https://cdn.rawgit.com/monterail/vue-multiselect/master/lib/vue-multiselect.min.js"></script>
-    <script src="https://cdn.rawgit.com/pagekit/vue-resource/master/dist/vue-resource.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <%= render 'layouts/google_analytics' if ENV['GOOGLE_ANALYTICS'] %>
-
-    <script type="text/javascript">
-      window.locale = "<%= I18n.locale %>"
-      moment.locale(window.locale)
-    </script>
   </head>
 
   <body>
-    <%== cell(:flash_messages, flash) %>
-    <%== cell(:nav_main, nil, css_class: @nav_main_class, team: @team) %>
-
     <%= yield %>
-
-    <div class="container mt-3">
-      <hr>
-      <div class="row">
-        <div class="col-xs-6">
-          <ul class="list-inline text-muted">
-            <li class="list-inline-item">DIY or DIE!</li>
-
-            <li class="list-inline-item">&times;</li>
-
-            <li class="list-inline-item">
-              <a href="<%= about_path %>">About</a>
-            </li>
-
-            <li class="list-inline-item">
-              <a href="/graphiql">API</a>
-            </li>
-
-            <li class="list-inline-item">&times;</li>
-
-            <li class="list-inline-item">
-              <a href="https://github.com/hcxp/hcxp" target="_blank">Github</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://twitter.com/hcxphq" target="_blank">Twitter</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="col-xs-6">
-          <ul class="list-inline text-muted text-xs-right">
-            <li class="list-inline-item">
-              <%== cell(:language_picker) %>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-
-    <% if ENV['TAWK_ID'] %>
-      <!--Start of Tawk.to Script-->
-      <script type="text/javascript">
-      window.$_Tawk = undefined;
-      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-
-      <% if user_signed_in? %>
-        Tawk_API.visitor = {
-          name: '<%= current_user.username %>',
-          email: '<%= current_user.email %>',
-        };
-      <% end %>
-
-      (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/<%= ENV['TAWK_ID'] %>/default';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-      })();
-      </script>
-      <!--End of Tawk.to Script-->
-    <% end %>
   </body>
 </html>

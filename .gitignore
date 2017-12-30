@@ -23,4 +23,6 @@
 .env.development
 /public/uploads
 /tmp
-.ruby-version
+.ruby-version/public/packs
+/public/packs-test
+/node_modules
