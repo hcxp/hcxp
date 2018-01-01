@@ -19,4 +19,7 @@
 .byebug_history
 /public/packs
 /public/packs-test
+/public/system
 /node_modules
+
+.env.development

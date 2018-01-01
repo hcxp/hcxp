@@ -6,15 +6,75 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+import VueMoment from 'vue-moment'
+import store from '../store'
 import App from '../app.vue'
+
+import HomePage from '../pages/HomePage.vue'
+import PastEventsPage from '../pages/PastEventsPage.vue'
+import SearchPage from '../pages/SearchPage.vue'
+import SearchUpcomingPage from '../pages/SearchUpcomingPage.vue'
+import SearchPastPage from '../pages/SearchPastPage.vue'
+import SearchSavedPage from '../pages/SearchSavedPage.vue'
+
+Vue.use(VueRouter)
+Vue.use(VueResource)
+Vue.use(VueMoment)
+
+// Vue-resource settings
+Vue.http.options.root = '/api/v1'
+Vue.http.interceptors.push(function(request, next) {
+  request.headers.set('X-CSRF-TOKEN', document.querySelector('[name="csrf-token"]').getAttribute('content'))
+  next()
+})
+
+const routes = [{
+  path: '/',
+  name: 'home',
+  component: HomePage
+}, {
+  path: '/past',
+  name: 'past',
+  component: PastEventsPage
+}, {
+  path: '/saved',
+  name: 'saved',
+  component: HomePage
+}, {
+  path: '/s/:query',
+  component: SearchPage,
+  children: [{
+    path: '',
+    name: 'search',
+    component: SearchUpcomingPage,
+    meta: { hideHeaderFilters: true }
+  }, {
+    path: 'past',
+    name: 'searchPast',
+    component: SearchPastPage,
+    meta: { hideHeaderFilters: true }
+  }, {
+    path: 'saved',
+    name: 'searchSaved',
+    component: SearchSavedPage,
+    meta: { hideHeaderFilters: true }
+  }]
+}]
+
+const router = new VueRouter({
+  routes,
+  linkActiveClass: 'active'
+})
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(document.createElement('hello'))
   const app = new Vue({
+    router,
+    store,
     render: h => h(App)
   }).$mount('hello')
-
-  console.log(app)
 })
 
 
