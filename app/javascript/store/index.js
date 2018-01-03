@@ -12,6 +12,8 @@ Vue.use(Vuex)
 const state = {
   events: {},
   isLoadingAllEvents: false,
+  isLoadingCurrentEvent: true,
+  currentEventId: null,
   currentUser: {}
 }
 

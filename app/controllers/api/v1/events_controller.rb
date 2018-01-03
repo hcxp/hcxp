@@ -8,6 +8,12 @@ class Api::V1::EventsController < Api::V1Controller
     render json: @events, adapter: :json_api
   end
 
+  def show
+    @event = Event.find(params[:id])
+
+    render json: @event, adapter: :json_api
+  end
+
   def create
     authenticate_user!
 

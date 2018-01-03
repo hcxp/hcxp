@@ -10,18 +10,37 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueMoment from 'vue-moment'
 import store from '../store'
-import App from '../app.vue'
+import VueNotifications from 'vue-notifications'
+import iziToast from 'izitoast'// https://github.com/dolce/iziToast
+import eventBus from '../eventbus'
 
+import App from '../app.vue'
 import HomePage from '../pages/HomePage.vue'
 import PastEventsPage from '../pages/PastEventsPage.vue'
 import SearchPage from '../pages/SearchPage.vue'
 import SearchUpcomingPage from '../pages/SearchUpcomingPage.vue'
 import SearchPastPage from '../pages/SearchPastPage.vue'
 import SearchSavedPage from '../pages/SearchSavedPage.vue'
+import EventPage from '../pages/EventPage.vue'
+
+import 'izitoast/dist/css/iziToast.min.css'
+
+// Vue-notifications plugin
+function toast ({title, message, type, timeout, cb}) {
+  if (type === VueNotifications.types.warn) type = 'warning'
+  return iziToast[type]({title, message, timeout})
+}
+const notificationOptions = {
+  success: toast,
+  error: toast,
+  info: toast,
+  warn: toast
+}
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueMoment)
+Vue.use(VueNotifications, notificationOptions)
 
 // Vue-resource settings
 Vue.http.options.root = '/api/v1'
@@ -42,6 +61,11 @@ const routes = [{
   path: '/saved',
   name: 'saved',
   component: HomePage
+}, {
+  path: '/e/:id',
+  name: 'event',
+  component: EventPage,
+  meta: { hideHeaderFilters: true }
 }, {
   path: '/s/:query',
   component: SearchPage,

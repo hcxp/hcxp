@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card
+  router-link.card(:to="{ name: 'event', params: { id: event.id } }")
     .image
       img(src="https://beta.hcxp.co/media/W1siZiIsIjIwMTcvMTIvMzAvaWxicXFwZGhpXzI2MTEzODY2XzEwMTU2MTI3MTA4OTk4NDQ3XzM3Mzc4MDMxNTMxNTkxNDk5MTVfbi5qcGciXSxbInAiLCJ0aHVtYiIsIjgyNXgzMDAjIl1d?sha=f7593a12ba545279")
     .content

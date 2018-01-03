@@ -41,7 +41,7 @@
 
               .item(v-else)
                 a.ui.button.basic(href="/users/auth/discourse")
-                  | Join
+                  | Join us
 
               .item.right.aligned
                 form.item.ui.top.right.input.large(@submit.prevent="handleSearchSubmit")

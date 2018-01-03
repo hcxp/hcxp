@@ -32,3 +32,21 @@ export const getAllEvents = ({ commit }, params) => {
     commit(types.UPDATE_ALL_EVENTS_LOADING, false)
   })
 }
+
+export const setCurrentEvent = ({ commit, state }, id) => {
+  let eventLoaded = typeof(state.events[id]) !== 'undefined'
+  commit(types.SET_CURRENT_EVENT_ID, id)
+
+  if (eventLoaded) {
+    commit(types.SET_IS_LOADING_CURRENT_EVENT, false)
+  } else {
+    let req = Vue.http.get(`/api/v1/events/${id}`)
+
+    req.then((resp) => {
+      commit(types.RECEIVE_EVENT, {
+        event: resp.data.data
+      })
+      commit(types.SET_IS_LOADING_CURRENT_EVENT, false)
+    })
+  }
+}
