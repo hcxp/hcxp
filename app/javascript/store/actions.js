@@ -50,3 +50,43 @@ export const setCurrentEvent = ({ commit, state }, id) => {
     })
   }
 }
+
+export const updateExistingEvent = ({ commit, state }, event) => {
+  if (typeof(state.events[event.id]) == 'undefined') { return false }
+
+  commit(types.RECEIVE_EVENT, {
+    event: event
+  })
+}
+
+export const createEvent = ({ commit, state }, event) => {
+  commit(types.SET_IS_SAVING_EVENT, true)
+  let req = Vue.http.post('/api/v1/events', event)
+
+  req.then((resp) => {
+    commit(types.SET_IS_SAVING_EVENT, false)
+    commit(types.SET_CREATE_EVENT_ERRORS, { errors: [] })
+
+    commit(types.EVENT_CREATED, {
+      event: resp.data.data
+    })
+
+    commit(types.CHANGE_NEW_EVENT_FORM_OPEN_STATE, false)
+  })
+
+  req.catch((resp) => {
+    commit(types.SET_IS_SAVING_EVENT, false)
+    commit(types.SET_CREATE_EVENT_ERRORS, {
+      errors: resp.data
+    })
+  })
+}
+
+export const changeNewEventFormOpenState = ({ commit }, isOpened) => {
+  commit(types.SET_CREATE_EVENT_ERRORS, { errors: [] })
+  commit(types.CHANGE_NEW_EVENT_FORM_OPEN_STATE, isOpened)
+}
+
+export const changeIsSavingEvent = ({ commit }, isSaving) => {
+  commit(types.SET_IS_SAVING_EVENT, isSaving)
+}

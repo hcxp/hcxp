@@ -1,11 +1,11 @@
 <template lang="pug">
   router-link.card(:to="{ name: 'event', params: { id: event.id } }")
     .image
-      img(src="https://beta.hcxp.co/media/W1siZiIsIjIwMTcvMTIvMzAvaWxicXFwZGhpXzI2MTEzODY2XzEwMTU2MTI3MTA4OTk4NDQ3XzM3Mzc4MDMxNTMxNTkxNDk5MTVfbi5qcGciXSxbInAiLCJ0aHVtYiIsIjgyNXgzMDAjIl1d?sha=f7593a12ba545279")
+      img(:src="event.attributes.poster_medium_url")
     .content
-      a.header {{ event.attributes.name }}
+      a.header.text-truncate {{ event.attributes.name }}
       .meta
-        | {{ event.attributes.start_at | moment("from", "now") }} · <router-link :to="{ name: 'search', params: { query: event.attributes.city } }">{{ event.attributes.city }}, {{ event.attributes.country_code }}</router-link>
+        | {{ event.attributes.start_at | moment("from", "now") }} · <router-link :to="{ name: 'search', params: { query: event.attributes.place_name } }">{{ event.attributes.place_name }}</router-link>, <router-link :to="{ name: 'search', params: { query: event.attributes.city } }">{{ event.attributes.city }}, {{ event.attributes.country_code }}</router-link>
 </template>
 
 <script>

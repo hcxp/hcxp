@@ -11,19 +11,25 @@
 
           .eight.wide.column.right.aligned
             .text.menu.ui.right.compact
-              dropdown.v-dropdown(:visible="dropdownAddEventVisible" animation="ani-slide-none" @clickout="dropdownAddEventVisible = false" :position="['right', 'bottom', 'right', 'top']")
-                span.click(@click="dropdownAddEventVisible=!dropdownAddEventVisible")
+              dropdown.v-dropdown(:visible="newEventFormOpened" animation="ani-slide-none" @clickout="$store.dispatch('changeNewEventFormOpenState', false)" :position="['right', 'bottom', 'right', 'top']")
+                span.click(@click="showNewEventForm")
                   a.ui.button.green.basic
                     | + Add event
 
                 div(slot="dropdown")
                   .ui.dropdown.item.active.top.right.pointing
                     .menu.visible(style="display:block; padding: 15px;")
-                      p Past a link to Facebook event to add it to hcxp:
-                      .ui.input(style="margin-left:0;margin-right:0")
-                        input(placeholder="https://facebook.com/event/...")
 
-                      a.ui.button.green.small
+                      .ui.error.message.mb-3(v-if="createEventErrors.length > 0")
+                        ul.list
+                          li(v-for="error in createEventErrors")
+                            | {{ error }}
+
+                      label Past a link to Facebook event to add it to hcxp:
+                      .ui.input(style="margin-left:0;margin-right:0")
+                        input(placeholder="https://facebook.com/event/..." v-model="newEventLink")
+
+                      a.ui.button.green.small(@click.prevent="createEvent" :class="{ loading: isSavingEvent }")
                         | Add event
 
               dropdown.v-dropdown.user-menu(v-if="userSignedIn" :visible="dropdownVisible" animation="ani-slide-none" @clickout="dropdownVisible = false" :position="['right', 'bottom', 'right', 'top']")
@@ -71,7 +77,8 @@ export default {
     return {
       query: '',
       dropdownAddEventVisible: false,
-      dropdownVisible: false
+      dropdownVisible: false,
+      newEventLink: ''
     }
   },
 
@@ -80,18 +87,28 @@ export default {
   },
 
   methods: {
+    showNewEventForm () {
+      this.newEventLink = ''
+      this.$store.dispatch('changeNewEventFormOpenState', true)
+    },
+
     handleSearchSubmit () {
       this.$router.push({ name: 'search', params: { query: this.query }})
     },
 
     handleSignOutClicked () {
       this.$store.dispatch('signOut')
+    },
+
+    createEvent () {
+      this.$store.dispatch('createEvent', { link: this.newEventLink })
     }
   },
 
   computed: {
     ...mapGetters([
-      'currentUser', 'userSignedIn'
+      'currentUser', 'userSignedIn', 'newEventFormOpened', 'createEventErrors',
+      'isSavingEvent'
     ])
   }
 }

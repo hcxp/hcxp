@@ -17,13 +17,12 @@ class Api::V1::EventsController < Api::V1Controller
   def create
     authenticate_user!
 
-    @output = Events::AddFromFacebook.new(params[:link])
+    outcome = Events::AddFromFacebook.run(link: params[:link])
 
-    if @output.valid?
-      @output.execute!
-      render json: @output.event, status: :created
+    if outcome.valid?
+      render json: outcome.result, status: :created, adapter: :json_api
     else
-      render json: @output.event, status: :bad_request
+      render json: outcome.errors.full_messages, status: :bad_request, adapter: :json_api
     end
   end
 end

@@ -9,10 +9,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueMoment from 'vue-moment'
-import store from '../store'
 import VueNotifications from 'vue-notifications'
 import iziToast from 'izitoast'// https://github.com/dolce/iziToast
+import store from '../store'
 import eventBus from '../eventbus'
+import ActionCable from '../cable'
 
 import App from '../app.vue'
 import HomePage from '../pages/HomePage.vue'
@@ -23,9 +24,8 @@ import SearchPastPage from '../pages/SearchPastPage.vue'
 import SearchSavedPage from '../pages/SearchSavedPage.vue'
 import EventPage from '../pages/EventPage.vue'
 
-import 'izitoast/dist/css/iziToast.min.css'
-
 // Vue-notifications plugin
+import 'izitoast/dist/css/iziToast.min.css'
 function toast ({title, message, type, timeout, cb}) {
   if (type === VueNotifications.types.warn) type = 'warning'
   return iziToast[type]({title, message, timeout})

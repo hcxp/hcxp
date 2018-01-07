@@ -41,7 +41,7 @@ export default {
 
     sortedEvents () {
       return this.events.sort((a, b) => {
-        return new Date(a.attributes.start_at) - new Date(b.attributes.start_at)
+        return new Date(a.date) - new Date(b.date)
       })
     }
   }

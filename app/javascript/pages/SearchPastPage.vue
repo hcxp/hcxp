@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     .ui.loader.active(v-if="isLoadingAllEvents")
-    events-list(:events="events" v-else)
+    events-list(:events="sortedEvents" v-else)
 </template>
 
 <script>
@@ -38,7 +38,13 @@ export default {
   computed: {
     ...mapGetters([
       'events', 'isLoadingAllEvents'
-    ])
+    ]),
+
+    sortedEvents () {
+      return this.events.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date)
+      })
+    }
   }
 }
 </script>

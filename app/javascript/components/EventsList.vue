@@ -1,10 +1,11 @@
 <template lang="pug">
   .mb-5
-    h2.ui.dividing.header.mb-4
-      | Styczeń 2017
+    template(v-for="month in events")
+      h2.ui.dividing.header.mb-4
+        | {{ month.date | moment("MMMM YYYY") }}
 
-    .ui.link.two.cards
-      event-card(:event="event" v-for="event in events")
+      .ui.link.two.cards
+        event-card(:event="event" v-for="event in month.events" :key="event.id")
 </template>
 
 <script>
@@ -14,7 +15,7 @@ export default {
   props: {
     events: {
       type: Array,
-      default: () => { [] }
+      default: () => { return [] }
     }
   },
 

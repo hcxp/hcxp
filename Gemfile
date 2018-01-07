@@ -47,6 +47,9 @@ gem 'devise'
 gem 'omniauth-discourse'
 gem 'dragonfly', '~> 1.1.4'
 gem 'discourse_api'
+gem 'koala'
+gem 'nominatim', github: 'hcxp/nominatim'
+gem 'rinku'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

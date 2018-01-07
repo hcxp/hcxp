@@ -10,11 +10,14 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
+  newEventFormOpened: false,
+  createEventErrors: [],
+  isSavingEvent: false,
   events: {},
   isLoadingAllEvents: false,
   isLoadingCurrentEvent: true,
   currentEventId: null,
-  currentUser: {}
+  currentUser: {},
 }
 
 export default new Vuex.Store({

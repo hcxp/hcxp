@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  active_interaction:
+    errors:
+      models:
+        events/add_from_facebook:
+          attributes:
+            link:
+              not_facebook_event: does not point to facebook event
