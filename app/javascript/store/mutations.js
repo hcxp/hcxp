@@ -20,6 +20,10 @@ export default {
     })
   },
 
+  [types.RECEIVE_EVENT_BANDS] (state, { bands }) {
+    state.eventBands = bands
+  },
+
   [types.RECEIVE_EVENT] (state, { event }) {
     Vue.set(state.events, event.id, event)
   },
@@ -32,8 +36,16 @@ export default {
     Vue.set(state, 'isLoadingAllEvents', isLoading)
   },
 
+  [types.UPDATE_EVENT_BANDS_LOADING] (state, isLoading) {
+    Vue.set(state, 'isLoadingEventBands', isLoading)
+  },
+
   [types.CLEAR_EVENTS] (state) {
     Vue.set(state, 'events', {})
+  },
+
+  [types.CLEAR_EVENT_BANDS] (state) {
+    Vue.set(state, 'eventBands', [])
   },
 
   [types.SET_CURRENT_EVENT_ID] (state, id) {

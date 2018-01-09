@@ -3,6 +3,9 @@ class Event < ApplicationRecord
 
   STATES = %w(new ready).freeze
 
+  has_many :band_events
+  has_many :bands, through: :band_events, dependent: :destroy
+
   dragonfly_accessor :poster
 
   validates :state, inclusion: { in: STATES }

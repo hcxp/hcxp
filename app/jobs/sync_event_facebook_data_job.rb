@@ -4,7 +4,7 @@ class SyncEventFacebookDataJob < ApplicationJob
   def perform(event_id)
     @event = Event.find(event_id)
 
-    @event.update_attributes(
+    event.update_attributes(
       state:        'ready',
       name:         facebook_event['name'],
       description:  facebook_event['description'],
@@ -20,9 +20,11 @@ class SyncEventFacebookDataJob < ApplicationJob
 
     ActionCable.server.broadcast 'events', {
       key: 'updated',
-      data: ActiveModel::SerializableResource.new(@event, adapter: :json_api)
+      data: ActiveModel::SerializableResource.new(event, adapter: :json_api)
                                              .serializable_hash[:data]
     }
+
+    crawl_bandcamp_links
   end
 
   private
@@ -61,5 +63,18 @@ class SyncEventFacebookDataJob < ApplicationJob
     geocoded_place.address.village.present? \
       ? geocoded_place.address.village
       : geocoded_place.name_details[:name]
+  end
+
+  def crawl_bandcamp_links
+    uris = URI.extract(event.description)
+
+    uris.map!    { |u| URI.parse(u).host }
+    uris.select! { |u| /\A.+.bandcamp.com\z/.match? u }
+    uris.map!    { |u| URI::HTTPS.build(host: u).to_s }
+    uris.uniq!
+
+    uris.each do |uri|
+      CrawlBandcampLinkJob.perform_later(uri, event.id)
+    end
   end
 end

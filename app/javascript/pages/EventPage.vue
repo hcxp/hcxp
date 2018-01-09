@@ -38,13 +38,13 @@
             h4 Bands playing
 
             .ui.styled.accordion
-              div(v-for="band in bands")
-                .title(:class="{ active: band.active }" @click="handleBandClicked(band)")
+              div(v-for="band in eventBands")
+                .title(@click="handleBandClicked(band)")
                   i.dropdown.icon
-                  | {{ band.name }}
-                  sub  {{ band.country_code }}
+                  | {{ band.attributes.name }}
+                  sub  {{ band.attributes.country_code }}
 
-                .content(:class="{ active: band.active }" v-if="band.active")
+                .content
                   p A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
                   <iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=211332339/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless></iframe>
 
@@ -79,12 +79,13 @@ export default {
 
     updateCurrentEvent () {
       this.$store.dispatch('setCurrentEvent', this.$route.params.id)
+      this.$store.dispatch('getEventBands', { eventId: this.$route.params.id })
     }
   },
 
   computed: {
     ...mapGetters([
-      'event', 'isLoadingCurrentEvent'
+      'event', 'isLoadingCurrentEvent', 'eventBands'
     ])
   }
 }

@@ -17,6 +17,7 @@ const state = {
   isLoadingAllEvents: false,
   isLoadingCurrentEvent: true,
   currentEventId: null,
+  eventBands: [],
   currentUser: {},
 }
 

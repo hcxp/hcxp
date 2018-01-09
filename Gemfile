@@ -50,6 +50,9 @@ gem 'discourse_api'
 gem 'koala'
 gem 'nominatim', github: 'hcxp/nominatim'
 gem 'rinku'
+gem 'nokogiri'
+gem 'httparty'
+gem 'spidr'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

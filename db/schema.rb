@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106143610) do
+ActiveRecord::Schema.define(version: 20180109190649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "band_events", force: :cascade do |t|
+    t.bigint "band_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["band_id"], name: "index_band_events_on_band_id"
+    t.index ["event_id"], name: "index_band_events_on_event_id"
+  end
+
+  create_table "bands", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "location"
+    t.string "photo_uid"
+    t.datetime "scrapped_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_bands_on_uid"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "facebook_event_id"
@@ -74,5 +94,7 @@ ActiveRecord::Schema.define(version: 20180106143610) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "band_events", "bands"
+  add_foreign_key "band_events", "events"
   add_foreign_key "user_oauth_resources", "users"
 end

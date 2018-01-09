@@ -51,6 +51,20 @@ export const setCurrentEvent = ({ commit, state }, id) => {
   }
 }
 
+export const getEventBands = ({ commit }, params) => {
+  commit(types.UPDATE_EVENT_BANDS_LOADING, true)
+  commit(types.CLEAR_EVENT_BANDS)
+
+  let req = Vue.http.get(`/api/v1/events/${params.eventId}/bands`)
+
+  req.then((resp) => {
+    commit(types.RECEIVE_EVENT_BANDS, {
+      bands: resp.data.data
+    })
+    commit(types.UPDATE_EVENT_BANDS_LOADING, false)
+  })
+}
+
 export const updateExistingEvent = ({ commit, state }, event) => {
   if (typeof(state.events[event.id]) == 'undefined') { return false }
 

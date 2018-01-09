@@ -31,6 +31,10 @@ export const event = state => {
   return state.events[state.currentEventId]
 }
 
+export const eventBands = state => {
+  return state.eventBands
+}
+
 export const isLoadingAllEvents = state => {
   return state.isLoadingAllEvents
 }
