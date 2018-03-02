@@ -14,9 +14,18 @@
  *= require_self
  */
 
-.ui.container {
+body {
+  background: #f9f9f9;
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+.container {
   max-width: 990px !important;
 }
+
+.p-1 { padding: .25rem!important; }
+.p-2 { padding: .5rem!important; }
+.p-3 { padding: 1rem!important; }
 
 .pt-1 { padding-top: .25rem!important; }
 
@@ -43,6 +52,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+  display: inline-block;
 }
 
 article p {
@@ -53,4 +64,8 @@ article p {
 
 .card-full-width {
   width: auto !important;
+}
+
+.is-circle {
+  border-radius: 50%;
 }

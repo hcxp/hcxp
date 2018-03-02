@@ -1,7 +1,8 @@
 <template lang="pug">
-  .main.ui.container
-    .ui.loader.active(v-if="isLoadingAllEvents")
-    events-list(:events="sortedEvents" v-else)
+  .container
+    //- .ui.loader.active(v-if="isLoadingAllEvents")
+    b-loading(:active.sync="isLoadingAllEvents")
+    events-list(:events="sortedEvents" v-if="!isLoadingAllEvents")
 </template>
 
 <script>

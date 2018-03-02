@@ -1,41 +1,50 @@
 <template lang="pug">
-  .main.ui.container
-    .ui.loader.active(v-if="isLoadingCurrentEvent")
-    template(v-else)
-      .ui.warning.icon.message.mb-4(v-if="event.attributes.state == 'new'")
-        i.notched.circle.loading.icon
-        .content
-          .header
-            | Just one second
-          p We're fetching event details from facebook.
+  .container
+    b-loading(:active.sync="isLoadingCurrentEvent")
+
+    template(v-if="!isLoadingCurrentEvent")
+      .notification.is-primary(v-if="event.attributes.state == 'new'")
+        p.title.is-5.mb-1
+          | Just one second
+        p
+          | We're currently fetching event details from facebook.
 
       template(v-else)
-        .ui.grid
-          .column.ten.wide
-            .ui.card.card-full-width
-              .image
+        .columns
+          .column.is-8
+
+            .card.mb-4.event-page-heading
+              .card-image
                 img(:src="event.attributes.poster_large_url" width="100%")
 
-              .content
-                .ui.sub.header.text-muted
+              .card-content
+                p.heading.has-text-grey-light
                   | {{ event.attributes.start_at | moment("from", "now") }}
-                h1.ui.header.large.mt-0
+
+                h1.title.is-4.mb-2
                   .content
                     | {{ event.attributes.name }}
-                    .sub.header {{ event.attributes.city }}, {{ event.attributes.country_code }}
 
-            .ui.card.card-full-width
-              .content
-                .header More details
+                p.event-page-heading-location
+                  map-pin-icon
+                  <router-link :to="{ name: 'search', params: { query: event.attributes.place_name } }" class="has-text-grey">{{ event.attributes.place_name }}</router-link>, <router-link :to="{ name: 'search', params: { query: event.attributes.city } }" class="has-text-grey">{{ event.attributes.city }}, {{ event.attributes.country_code }}</router-link>
 
-              .content
-                //- h3.ui.dividing.header More details
+              .card-footer
+                a.card-footer-item Save
+                a.card-footer-item Share
+                p.card-footer-item
+                  span See on <a href="#">facebook</a>
 
-                article
+            .card
+              header.card-header
+                p.card-header-title More details
+
+              .card-content
+                .content
                   p(v-html="event.attributes.description_html")
 
-          .column.six.wide
-            h4 Bands playing
+          .column
+            h4.heading Bands playing
 
             .ui.styled.accordion
               div(v-for="band in eventBands")
@@ -52,8 +61,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { MapPinIcon } from 'vue-feather-icons'
 
 export default {
+  components: {
+    MapPinIcon
+  },
+
   data () {
     return {
       bands: [
@@ -91,13 +105,26 @@ export default {
 }
 </script>
 
-<style>
-.ui.segment-poster {
-  padding: 0;
-  overflow: hidden;
+<style lang="scss">
+.event-page-heading {
+  .card-content {
+    padding: 1rem;
+  }
+
+  .heading {
+    margin-bottom: 3px;
+  }
 }
 
-.ui.segment-poster img {
-  display: block;
+.event-page-heading-location {
+  font-size: 0.9rem;
+
+  svg {
+    width: .9rem;
+    height: .9rem;
+    margin-bottom: -2px;
+    margin-right: 6px;
+    stroke: #777;
+  }
 }
 </style>

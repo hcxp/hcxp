@@ -1,76 +1,80 @@
 <template lang="pug">
-  .ui.masthead.vertical.tab.segment.mb-4.pb-4(style="display:block")
-    .ui.container
-      .introduction
-        .ui.grid
-          .eight.wide.column
-            h1.ui.header
-              router-link.logo(:to="{ name: 'home' }") hcxp.co
-              .sub.header
-                | Independent hard-core punk events directory
+  header.header-master
+    .container
+      .columns
+        .column.is-7
+          h1.ui.header
+            router-link.header-master-logo(:to="{ name: 'home' }")
+              img(src="https://forum.hcxp.co/uploads/default/original/2X/d/df54d813733bf64e9a9826b4d0c628b787e30171.png" width="100")
 
-          .eight.wide.column.right.aligned
-            .text.menu.ui.right.compact
-              dropdown.v-dropdown(:visible="newEventFormOpened" animation="ani-slide-none" @clickout="$store.dispatch('changeNewEventFormOpenState', false)" :position="['right', 'bottom', 'right', 'top']")
-                span.click(@click="showNewEventForm")
-                  a.ui.button.green.basic
-                    | + Add event
+            .header-master-slogan.has-text-grey
+              | Independent hard-core punk events directory
 
-                div(slot="dropdown")
-                  .ui.dropdown.item.active.top.right.pointing
-                    .menu.visible(style="display:block; padding: 15px;")
+        .column
+          .level
+            .level-left
+              b-dropdown.header-master-add-event-dropdown(position="is-bottom-left")
+                button.button.is-success.is-outlined(slot="trigger")
+                  span + Add event
 
-                      .ui.error.message.mb-3(v-if="createEventErrors.length > 0")
-                        ul.list
-                          li(v-for="error in createEventErrors")
-                            | {{ error }}
+                b-dropdown-item(custom paddingless)
+                  form
+                    .modal-card(style="width:400px;")
+                      section.modal-card-body
+                        p Past a link to Facebook event to add it to hcxp:
+                        b-field
+                          b-input(type="text" placeholder="https://facebook.com/events/..." v-model="newEventLink" required)
 
-                      label Past a link to Facebook event to add it to hcxp:
-                      .ui.input(style="margin-left:0;margin-right:0")
-                        input(placeholder="https://facebook.com/event/..." v-model="newEventLink")
+                        button(class="button is-primary" @click.prevent="createEvent")
+                          | Submit
 
-                      a.ui.button.green.small(@click.prevent="createEvent" :class="{ loading: isSavingEvent }")
-                        | Add event
+              template(v-if="userSignedIn")
+                b-dropdown(position="is-bottom-left")
+                  img.is-circle(slot="trigger" :src="currentUser.attributes.avatar_url" width="35" heigh="35")
 
-              dropdown.v-dropdown.user-menu(v-if="userSignedIn" :visible="dropdownVisible" animation="ani-slide-none" @clickout="dropdownVisible = false" :position="['right', 'bottom', 'right', 'top']")
-                span.click(@click="dropdownVisible=!dropdownVisible")
-                  img.ui.mini.avatar.image(:src="currentUser.attributes.avatar_url" width="35" height="35")
-                  i.dropdown.icon
+                  b-dropdown-item(@click="handleSignOutClicked")
+                    | Sign out
 
-                div(slot="dropdown")
-                  .ui.dropdown.item.active.top.right.pointing
-                    .menu.visible(style="display:block")
-                      //- a.item Your profile
-                      //- a.item Your events
-                      //- .divider
-                      a.item(@click.prevent="handleSignOutClicked") Sign-out
-
-              .item(v-else)
-                a.ui.button.basic(href="/users/auth/discourse")
+              template(v-else)
+                a.button(href="/users/auth/discourse")
                   | Join us
 
-              .item.right.aligned
-                form.item.ui.top.right.input.large(@submit.prevent="handleSearchSubmit")
-                  .ui.search
-                    .ui.icon.input
-                      input.prompt(placeholder="Search..." v-model="query")
-                      i.search.icon
+            .level-right
+              form(@submit.prevent="handleSearchSubmit")
+                .field
+                  p.control.has-icons-right
+                    input.input.is-rounded(type="search" placeholder="Search...")
+                    span.icon.is-small.is-right
+                      search-icon
 
-      template(v-if="!$route.meta.hideHeaderFilters")
-        .ui.hidden.divider
-        .ui.three.item.stackable.tabs.menu.orange
-          router-link.item(:to="{ name: 'home' }" exact) Upcoming
-          router-link.item(:to="{ name: 'past' }") Past
-          router-link.item(:to="{ name: 'saved' }") Saved
+      div.tabs.is-toggle.is-fullwidth(v-if="!$route.meta.hideHeaderFilters")
+        ul
+          router-link(:to="{ name: 'home' }" exact tag="li")
+            a
+              trending-up-icon
+              | Upcoming
+          router-link(:to="{ name: 'past' }" tag="li")
+            a
+              arrow-down-right-icon
+              | Past
+          router-link(:to="{ name: 'saved' }" tag="li")
+            a
+              bookmark-icon
+              | Saved
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import Dropdown from 'vue-my-dropdown'
+import { TrendingUpIcon, ArrowDownRightIcon, BookmarkIcon, SearchIcon } from 'vue-feather-icons'
 
 export default {
   components: {
-    Dropdown
+    Dropdown,
+    TrendingUpIcon,
+    ArrowDownRightIcon,
+    BookmarkIcon,
+    SearchIcon
   },
 
   data () {
@@ -114,40 +118,52 @@ export default {
 }
 </script>
 
-<style>
-.v-dropdown {
-  display: flex;
-  margin-left: auto!important;
-  padding: .35714286em .5em;
-  align-self: center;
+<style lang="scss">
+.header-master {
+  background: #fff;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid #eee;
+
+  .icon svg {
+    stroke-width: 2px;
+    fill: none;
+    width: 1.2rem;
+    height: 1.5rem;
+  }
 }
 
-.masthead .dropdown .menu.visible {
-  top: 0 !important;
+.header-master-slogan {
+  margin-top: -4px;
+  font-size: .9rem;
 }
 
-.masthead .user-menu .click {
-  cursor: pointer;
+.header-master-add-event-dropdown {
+  .dropdown-content {
+    padding: 0;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
 }
 
-.masthead .ui.text.menu {
-  margin: 0;
+.header-master .tabs {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+
+  svg {
+    height: 16px;
+  }
 }
 
-.masthead .logo {
-  color: inherit;
-}
+.header-master .tabs li.is-active {
+  font-weight: 600;
 
-.masthead .ui.compact.menu .item:last-child {
-  padding-right: 0;
-}
-
-.masthead .ui.menu .item>i.dropdown.icon {
-  margin-left: 0.3em;
-}
-
-.masthead form {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  svg {
+    stroke: #fff;
+  }
 }
 </style>

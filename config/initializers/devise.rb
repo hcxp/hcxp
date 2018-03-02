@@ -252,7 +252,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :discourse,
-                  sso_url: 'https://forum.hard-core.pl/session/sso_provider',
+                  sso_url: 'https://forum.hcxp.co/session/sso_provider',
                   sso_secret: ENV['DISCOURSE_SECRET']
 
   # ==> Warden configuration

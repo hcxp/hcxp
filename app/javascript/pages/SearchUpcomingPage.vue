@@ -47,13 +47,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.search-heading {
-  text-align: center;
-  background: #f9f9f9;
-  padding: 2em 0;
-  margin-bottom: 2em;
-  margin-top: -1.5em;
-}
-</style>

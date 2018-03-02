@@ -6,6 +6,7 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
+import Buefy from 'buefy'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueMoment from 'vue-moment'
@@ -24,6 +25,8 @@ import SearchPastPage from '../pages/SearchPastPage.vue'
 import SearchSavedPage from '../pages/SearchSavedPage.vue'
 import EventPage from '../pages/EventPage.vue'
 
+import 'buefy/lib/buefy.css'
+
 // Vue-notifications plugin
 import 'izitoast/dist/css/iziToast.min.css'
 function toast ({title, message, type, timeout, cb}) {
@@ -37,6 +40,7 @@ const notificationOptions = {
   warn: toast
 }
 
+Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueMoment)
@@ -89,7 +93,7 @@ const routes = [{
 
 const router = new VueRouter({
   routes,
-  linkActiveClass: 'active'
+  linkActiveClass: 'is-active'
 })
 
 document.addEventListener('DOMContentLoaded', () => {

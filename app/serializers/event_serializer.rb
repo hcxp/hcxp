@@ -6,11 +6,11 @@ class EventSerializer < ActiveModel::Serializer
              :poster_large_url, :place_name
 
   def poster_medium_url
-    object.poster.thumb('481x175#n').url if object.poster_stored?
+    object.poster.thumb('483x175#n').url if object.poster_stored?
   end
 
   def poster_large_url
-    object.poster.thumb('609x222#').url if object.poster_stored?
+    object.poster.thumb('653x237#n').url if object.poster_stored?
   end
 
   def description_html

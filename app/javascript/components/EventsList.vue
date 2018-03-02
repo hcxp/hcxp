@@ -1,14 +1,18 @@
 <template lang="pug">
   .mb-5
     template(v-for="month in events")
-      h2.ui.dividing.header.mb-4
-        | {{ month.date | moment("MMMM YYYY") }}
+      .events-list-month
+        h2.title.is-4.mb-4
+          | {{ month.date | moment("MMMM YYYY") }}
 
-      .ui.link.two.cards
-        event-card(:event="event" v-for="event in month.events" :key="event.id")
+        .columns(v-for="row in chunkedEvents(month.events)")
+          .column.is-6(v-for="event in row" :key="event.id")
+            event-card(:event="event")
 </template>
 
 <script>
+import _chunk from 'lodash/chunk'
+
 import EventCard from './EventCard'
 
 export default {
@@ -21,6 +25,18 @@ export default {
 
   components: {
     EventCard
+  },
+
+  methods: {
+    chunkedEvents (events) {
+      return _chunk(events, 2)
+    }
   }
 }
 </script>
+
+<style>
+.events-list-month {
+  margin-bottom: 3rem;
+}
+</style>
