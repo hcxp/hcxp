@@ -10,8 +10,6 @@ import Buefy from 'buefy'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueMoment from 'vue-moment'
-import VueNotifications from 'vue-notifications'
-import iziToast from 'izitoast'// https://github.com/dolce/iziToast
 import store from '../store'
 import eventBus from '../eventbus'
 import ActionCable from '../cable'
@@ -27,24 +25,10 @@ import EventPage from '../pages/EventPage.vue'
 
 import 'buefy/lib/buefy.css'
 
-// Vue-notifications plugin
-import 'izitoast/dist/css/iziToast.min.css'
-function toast ({title, message, type, timeout, cb}) {
-  if (type === VueNotifications.types.warn) type = 'warning'
-  return iziToast[type]({title, message, timeout})
-}
-const notificationOptions = {
-  success: toast,
-  error: toast,
-  info: toast,
-  warn: toast
-}
-
 Vue.use(Buefy)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueMoment)
-Vue.use(VueNotifications, notificationOptions)
 
 // Vue-resource settings
 Vue.http.options.root = '/api/v1'

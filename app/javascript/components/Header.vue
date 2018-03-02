@@ -13,7 +13,7 @@
         .column
           .level
             .level-left
-              b-dropdown.header-master-add-event-dropdown(position="is-bottom-left")
+              b-dropdown.header-master-add-event-dropdown(position="is-bottom-left" ref="addEventDropdown")
                 button.button.is-success.is-outlined(slot="trigger")
                   span + Add event
 
@@ -25,7 +25,7 @@
                         b-field
                           b-input(type="text" placeholder="https://facebook.com/events/..." v-model="newEventLink" required)
 
-                        button(class="button is-primary" @click.prevent="createEvent")
+                        button(class="button is-primary" @click.prevent="createEvent" :class="{ 'is-loading': isSavingEvent }")
                           | Submit
 
               template(v-if="userSignedIn")
@@ -105,7 +105,11 @@ export default {
     },
 
     createEvent () {
-      this.$store.dispatch('createEvent', { link: this.newEventLink })
+      let req = this.$store.dispatch('createEvent', { link: this.newEventLink })
+
+      req.then(() => {
+        this.$refs.addEventDropdown.toggle()
+      })
     }
   },
 

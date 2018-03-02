@@ -94,6 +94,8 @@ export const createEvent = ({ commit, state }, event) => {
       errors: resp.data
     })
   })
+
+  return req
 }
 
 export const changeNewEventFormOpenState = ({ commit }, isOpened) => {

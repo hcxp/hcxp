@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import VueNotifications from 'vue-notifications'
 import MainHeader from 'components/Header.vue'
 
 export default {
@@ -15,7 +14,13 @@ export default {
 
   mounted () {
     this.$bus.$on('notification::show', (props) => {
-      if (props.type === 'signedOut') { this.signedOutMsg() }
+      if (props.type === 'signedOut') {
+        this.$toast.open({
+          message: 'You have been successfully signed out!',
+          type: 'is-success',
+          position: 'is-bottom-right'
+        })
+      }
     })
 
     this.$store.subscribe((mutation, state) => {
@@ -31,24 +36,14 @@ export default {
     })
   },
 
-  notifications: {
-    signedOutMsg: {
-      type: VueNotifications.types.success,
-      title: 'Signed out',
-      message: 'You have been successfully signed out!'
-    },
-
-    eventCreatedMsg: {
-      type: VueNotifications.types.success,
-      title: '',
-      message: 'Event successfully created!'
-    }
-  },
-
   methods: {
     handleEventCreatedMutation (event) {
       this.$store.dispatch('setCurrentEvent', event.id)
-      this.eventCreatedMsg()
+      this.$toast.open({
+        message: 'Event successfully created!',
+        type: 'is-success',
+        position: 'is-bottom-right'
+      })
       this.$router.push({ name: 'event', params: { id: event.id } })
     }
   }
