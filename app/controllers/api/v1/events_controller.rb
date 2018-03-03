@@ -1,6 +1,7 @@
 class Api::V1::EventsController < Api::V1Controller
   def index
     @events = Event.page(params[:page])
+                   .includes(:bands)
 
     @events = params[:s] == 'past' ? @events.past : @events.upcoming.upcoming_first
     @events = @events.search(params[:q]) if params[:q].present?
@@ -24,5 +25,9 @@ class Api::V1::EventsController < Api::V1Controller
     else
       render json: outcome.errors.full_messages, status: :bad_request, adapter: :json_api
     end
+  end
+
+  def ping_view
+    render json: { success: true }
   end
 end

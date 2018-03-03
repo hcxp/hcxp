@@ -2,6 +2,11 @@
   #app
     main-header
     router-view
+
+    footer.footer
+      .container
+        .content.has-text-centered
+          p <strong>&copy; hcxp.co</strong>
 </template>
 
 <script>
@@ -51,4 +56,7 @@ export default {
 </script>
 
 <style>
+.footer {
+  margin-top: 3rem;
+}
 </style>

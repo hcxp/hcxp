@@ -98,6 +98,10 @@ export const createEvent = ({ commit, state }, event) => {
   return req
 }
 
+export const pingViewEvent = ({ commit, state }, id) => {
+  Vue.http.post(`/api/v1/events/${id}/ping_view`)
+}
+
 export const changeNewEventFormOpenState = ({ commit }, isOpened) => {
   commit(types.SET_CREATE_EVENT_ERRORS, { errors: [] })
   commit(types.CHANGE_NEW_EVENT_FORM_OPEN_STATE, isOpened)

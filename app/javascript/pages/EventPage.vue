@@ -44,18 +44,21 @@
                   p(v-html="event.attributes.description_html")
 
           .column
-            h4.heading Bands playing
+            .mb-4
+              h4.heading Bands playing
+              b-collapse.card(v-for="band in eventBands" :open="false")
+                .card-header(slot="trigger" slot-scope="props" @click="handleBandClicked(band)")
+                  p.page-event-band-title
+                    | {{ band.attributes.name || 'Unknown' }}
+                    span.has-text-grey {{ band.attributes.location }}
 
-            .ui.styled.accordion
-              div(v-for="band in eventBands")
-                .title(@click="handleBandClicked(band)")
-                  i.dropdown.icon
-                  | {{ band.attributes.name }}
-                  sub  {{ band.attributes.country_code }}
+                .card-content.p-3
+                  .content.is-small
+                    p(v-if="band.attributes.description")
+                      | {{ band.attributes.description }}
+                    <iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=211332339/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless></iframe>
 
-                .content
-                  p A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
-                  <iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=211332339/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless></iframe>
+            h4.heading Other events in town
 
 </template>
 
@@ -92,6 +95,7 @@ export default {
     },
 
     updateCurrentEvent () {
+      this.$store.dispatch('pingViewEvent', this.$route.params.id)
       this.$store.dispatch('setCurrentEvent', this.$route.params.id)
       this.$store.dispatch('getEventBands', { eventId: this.$route.params.id })
     }
@@ -125,6 +129,17 @@ export default {
     margin-bottom: -2px;
     margin-right: 6px;
     stroke: #777;
+  }
+}
+
+.page-event-band-title {
+  font-weight: 600;
+  padding: 0.75rem;
+
+  span {
+    font-size: 0.9rem;
+    display: block;
+    font-weight: 500;
   }
 }
 </style>

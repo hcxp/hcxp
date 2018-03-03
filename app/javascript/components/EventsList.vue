@@ -2,7 +2,7 @@
   .mb-5
     template(v-for="month in events")
       .events-list-month
-        h2.title.is-4.mb-4
+        h2.title.is-5.mb-4
           | {{ month.date | moment("MMMM YYYY") }}
 
         .columns(v-for="row in chunkedEvents(month.events)")

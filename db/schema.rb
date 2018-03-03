@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109190649) do
+ActiveRecord::Schema.define(version: 20180302222835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180109190649) do
     t.datetime "scrapped_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["uid"], name: "index_bands_on_uid"
   end
 
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180109190649) do
     t.string "nominatim_place_id"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "synced_at"
     t.index ["facebook_event_id"], name: "index_events_on_facebook_event_id"
     t.index ["nominatim_place_id"], name: "index_events_on_nominatim_place_id"
   end

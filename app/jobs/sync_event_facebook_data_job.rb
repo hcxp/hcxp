@@ -16,6 +16,7 @@ class SyncEventFacebookDataJob < ApplicationJob
       country_code: geocoded_place.address.country_code,
       latitude:     geocoded_place.lat,
       longitude:    geocoded_place.lon,
+      synced_at:    Time.zone.now
     )
 
     ActionCable.server.broadcast 'events', {

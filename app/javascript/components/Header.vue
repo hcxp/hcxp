@@ -22,7 +22,7 @@
                     .modal-card(style="width:400px;")
                       section.modal-card-body
                         p Past a link to Facebook event to add it to hcxp:
-                        b-field
+                        b-field(:message="createEventErrors[0]" :type="createEventErrors.size > 0 ? 'is-danger' : 'text'")
                           b-input(type="text" placeholder="https://facebook.com/events/..." v-model="newEventLink" required)
 
                         button(class="button is-primary" @click.prevent="createEvent" :class="{ 'is-loading': isSavingEvent }")
@@ -43,7 +43,7 @@
               form(@submit.prevent="handleSearchSubmit")
                 .field
                   p.control.has-icons-right
-                    input.input.is-rounded(type="search" placeholder="Search...")
+                    input.input.is-rounded(type="search" placeholder="Search..." v-model="query")
                     span.icon.is-small.is-right
                       search-icon
 
@@ -53,10 +53,12 @@
             a
               trending-up-icon
               | Upcoming
+
           router-link(:to="{ name: 'past' }" tag="li")
             a
               arrow-down-right-icon
               | Past
+
           router-link(:to="{ name: 'saved' }" tag="li")
             a
               bookmark-icon
@@ -135,6 +137,10 @@ export default {
     fill: none;
     width: 1.2rem;
     height: 1.5rem;
+  }
+
+  .tabs {
+    background: #f9f9f9;
   }
 }
 

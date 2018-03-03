@@ -11,14 +11,17 @@ class CrawlBandcampLink < ActiveInteraction::Base
   object :event
 
   attr_reader :uid, :name, :location, :photo_url, :tags, :photo_url, :albums,
-              :band
+              :band, :description
 
   def execute
     @albums = []
+    host = link.remove!('www.')
     host = URI.parse(link).host
-    @uid = host.split('.').first
-    Rails.logger.info "Scrapping #{host} host"
 
+    @uid = host.split('.')
+               .first
+
+    Rails.logger.info "Scrapping #{host} host"
     Spidr.host(host) do |spider|
       spider.every_url do |url|
         spider.skip_link! if IGNORED_PATHS.any? { |r| (url.path =~ r).present? }
@@ -35,6 +38,7 @@ class CrawlBandcampLink < ActiveInteraction::Base
     puts
     puts "Uid: #{uid}"
     puts "Name: #{name}"
+    puts "Description: #{name}"
     puts "Location: #{location}"
     puts "Photo url: #{photo_url}"
     # puts "Tags: #{tags.join(', ')}"
@@ -52,6 +56,7 @@ class CrawlBandcampLink < ActiveInteraction::Base
 
   def parse_page(page)
     @name ||= find_name(page)
+    @description ||= find_description(page)
     @location ||= find_location(page)
     @photo_url ||= find_photo_url(page)
   end
@@ -73,6 +78,11 @@ class CrawlBandcampLink < ActiveInteraction::Base
 
   def find_name(page)
     res = page.search('#band-name-location .title')
+    res.first.present? ? res.first.text.squish : nil
+  end
+
+  def find_description(page)
+    res = page.search('#bio-text')
     res.first.present? ? res.first.text.squish : nil
   end
 
@@ -120,6 +130,7 @@ class CrawlBandcampLink < ActiveInteraction::Base
 
     band.uid = uid
     band.name = name
+    band.description = description
     band.location = location
     band.photo_url = photo_url
 

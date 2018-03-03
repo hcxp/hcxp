@@ -3,7 +3,7 @@ class EventSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :facebook_event_id, :start_at, :city, :country_code,
              :description, :description_html, :state, :poster_medium_url,
-             :poster_large_url, :place_name
+             :poster_large_url, :place_name, :band_names
 
   def poster_medium_url
     object.poster.thumb('483x175#n').url if object.poster_stored?
@@ -22,5 +22,9 @@ class EventSerializer < ActiveModel::Serializer
     desc = Rinku.auto_link(desc)
 
     desc
+  end
+
+  def band_names
+    object.bands.map(&:name)
   end
 end

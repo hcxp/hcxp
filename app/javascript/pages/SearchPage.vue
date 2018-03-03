@@ -24,7 +24,14 @@
 </template>
 
 <script>
+import { TrendingUpIcon, ArrowDownRightIcon, BookmarkIcon } from 'vue-feather-icons'
+
 export default {
+  components: {
+    TrendingUpIcon,
+    ArrowDownRightIcon,
+    BookmarkIcon
+  },
 }
 </script>
 
