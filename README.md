@@ -1,27 +1,24 @@
-# hcxp
+# README
 
-hardcore/punk events directory - https://hcxp.co
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### Development
+Things you may want to cover:
 
-    $ docker-compose up
+* Ruby version
 
-### Syncing translations
+* System dependencies
 
-Transifex page: https://www.transifex.com/hcxp/hcxp/
+* Configuration
 
-    # Download source
-    $ tx pull -s
+* Database creation
 
-    # Download translations
-    $ tx pull -t
+* Database initialization
 
-    # Push source
-    $ tx push -s
+* How to run the test suite
 
-    # Push translations
-    $ tx push -t
+* Services (job queues, cache servers, search engines, etc.)
 
-### Credits
+* Deployment instructions
 
-- Honza ([czechcore.cz](https://www.czechcore.cz/)) - Czech translation
+* ...

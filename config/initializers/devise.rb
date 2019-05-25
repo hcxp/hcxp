@@ -6,13 +6,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'db0921e5d04c4b37bcf0618536f96f0cf94429fad7fd560b4b90799fb5d248ef2870aa1990d65e7b6865c9eaf7d90dafd559b01e3c8822373e8e9ffc16683b58'
+  # config.secret_key = '665d52ad236c94cc3bbd7cee8af5baa8d80deb2f3be04d6601d2527b2ccf295855ed0aeb5607d7b12ce3e873d41a7d6c251a52d446b320c3847316fad903bc2a'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'noreply@discourse.hcxp.co'
+  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -108,9 +108,12 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '613f59e9e9787c45cb981a75c2e68cf160ed973b30ef4d8cdc5ae648f6920aef1754c8b7d8089c7cfdd4a92779bbcb117021594df100d3f8686db5b6f0643eb1'
+  # config.pepper = '5afff554a9792877edc92a79008281399be90c4a43ba4ce0677d0dc7ea558db1ea8a566a86d206192f8e718b74deeaf85a2d0d397a49cc048d168ef58efc4b3b'
 
-  # Send a notification email when the user's password is changed
+  # Send a notification to the original email when the user's email is changed.
+  # config.send_email_changed_notification = false
+
+  # Send a notification email when the user's password is changed.
   # config.send_password_change_notification = false
 
   # ==> Configuration for :confirmable
@@ -248,6 +251,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :discourse,
+                  sso_url: 'https://forum.hard-core.pl/session/sso_provider',
+                  sso_secret: ENV['DISCOURSE_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

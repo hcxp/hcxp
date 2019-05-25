@@ -1,8 +1,0 @@
-= render 'bands/heading'
-
-.container.pt-2
-  .card
-    .card-block
-      == cell :events_filters, nil, url: band_path(@band)
-
-  = render partial: 'events/events', events: @events

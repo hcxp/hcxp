@@ -1,0 +1,50 @@
+<template lang="pug">
+  div
+    .ui.loader.active(v-if="isLoadingAllEvents")
+    events-list(:events="sortedEvents" v-else)
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+import EventsList from '../components/EventsList.vue'
+
+export default {
+  components: {
+    EventsList
+  },
+
+  watch: {
+    '$route': 'fetchData'
+  },
+
+  data () {
+    return {
+    }
+  },
+
+  created () {
+    this.fetchData()
+  },
+
+  methods: {
+    fetchData () {
+      this.$store.dispatch('getAllEvents', {
+        q: this.$route.params.query,
+        s: 'saved'
+      })
+    }
+  },
+
+  computed: {
+    ...mapGetters([
+      'events', 'isLoadingAllEvents'
+    ]),
+
+    sortedEvents () {
+      return this.events.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date)
+      })
+    }
+  },
+}
+</script>

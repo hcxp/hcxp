@@ -2,8 +2,8 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
@@ -12,73 +12,45 @@
  *
  *= require_tree .
  *= require_self
- *=
- *= require bootstrap-datetimepicker
- *= require luminous-basic
- *= require simplemde.min
- *=
- *= require nav_main
- *= require event_card
- *= require venue_card
- *= require blankslate
- *= require flash_messages
- *= require language_picker
- *= require post_card
- *= require bands_list
  */
 
-body {
-  background: #f4f4f4;
-  color: #444;
+.ui.container {
+  max-width: 990px !important;
 }
 
-.container-fluid {
-  max-width: 1364px;
+.pt-1 { padding-top: .25rem!important; }
+
+.pb-1 { padding-bottom: .25rem!important; }
+.pb-2 { padding-bottom: .5rem !important; }
+.pb-3 { padding-bottom: 1rem !important; }
+.pb-4 { padding-bottom: 1.5rem !important; }
+.pb-5 { padding-bottom: 3rem !important; }
+
+.mb-0 { margin-bottom: 0!important; }
+.mb-1 { margin-bottom: .25rem!important; }
+.mb-2 { margin-bottom: .5rem !important; }
+.mb-3 { margin-bottom: 1rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+.mb-5 { margin-bottom: 3rem !important; }
+
+.mt-0 { margin-top: 0!important; }
+
+.text-muted {
+  color: rgba(0,0,0,.5)!important;
 }
 
-.link-inherit {
-  color: inherit;
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.h6-up {
-  text-transform: uppercase;
-  font-size: 0.8rem;
+article p {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0em 0px 1em;
 }
 
-.heading-underscored {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.4rem;
-}
-
-label {
-  font-weight: 600;
-}
-
-.img-circle {
-  border-radius: 50%;
-}
-
-.text-cap {
-  text-transform: capitalize;
-}
-
-.text-muted-more {
-  color: #bbb;
-}
-
-.text-sm {
-  font-size: 0.9rem;
-}
-
-v-cloak {
-  display: none;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Google places autocomplete suggestions */
-.pac-container {
-  z-index: 9999;
+.card-full-width {
+  width: auto !important;
 }
